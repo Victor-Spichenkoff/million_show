@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+    --color-back: ar(--back);
+    --color-text: var(--text);
+    --color-secondary: var(--secondary);
+    --color-hightlight: var(--hightlight);
+    --color-success: var(--success);
+    --color-error: var(--error);
+}
+
+
+:root {
+    --hightlight: #F32;
+    --primary: #444;
+    --secondary: #fdF;
+    --text: #131313;
+    --back: #D11;
+    --success: #0F0;
+    --error: #F00;
+}
+
+
+.dark {
+    --hightlight: #F32;
+    --primary: #ffffff;
+    --secondary: #fdF;
+    --text: #FFF;
+    --back: rgb(51; 51, 51);
+    --success: #0F0;
+    --error: #F00;
+}

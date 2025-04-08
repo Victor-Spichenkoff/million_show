@@ -1,13 +1,18 @@
 "use client"
 
 import { useTheme } from "next-themes"
-import { Sun, Moon } from "lucide-react"
+import { Sun, Moon, LucideProps } from "lucide-react"
+import { Button } from "../ui/button"
+import { ForwardRefExoticComponent, RefAttributes, useEffect, useState } from "react"
 
 
 export default function ThemeToggle() {
     const { theme, setTheme } = useTheme()
+    const [canLoad, setCanLoad] = useState(false)
 
-    console.log(theme)
+    useEffect(()=>{
+        setCanLoad(true)
+    }, [theme])
 
     return (
         <button
@@ -16,8 +21,13 @@ export default function ThemeToggle() {
             title="Toggle theme"
             aria-label="Toggle theme"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        >
-            { theme == "dark" ? <Sun /> : <Moon /> }
-        </button>
+        > 
+            { canLoad && (
+                <div>
+                     {theme == "dark" ? <Sun /> : <Moon />}
+                </div>
+            ) }
+            { !canLoad && <Moon/> }
+            </button>
     )
 }

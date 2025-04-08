@@ -1,8 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "../css/tailwind.css";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @custom-variant dark (&:is(.dark *));
+
+
 
 @theme inline {
   --color-background: var(--background);
@@ -46,13 +50,6 @@
 
 :root {
   /* mine */
-  --hightlight: #F32;
-  --primary: #444;
-  --secondary: #fdF;
-  --text: #FFF;
-  --back: #D11;
-
-
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -60,7 +57,6 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -88,13 +84,6 @@
 }
 
 .dark {
-  /* mine */
-  --hightlight: #F32;
-  --primary: #444;
-  --secondary: #fdF;
-  --text: #FFF;
-  --back: #D11;
-
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
