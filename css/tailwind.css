@@ -1,38 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-    --color-back: var(--back);
-    --color-text: var(--text);
-    --color-secondary: var(--secondary);
-    --color-hightlight: var(--hightlight);
-    --color-success: var(--success);
-    --color-error: var(--error);
+  --color-back: var(--back);
+  --color-text: var(--text);
+  --color-secondary: var(--secondary);
+  --color-highlight: var(--highlight);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-gold: var(--gold);
+  --color-foreground: var(--foreground);
 }
 
 :root {
-    --hightlight: #2196f3;
-    --primary: #0d47a1;
-    --secondary: #bbdefb;
-    --text: #ffffff;
-    --back: #e3f2fd;
-    --success: #4caf50;
-    --error: #f44336;
-  }
-  
-  .dark {
-    --hightlight: #64b5f6;
-    --primary: #1a237e;
-    --secondary: #0d47a1;
-    --text: #ffffff;
-    --back: #0a0a23;
-    --success: #00e676;
-    --error: #ff5252;
-  }
+  --back: #e3f2fd;
+  --highlight: #2196f3;
+  --primary: #0d47a1;
+  --darker-primary: #0F187D;
+  --secondary: #bbdefb;
+  --text: #0a0a23;
+  --foreground: #DDD;
+  --success: #4caf50;
+  --error: #f44336;
+  ---gold: #d4af37;
+}
+
+.dark {
+  --back: #0a0a23;
+  --highlight: #64b5f6;
+  --primary: #1a237e;
+  --secondary: #0d47a1;
+  --text: #ffffff;
+  --success: #00e676;
+  --error: #ff5252;
+  --gold: #ffd700;
+}
 
 /* dourado, success e erro bom */
 /* * O doura é bem bonito, dinheiro*/
 /* :root {
-    --hightlight: #d4af37; 
+    --highlight: #d4af37;
   --primary: #ffffff;
     --secondary: #e6e6e6;
     --text: #111;
@@ -40,9 +46,9 @@
     --success: #4caf50;
     --error: #f44336;
   }
-  
+
   .dark {
-    --hightlight: #ffd700;
+    --highlight: #ffd700;
     --primary: #1e1e1e;
     --secondary: #2c2c2c;
     --text: #f1f1f1;
@@ -50,4 +56,3 @@
     --success: #00ff00;
     --error: #ff3333;
   } */
-

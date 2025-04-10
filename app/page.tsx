@@ -10,6 +10,7 @@ export default function Home() {
       <h1 className="text-hightlight">highlight</h1>
       <div className="bg-success w-12 h-12"></div>
       <div className="bg-error w-12 h-12"></div>
+      <div className="bg-gold w-12 h-12"></div>
       <ThemeToggle />
     </div>
   )
