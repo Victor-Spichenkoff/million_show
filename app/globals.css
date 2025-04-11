@@ -1,15 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "../css/tailwind.css";
+@import "../css/auth.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @custom-variant dark (&:is(.dark *));
 
 
-.link {
-  @apply text-gold font-bold
-}
 
 
 @theme inline {

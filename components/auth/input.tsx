@@ -1,6 +1,7 @@
 import {FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form"
 import {Input} from "@/components/ui/input"
 import {FieldValues, Path, UseFormReturn} from "react-hook-form"
+import {HTMLInputTypeAttribute} from "react";
 
 interface IFormInput<TSchema extends FieldValues> {
     form: UseFormReturn<TSchema>
@@ -9,12 +10,23 @@ interface IFormInput<TSchema extends FieldValues> {
     placeholder?: string
     label?: string
     desc?: string
+    type?: HTMLInputTypeAttribute
+    onEnter?: () => void
 }
 
 export const FormInput =
-    <TSchema extends FieldValues>({form, name, placeholder, label, desc}: IFormInput<TSchema>) => {
+    <TSchema extends FieldValues>({form, name, placeholder, label, desc, type, onEnter}: IFormInput<TSchema>) => {
+
+        const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === "Enter") {
+                if (onEnter)
+                    onEnter()
+            }
+        }
+
+
         return (
-            <div className="w-fit max-w-[400px]">
+            <div className=" max-w-[400px]">
                 <FormField
                     control={form.control}
                     name={name}
@@ -23,9 +35,13 @@ export const FormInput =
                             <FormLabel>{label}</FormLabel>
                             <FormControl>
                                 <Input
+                                    onKeyDown={handleKeyDown}
+                                    type={type}
                                     placeholder={placeholder}
                                     {...field}
-                                    className={"bg-highlight border-0"}
+                                    className={"" +
+                                        "bg-highlight border-0 rounded-4xl shadow-black/50 shadow-md" +
+                                        "  min-w-[300px] w-full text-2xl text-white px-3 py-5 md:py-2 font-bold text-2xl md:text-3xl"}
                                 />
                             </FormControl>
                             <FormDescription>

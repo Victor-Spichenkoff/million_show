@@ -9,6 +9,9 @@
   --color-error: var(--error);
   --color-gold: var(--gold);
   --color-foreground: var(--foreground);
+  --color-form-btn: #0057FF;
+
+  --font-oswald: var(--font-oswald);
 }
 
 :root {
@@ -27,7 +30,8 @@
 .dark {
   --back: #0a0a23;
   --highlight: #64b5f6;
-  --primary: #1a237e;
+  /*--primary: #1a237e; mais fraco*/
+  --primary: #0F187D;
   --secondary: #0d47a1;
   --text: #ffffff;
   --success: #00e676;
@@ -36,7 +40,7 @@
 }
 
 /* dourado, success e erro bom */
-/* * O doura é bem bonito, dinheiro*/
+/* * O dourado é bem bonito, dinheiro*/
 /* :root {
     --highlight: #d4af37;
   --primary: #ffffff;

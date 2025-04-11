@@ -3,19 +3,23 @@
 import {LoginForm} from "@/components/auth/loginForm";
 import Image from "next/image"
 import GoldImage from "@/assets/images/gold.jpg"
+import {Header} from "@/components/template/header";
+import {Footer} from "@/components/template/footer";
 
 export default function LoginScreen() {
     return (
-        <div className={"flex flex-col justify-between h-full font-oswald"}>
-            <div>HEADER</div>
-            <div className={"flex flex-col-reverse md:flex-row max-w-[400px] md:max-w-[700px] bg-primary mx-auto"}>
+        <div className={"flex flex-col justify-between items-center h-full font-oswald"}>
+            <Header label={"Login"} />
+            <div className={"flex flex-col-reverse md:flex-row max-w-[400px] min-h-[600px] md:max-w-[1000px] md:min-h-0 " +
+                " bg-primary mx-3 rounded-xl overflow-hidden shadow-xl shadow-black/30"}>
                 <LoginForm/>
-                <div className={"flex-1"}>
-                    <Image src={GoldImage} alt={"gold"} className={"h-full"}/>
+                <div className={"flex-1 bg-red-400 min-h-[205] md:min-w-[550px] shadow-black/40 shadow-md"}>
+                    <div style={{ backgroundImage: 'url("/gold.jpg")', backgroundSize: "cover", backgroundPosition: "center" }} className={"w-full h-full"}>
+                    </div>
                 </div>
 
             </div>
-            <footer>Footer</footer>
+            <Footer notAbsolute/>
         </div>
     )
 }

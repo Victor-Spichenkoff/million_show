@@ -26,26 +26,35 @@ export const LoginForm = () => {
     }
 
     return (
-        <div className="flex flex-col items-center px-3 py-2 rounded-b-xl">
+        <div className={"flex flex-col items-center justify-center px-3 py-2 rounded-b-xl min-h-[400px]" +
+            " px-8 py-8 min-w-[300px]" }>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7 w-full">
                     <FormInput form={form}
                                name={"userName"}
                                // label="Name"
-                               placeholder="username"/>
+                               placeholder="username"
+                                onEnter={form.handleSubmit(onSubmit)}
+                    />
 
                     <FormInput form={form}
+                               type={"password"}
                                name={"password"}
                                // label="Password"
-                               placeholder="****"/>
+                               placeholder="password"
+                               // placeholder="****"
+                               onEnter={form.handleSubmit(onSubmit)}
+                    />
 
                     <div className="flex justify-center">
-                        <Button type="submit">Submit</Button>
+                        <Button type="submit" className={"border-2 border-highlight text-white/90 " +
+                            "w-full rounded-4xl hover:bg-form-btn hover:border-0 text-xl " +
+                            "py-2 mb-8"}>Login</Button>
                     </div>
                 </form>
             </Form>
-            <p className={"text-sm"}>
-                Don't have an account? <Link href={"/signup"} className={"link"}>Click Here</Link>
+            <p className={"text-sm font-bold"}>
+                Don't have an account? <Link href={"/signup"} className={"auth-link"}>Create Here</Link>
             </p>
         </div>
     )

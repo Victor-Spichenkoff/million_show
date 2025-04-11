@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.form-image {
+    border-radius: 10px 0 0 10px;
+
+    @apply rounded-tl-2xl rounded-tr-2xl
+}
+
+.auth-link {
+    @apply text-gold font-bold hover:underline
+}
+

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono, Oswald } from "next/font/google"
+import { Geist, Geist_Mono, Oswald, Acme } from "next/font/google"
 import "./globals.css"
 import Providers from "@/components/utils/providers"
 
@@ -7,6 +7,7 @@ import Providers from "@/components/utils/providers"
 const oswald = Oswald({
   variable: "--font-oswald",//tailwind?
   subsets: ['latin'],
+  weight: ["400"]
 })
 
 const geistSans = Geist({
