@@ -42,7 +42,8 @@ export const FormInput =
                                     {...field}
                                     className={"" +
                                         "bg-highlight border-0 rounded-4xl shadow-black/50 shadow-md" +
-                                        "  min-w-[300px] w-full text-2xl text-white px-3 py-5 md:py-2 text-2xl md:text-2xl"}
+                                        "  min-w-[300px] w-full text-2xl text-white px-3 py-5 md:py-2 text-2xl md:text-2xl " +
+                                        "border-0 bg-transparent border-b-2 border-highlight focus:border-b-3"}
                                 />
                             </FormControl>
                             <FormDescription>

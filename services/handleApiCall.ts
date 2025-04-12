@@ -33,7 +33,7 @@ const handleApiCallWithCallBack = async <TReturn>
         if (isAxiosError(e) && (e.code === 'ECONNABORTED' || e.message === 'Network Error' || !e.response))// made the request, but don't receive response
             return {
                 isError: true,
-                errorMessage: `Can't connect with the server`
+                errorMessage: `Can't connect to server`
             }
 
 
