@@ -1,13 +1,12 @@
 "use client"
 
-import dynamic from "next/dynamic";
-
-
-// const ThemeProvider = dynamic(() => import("@/components/utils/themeProvider"), { ssr: false, });
 import ThemeProvider from "./themeProvider"
 import {Toaster} from "sonner";
+import {useTheme} from "next-themes";
 
 export default function Providers({children}: { children: React.ReactNode }) {
+
+
     return (
         <ThemeProvider
             attribute="class"
@@ -15,7 +14,7 @@ export default function Providers({children}: { children: React.ReactNode }) {
             enableSystem
             // disableTransitionOnChange
         >
-            <Toaster richColors closeButton position={"top-right"} duration={2000} theme="dark"/>
+            <ToasterProvider />
             {children}
         </ThemeProvider>
 
@@ -23,3 +22,16 @@ export default function Providers({children}: { children: React.ReactNode }) {
 }
 
 
+// permitir usar o useTheme
+const ToasterProvider = () => {
+    const { theme } = useTheme()
+
+    if(theme != "light" && theme != "dark")
+        return (
+            <Toaster richColors closeButton position={"top-right"} duration={2000} theme={"system"}/>
+    )
+
+    return (
+        <Toaster richColors closeButton position={"top-right"} duration={2000} theme={theme}/>
+    )
+}

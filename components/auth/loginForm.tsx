@@ -19,8 +19,10 @@ export const LoginForm = () => {
 
     useEffect(() => {
         const isLoginError = searchParams.get('loginError')
-        if(isLoginError)
+        if(isLoginError) {
             toast.error("You need to login to access it!")
+            return
+        }
     }, [])
 
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -45,15 +47,6 @@ export const LoginForm = () => {
 
         await saveAccessToken(res.response.access_token, expiresAt)
 
-        // refresh token
-        // cookieStore.set('refresh_token', refresh_token, {
-        //     httpOnly: true,
-        //     secure: true,
-        //     sameSite: 'lax',
-        //     // opcionalmente com +tempo
-        //     expires: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000),
-        //     path: '/',
-        // })
 
         const previous = searchParams.get('previous')
         const pathname = previous ?? "/home"
@@ -89,8 +82,8 @@ export const LoginForm = () => {
                     </div>
                 </form>
             </Form>
-            <p className={"text-sm font-bold"}>
-                Don't have an account? <Link href={"/signup"} className={"auth-link"}>Create Here</Link>
+            <p className={"text-gray-200 text-sm font-bold"}>
+                Don't have an account? <Link href={"/signup"} className={"auth-link text-gold"}>Create Here</Link>
             </p>
         </div>
     )
