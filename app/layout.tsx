@@ -1,13 +1,22 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono, Oswald, Acme } from "next/font/google"
+import { Geist, Geist_Mono, Oswald, Roboto, Merriweather } from "next/font/google"
 import "./globals.css"
 import Providers from "@/components/utils/providers"
 
 
+// maybe headers
+const merriweather = Merriweather({
+  variable: "--font-merriweather",//tailwind?
+  subsets: ['latin'],
+  weight: ["400", "700", "900"]
+})
+const roboto = Roboto({
+  variable: "--font-roboto",//tailwind?
+  subsets: ['latin'],
+})
 const oswald = Oswald({
   variable: "--font-oswald",//tailwind?
   subsets: ['latin'],
-  weight: ["400"]
 })
 
 const geistSans = Geist({
@@ -33,7 +42,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} antialiased transition-colors duration-500 h-screen bg-back text-text`}
+        className={`${geistSans.variable} 
+        ${geistMono.variable}  
+        ${oswald.variable} 
+        ${merriweather.variable}
+        ${roboto.variable}
+         antialiased transition-colors duration-500 h-screen bg-back text-text font-roboto`}
       >
         <Providers>
           {children}

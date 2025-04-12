@@ -35,13 +35,14 @@ export const FormInput =
                             <FormLabel>{label}</FormLabel>
                             <FormControl>
                                 <Input
+                                    autoComplete={type=="password" ? "password" :  undefined}
                                     onKeyDown={handleKeyDown}
                                     type={type}
                                     placeholder={placeholder}
                                     {...field}
                                     className={"" +
                                         "bg-highlight border-0 rounded-4xl shadow-black/50 shadow-md" +
-                                        "  min-w-[300px] w-full text-2xl text-white px-3 py-5 md:py-2 font-bold text-2xl md:text-3xl"}
+                                        "  min-w-[300px] w-full text-2xl text-white px-3 py-5 md:py-2 text-2xl md:text-2xl"}
                                 />
                             </FormControl>
                             <FormDescription>

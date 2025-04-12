@@ -5,10 +5,23 @@ import {LoginSchema} from "@/lib/schema/login";
 import {useForm} from "react-hook-form"
 import {Button} from "@/components/ui/button";
 import {zodResolver} from "@hookform/resolvers/zod"
-import {useState} from "react";
+import {useEffect} from "react";
 import Link from "next/link";
+import {loginService} from "@/services/auth";
+import {useRouter, useSearchParams} from "next/navigation";
+import {saveAccessToken} from "@/storage/cookie/auth";
+import {toast} from "sonner";
 
 export const LoginForm = () => {
+    const router = useRouter()
+    const searchParams = useSearchParams()
+
+
+    useEffect(() => {
+        const isLoginError = searchParams.get('loginError')
+        if(isLoginError)
+            toast.error("You need to login to access it!")
+    }, [])
 
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
@@ -19,10 +32,30 @@ export const LoginForm = () => {
     })
 
 
-    function onSubmit(values: z.infer<typeof LoginSchema>) {
-        // ✅ This will be type-safe and validated.
+    const onSubmit = async  (values: z.infer<typeof LoginSchema>) => {
         console.log("Dados:")
-        console.log(values)
+        const res = await loginService(values.userName, values.password)
+
+        if(res.isError)
+            return
+
+
+        const now = new Date()
+        const expiresAt = new Date(now.getTime() + res.response.expires_in * 1000)
+
+        await saveAccessToken(res.response.access_token, expiresAt)
+
+        // refresh token
+        // cookieStore.set('refresh_token', refresh_token, {
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: 'lax',
+        //     // opcionalmente com +tempo
+        //     expires: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000),
+        //     path: '/',
+        // })
+
+        router.push('/home')
     }
 
     return (

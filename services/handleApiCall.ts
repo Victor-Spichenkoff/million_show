@@ -16,16 +16,22 @@ const handleApiCallWithCallBack = async <TReturn>
         }
     } catch (e: unknown) {
         // tratar o erro conforme o backend
-        if (isAxiosError(e) && typeof e.response?.data == "string")
+        if (isAxiosError(e) && typeof e.response?.data.message == "string")
             return {
                 isError: true,
-                errorMessage: `ERROR: ${e.response?.data}`
+                errorMessage: `${e.response?.data.message}`
             }
 
-        // erro generico
+
+        if(isAxiosError(e) && (e.code === 'ECONNABORTED' || e.message === 'Network Error' || !e.response ))// made the request, but don't receive response
+            return {
+                isError: true,
+                errorMessage: `Can't connect with the server`
+            }
+
         return {
             isError: true,
-            errorMessage: "Erro Inesperado!"
+            errorMessage: "Unexpected error!"
         }
     }
 
@@ -36,7 +42,7 @@ const handleApiCallWithCallBack = async <TReturn>
 export const handleApiCall = async <TReturn, TBody = any>
     ({ endpoint, method = "get", body, fullUrl, config }: IHanleApiCall<TBody>): Promise<GenericApiResponse<TReturn>> => {
 
-    //simula uma requi usando essas infos
+    //simula uma request usando essas infos
     const query = async () => {
         let res;
         if (fullUrl)

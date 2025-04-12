@@ -12,6 +12,8 @@
   --color-form-btn: #0057FF;
 
   --font-oswald: var(--font-oswald);
+  --font-merriweather: var(--font-merriweather);
+  --font-roboto: var(--font-roboto);
 }
 
 :root {

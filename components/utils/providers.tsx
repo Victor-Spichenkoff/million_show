@@ -5,8 +5,9 @@ import dynamic from "next/dynamic";
 
 // const ThemeProvider = dynamic(() => import("@/components/utils/themeProvider"), { ssr: false, });
 import ThemeProvider from "./themeProvider"
+import {Toaster} from "sonner";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({children}: { children: React.ReactNode }) {
     return (
         <ThemeProvider
             attribute="class"
@@ -14,8 +15,10 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             enableSystem
             // disableTransitionOnChange
         >
+            <Toaster richColors closeButton position={"top-right"} duration={2000} theme="dark"/>
             {children}
         </ThemeProvider>
+
     )
 }
 
