@@ -13,6 +13,11 @@ export const saveAccessToken = async (accessToken: string, expiresAt: Date) => {
     })
 }
 
+export const getAccessToken = async () => {
+    const cookieStore = await cookies()
+    return cookieStore.get('access_token')
+}
+
 
 export const logout = async () => {
     const cookieStore = await cookies()

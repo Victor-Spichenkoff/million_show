@@ -14,7 +14,7 @@ const handleApiCallWithCallBack = async <TReturn>
             isError: false,
             response: res.data
         }
-    } catch (e: unknown) {
+    } catch (e: any) {
         // tratar o erro conforme o backend
         if (isAxiosError(e) && typeof e.response?.data.message == "string")
             return {
@@ -22,6 +22,13 @@ const handleApiCallWithCallBack = async <TReturn>
                 errorMessage: `${e.response?.data.message}`
             }
 
+        console.log(e.status)
+        if(isAxiosError(e) && (e.status == 401 || e.code == "UNAUTHORIZED")) {
+            return {
+                isError: true,
+                errorMessage: `Please, login to access it`
+            }
+        }
 
         if(isAxiosError(e) && (e.code === 'ECONNABORTED' || e.message === 'Network Error' || !e.response ))// made the request, but don't receive response
             return {
@@ -29,26 +36,38 @@ const handleApiCallWithCallBack = async <TReturn>
                 errorMessage: `Can't connect with the server`
             }
 
+
+
         return {
             isError: true,
             errorMessage: "Unexpected error!"
         }
     }
-
 }
 
 
 // essa reaproveita e usa o com callBack (auto-updated)
 export const handleApiCall = async <TReturn, TBody = any>
-    ({ endpoint, method = "get", body, fullUrl, config }: IHanleApiCall<TBody>): Promise<GenericApiResponse<TReturn>> => {
+    ({ endpoint, method = "get", body, fullUrl, config = {}, token }: IHandleApiCall<TBody>): Promise<GenericApiResponse<TReturn>> => {
+
+    if(token ) {
+        if(!config?.headers)
+            config.headers = {}
+
+        config.headers.Authorization = `Bearer ${token}`
+    }
+
+
 
     //simula uma request usando essas infos
     const query = async () => {
         let res;
         if (fullUrl)
             res = await axios[method](fullUrl, body, config)
-        else
+        else {
+            console.log(config?.headers?.Authorization)
             res = await axios[method](baseUrl + endpoint, body, config)
+        }
         return res
     }
 
@@ -57,7 +76,7 @@ export const handleApiCall = async <TReturn, TBody = any>
 
 // Retorna tudo normal, mas já dá um toast de erro
 export const handleApiCallAndShowError = async <TReturn, TBody = any>
-    ({ endpoint, method = "get", body, fullUrl }: IHanleApiCall): Promise<GenericApiResponse<TReturn>> => {
+    ({ endpoint, method = "get", body, fullUrl }: IHandleApiCall): Promise<GenericApiResponse<TReturn>> => {
 
     // pode escolher qual das fn vai usar
     const res = await handleApiCall<TReturn, TBody>({
@@ -83,7 +102,7 @@ const showErroOnConosle = (err: AxiosError, endpointOrUrl: string) => {
 
 
 // resposta padronizada
-type GenericApiResponse<T> = {
+export type GenericApiResponse<T> = {
     isError: false,
     response: T
 
@@ -93,10 +112,11 @@ type GenericApiResponse<T> = {
 }
 
 // parametro de config para a api
-type IHanleApiCall<TBody = any> = {
+export type IHandleApiCall<TBody = any> = {
     fullUrl?: string
     endpoint: `/${string}`
     method?: "get" | "post" | "put" | "delete" | "patch"
     body?: TBody,// para poder ter auto complete nele se quiser
     config?: AxiosRequestConfig
+    token?: string
 }

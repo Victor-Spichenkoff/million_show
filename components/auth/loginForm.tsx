@@ -55,7 +55,10 @@ export const LoginForm = () => {
         //     path: '/',
         // })
 
-        router.push('/home')
+        const previous = searchParams.get('previous')
+        const pathname = previous ?? "/home"
+
+        router.push(pathname)
     }
 
     return (

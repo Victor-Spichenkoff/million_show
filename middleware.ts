@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import {toast} from "sonner";
-import {authRoutes, protecteRoutes, publicRoutes} from "@/router";
+import {authRoutes, getLoginPathnameWithPreviousUrl, protectedRoutes, publicRoutes} from "@/routes";
 
 const PUBLIC_PATHS = ['/', '/auth/login', '/auth/register', "/public"]
 
 
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
-    const isProtected = protecteRoutes.includes(pathname)
+    const isProtected = protectedRoutes.includes(pathname)
     const isAuth = authRoutes.includes(pathname)
 
     if(!isProtected && !isAuth)
@@ -26,7 +26,7 @@ export function middleware(request: NextRequest) {
 
     // it is protected:
     if (!token) {
-        const loginUrl = new URL('/auth/login?loginError=true', request.url)
+        const loginUrl = new URL(getLoginPathnameWithPreviousUrl(pathname), request.url)
         return NextResponse.redirect(loginUrl)
     }
 
