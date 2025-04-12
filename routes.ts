@@ -4,7 +4,7 @@ export const publicRoutes = [
 
 export const protectedRoutes = [
     "/home",
-    // "/me"
+    "/me"
 ]
 
 export const authRoutes = [

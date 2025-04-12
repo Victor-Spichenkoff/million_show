@@ -11,12 +11,16 @@
   --color-foreground: var(--foreground);
   --color-form-btn: #0057FF;
 
+  /*font*/
+  --color-primary-foreground: var(--primary-foreground);
+
   --font-oswald: var(--font-oswald);
   --font-merriweather: var(--font-merriweather);
   --font-roboto: var(--font-roboto);
 }
 
 :root {
+  --primary-foreground: #DDD;
   --back: #e3f2fd;
   --highlight: #2196f3;
   --primary: #0d47a1;
@@ -26,7 +30,8 @@
   --foreground: #DDD;
   --success: #4caf50;
   --error: #f44336;
-  --gold: #d4af37;
+  /*--gold: #d4af37;*/
+  --gold: #ffd700;
 }
 
 .dark {
