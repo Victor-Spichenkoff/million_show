@@ -20,7 +20,7 @@
 }
 
 :root {
-  --primary-foreground: #DDD;
+  --primary-foreground: #222;
   --back: #e3f2fd;
   --highlight: #2196f3;
   --primary: #0d47a1;
@@ -35,6 +35,8 @@
 }
 
 .dark {
+  /*--primary-foreground: #DDD;*/
+  --primary-foreground: #fff;
   --back: #0a0a23;
   --highlight: #64b5f6;
   /*--primary: #1a237e; mais fraco*/
