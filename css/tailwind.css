@@ -30,8 +30,7 @@
   --foreground: #DDD;
   --success: #4caf50;
   --error: #f44336;
-  /*--gold: #d4af37;*/
-  --gold: #ffd700;
+  --gold: #d4af37;
 }
 
 .dark {

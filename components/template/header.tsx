@@ -15,7 +15,9 @@ export const Header = ({label, showConfig, showLoginButton}: IHeader) => {
             <div className={"absolute top-[0px] right-3"}>
                 {showLoginButton && (
                     <Bounce>
-                        <Button className={"bg-transparent border-2 border-gold text-primary-foreground bg-primary-foreground "}>Sign
+                        <Button
+                            className={"bg-transparent border-2 border-gold text-primary-foreground hover:bg-gold/90" +
+                            ""}>Sign
                             Up</Button>
                     </Bounce>
 

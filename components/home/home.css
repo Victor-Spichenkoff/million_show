@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+.landSection > h2 {
+    @apply text-3xl font-bold mt-12
+}
+
+.landSection > p {
+    @apply font-oswald
+}
+
+
