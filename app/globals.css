@@ -12,17 +12,24 @@
 
 
 /*
-- Use some bg and, on hover, change the shadow
+- Mudar a borda
 */
-.shine-btn-gold {
+.shine-btn {
+  background: transparent;
+  font-family: var(--font-roboto) sans-serif;
   text-decoration: none;
-  border: 1px solid #ffd700;
-  /*border: 1px solid rgb(146, 148, 248);*/
+  border: 1px solid var(--gold);
   position: relative;
   overflow: hidden;
 }
 
-.shine-btn:hover {
+.shine-btn:hover:before {
+  left: 100%;
+}
+
+
+/*Esse é indívidual*/
+.shine-btn-gold:hover {
   box-shadow: 1px 1px 25px 10px rgba(255, 215, 0, 0.28);
   transition: all 1350ms;
   background-color: #ffd700;
@@ -44,10 +51,6 @@
           transparent
   );
   transition: all 650ms;
-}
-
-.shine-btn:hover:before {
-  left: 100%;
 }
 
 

@@ -2,11 +2,10 @@
 
 
 .landSection > h2 {
-    @apply text-3xl font-bold mt-12
+    @apply text-3xl font-bold mt-12 text-start
 }
 
 .landSection > p {
-    @apply font-oswald
+    @apply font-oswald text-start
+
 }
-
-

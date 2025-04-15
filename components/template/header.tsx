@@ -16,7 +16,7 @@ export const Header = ({label, showConfig, showLoginButton}: IHeader) => {
                 {showLoginButton && (
                     <Bounce>
                         <Button
-                            className={"bg-transparent border-2 border-gold text-primary-foreground hover:bg-gold/90" +
+                            className={"shine-btn shine-btn-gold border-2 border-gold text-primary-foreground hover:bg-gold/90" +
                             ""}>Sign
                             Up</Button>
                     </Bounce>

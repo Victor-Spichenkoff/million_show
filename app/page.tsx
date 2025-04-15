@@ -27,10 +27,23 @@ export default function Home() {
             <p>How far can you go?
                 <Link href={"/auth/create"} className={"auth-link"}>Test it now</Link>
             </p>
+            <div className={"w-full h-[250px] bg-gold"}>
+                PIRAMDE, premiors?
+            </div>
+        </LandSection>
+
+        <LandSection>
+            <h2>Answer question</h2>
+            <p>How is your cultural knowledge? History? Math?
+                and much more...</p>
+
+            <div className={"w-full h-[250px] bg-gold"}>
+                Question?
+            </div>
         </LandSection>
 
 
-        <Button className={"bg-transparent shine-btn shine-btn-gold"}>
+        <Button className={"bg-transparent shine-btn shine-btn-gold border"}>
             Lets Play?
         </Button>
 
