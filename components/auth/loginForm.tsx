@@ -9,7 +9,7 @@ import {useEffect} from "react";
 import Link from "next/link";
 import {loginService} from "@/services/auth";
 import {useRouter, useSearchParams} from "next/navigation";
-import {saveAccessToken} from "@/storage/cookie/auth";
+import {saveAccessToken, saveExpiresAt} from "@/storage/cookie/auth";
 import {toast} from "sonner";
 
 export const LoginForm = () => {
@@ -46,7 +46,7 @@ export const LoginForm = () => {
         const expiresAt = new Date(now.getTime() + res.response.expires_in * 1000)
 
         await saveAccessToken(res.response.access_token, expiresAt)
-
+        await saveExpiresAt(expiresAt)
 
         const previous = searchParams.get('previous')
         const pathname = previous ?? "/home"

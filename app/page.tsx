@@ -25,10 +25,10 @@ export default function Home() {
         <LandSection>
             <h2>Win Prizes</h2>
             <p>How far can you go?
-                <Link href={"/auth/create"} className={"auth-link"}>Test it now</Link>
+                <Link href={"/auth/create"} className={"auth-link underline hover:text-black"}> Test it now</Link>
             </p>
             <div className={"w-full h-[250px] bg-gold"}>
-                PIRAMDE, premiors?
+                PIRAMID? PRIZE ROUTE?
             </div>
         </LandSection>
 
@@ -38,7 +38,15 @@ export default function Home() {
                 and much more...</p>
 
             <div className={"w-full h-[250px] bg-gold"}>
-                Question?
+                Question? CORRECT
+            </div>
+        </LandSection>
+
+        <LandSection>
+            <h2>Challenge friends and the <strong className={"text-gold font-bold text-3xl"}>WORLD</strong></h2>
+            <p>Can you reach the <strong className={"text-gold font-bold text-md"}>TOP</strong>?</p>
+            <div className={"w-full h-[250px] bg-gold"}>
+            PRINT LEADER BOARD? SOMETHING WITH FIGHT?
             </div>
         </LandSection>
 

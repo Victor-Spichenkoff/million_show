@@ -13,6 +13,23 @@ export const saveAccessToken = async (accessToken: string, expiresAt: Date) => {
     })
 }
 
+export const saveExpiresAt = async (expiresAt: Date) => {
+    const cookieStore = await cookies()
+    cookieStore.set('expires_at', expiresAt.toString(), {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'lax',
+        expires: expiresAt,
+        path: '/',
+    })
+}
+
+export const getExpiresAt = async () => {
+    const cookieStore = await cookies()
+    return cookieStore.get('expires_at')
+}
+
+
 export const getAccessToken = async () => {
     const cookieStore = await cookies()
     return cookieStore.get('access_token')
