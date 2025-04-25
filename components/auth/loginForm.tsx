@@ -82,8 +82,8 @@ export const LoginForm = () => {
                     </div>
                 </form>
             </Form>
-            <p className={"text-gray-200 text-sm font-bold"}>
-                Don't have an account? <Link href={"/signup"} className={"auth-link text-gold"}>Create Here</Link>
+            <p className={"text-gray-200 text-sm font-bold "}>
+                Don't have an account? <Link href={"/signup"} className={" text-gold"}>Create Here</Link>
             </p>
         </div>
     )

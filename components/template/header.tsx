@@ -1,3 +1,5 @@
+"use client"
+
 import {Button} from "@/components/ui/button";
 import {Bounce} from "react-awesome-reveal";
 import {useIsLogged} from "@/hooks/useIsLogged";

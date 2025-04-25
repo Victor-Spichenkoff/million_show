@@ -53,6 +53,25 @@
   transition: all 650ms;
 }
 
+a {
+  position: relative;
+}
+
+a::before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1.7px;
+  background-color: var(--gold);
+  top: 100%;
+  left: 0;
+  width: 0;
+  transition: width .5s;
+}
+
+a:hover::before {
+  width: 100%;
+}
 
 
 @theme inline {

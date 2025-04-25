@@ -7,5 +7,18 @@
 
 .landSection > p {
     @apply font-oswald text-start
+}
 
+.drop-area-container {
+    transition-property: height;
+    transition-duration: 2s;
+}
+
+.game-instructions:last-child div{
+    border: 3px solid red;
+    border-radius: 0 0 12px 12px;
+}
+
+.drop-area-full {
+    height: fit-content
 }
