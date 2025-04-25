@@ -13,24 +13,23 @@ import { InstructionItem } from "@/components/home/instructionItem";
 export default function Home() {
 
     return (
-        <div className={"flex flex-col items-center"} >
+        <div className={"flex flex-col items-center overflow-hidden"} >
             <Header label={"Welcome"} showLoginButton />
             <LandSection>
                 <h2>Are you really the smartest?</h2>
                 <p>Participate in a smart quiz with a lot of emotion in the road to the <strong className={"text-gold font-bold"}>million dollar</strong> prize!</p>
                 <div className={"mb-8"}>
                     <GoldMount />
-
                 </div>
             </LandSection>
 
             <LandSection>
                 <h2>Win Prizes</h2>
-                <p>How far can you go?
-                    <Link href={"/auth/create"} className={"auth-link underline hover:text-black"}> Test it now</Link>
+                <p>How far can you go? 
+                    <Link href={"/auth/create"} className={"auth-link underline hover:text-black ml-1"}>Test it now</Link>
                 </p>
                 <div className={"w-full h-[250px] bg-gold"}>
-                    PIRAMID? PRIZE ROUTE?
+                    PIRAMID? PRIZE ROUTE? PIRAMID + PRIZES?
                 </div>
             </LandSection>
 
@@ -40,7 +39,7 @@ export default function Home() {
                     and much more...</p>
 
                 <div className={"w-full h-[250px] bg-gold"}>
-                    Question? CORRECT
+                    PRINT Question screen? CORRECT ICON
                 </div>
             </LandSection>
 
@@ -56,6 +55,10 @@ export default function Home() {
                 <h2>The Game</h2>
                 <ul className="list-disc list-inside px-2 text-start ">
                     <li>Try to reach the million dollar prize</li>
+                    <li>You will need to answer 15 questions and the million dollar question</li>
+                    <li>No mistake tolerance</li>
+                    <li>You have 3 types of help at your disposal</li>
+                    <li>Can you do this?</li>
                 </ul>
                 {/* <DropInstructions /> */}
             </LandSection>

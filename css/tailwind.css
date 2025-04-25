@@ -22,6 +22,13 @@
 :root {
   --primary-foreground: #222;
   --back: #e3f2fd;
+  --back-secondary: #cfe0f5;
+  /* Azul mais suave */
+  --back-tertiary: #f5fbff;
+  /* Quase branco com toque azulado */
+  --back-quaternary: #dcedf9;
+
+
   --highlight: #2196f3;
   --primary: #0d47a1;
   --darker-primary: #0F187D;
@@ -37,6 +44,11 @@
   /*--primary-foreground: #DDD;*/
   --primary-foreground: #fff;
   --back: #0a0a23;
+  /* --back-secondary: #040450; */
+  
+--back-secondary: #151538;     /* Azul bem escuro puxando pro roxo */
+--back-tertiary: #1f1f3a;      /* Azul-noite desaturado */
+--back-quaternary: #2c2c4c;
   --highlight: #64b5f6;
   /*--primary: #1a237e; mais fraco*/
   --primary: #0F187D;

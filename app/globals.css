@@ -9,7 +9,15 @@
 @custom-variant dark (&:is(.dark *));
 
 
+html {
+  overflow-y: hidden;
+}
 
+body {
+  /* background: linear-gradient(135deg, var(--back), var(--back-secondary), var(--back-tertiary), var(--back-quaternary)); */
+  background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+  overflow: scroll;
+}
 
 /*
 - Mudar a borda
@@ -53,11 +61,11 @@
   transition: all 650ms;
 }
 
-a {
+.link {
   position: relative;
 }
 
-a::before {
+.link::before {
   content: "";
   display: block;
   position: absolute;
@@ -69,10 +77,34 @@ a::before {
   transition: width .5s;
 }
 
-a:hover::before {
+.link:hover::before {
   width: 100%;
 }
 
+
+/* SCROLL */
+
+/* Estilo do track (trilho) */
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Estilo da barra */
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Estilo do thumb (a alça) */
+body::-webkit-scrollbar-thumb {
+  background-color: #888; /* cinza elegante */
+  border-radius: 4px;
+}
+
+/* Hover na barra */
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+  
 
 @theme inline {
   --color-background: var(--background);
@@ -178,6 +210,8 @@ a:hover::before {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
+
 
 @layer base {
   * {

@@ -7,6 +7,6 @@
 }
 
 .auth-link {
-    @apply text-gold font-bold hover:underline
+    @apply text-gold font-bold
 }
 
