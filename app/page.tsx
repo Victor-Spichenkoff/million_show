@@ -1,14 +1,14 @@
 import ThemeToggle from "@/components/utils/themeToggle";
 
-import { Trophy } from "@/components/animation/trophy";
+// import { Trophy } from "@/components/animation/trophy";
 
 import { Header } from "@/components/template/header";
 import { LandSection } from "@/components/home/landSection";
 import { GoldMount } from "@/components/animation/goldMount";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { DropInstructions } from "@/components/home/dropArea";
-import { InstructionItem } from "@/components/home/instructionItem";
+import { faDashboard, faBrain, faMoneyBillWaveAlt, faGlobeAmericas } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Home() {
 
@@ -16,7 +16,10 @@ export default function Home() {
         <div className={"flex flex-col items-center overflow-hidden"} >
             <Header label={"Welcome"} showLoginButton />
             <LandSection>
-                <h2>Are you really the smartest?</h2>
+                <h2>
+                    Are you really the smartest?
+                    <FontAwesomeIcon icon={faBrain} className="text-[#F3B5B8] inline mx-2 size-7" />
+                </h2>
                 <p>Participate in a smart quiz with a lot of emotion in the road to the <strong className={"text-gold font-bold"}>million dollar</strong> prize!</p>
                 <div className={"mb-8"}>
                     <GoldMount />
@@ -24,8 +27,11 @@ export default function Home() {
             </LandSection>
 
             <LandSection>
-                <h2>Win Prizes</h2>
-                <p>How far can you go? 
+                <h2>
+                    Win Prizes
+                    <FontAwesomeIcon icon={faMoneyBillWaveAlt} className="text-[#168118] inline mx-2 size=7" />
+                </h2>
+                <p>How far can you go?
                     <Link href={"/auth/create"} className={"auth-link underline hover:text-black ml-1"}>Test it now</Link>
                 </p>
                 <div className={"w-full h-[250px] bg-gold"}>
@@ -34,7 +40,9 @@ export default function Home() {
             </LandSection>
 
             <LandSection>
-                <h2>Answer question</h2>
+                <h2>
+                    Answer question
+                </h2>
                 <p>How is your cultural knowledge? History? Math?
                     and much more...</p>
 
@@ -44,7 +52,11 @@ export default function Home() {
             </LandSection>
 
             <LandSection>
-                <h2>Challenge friends and the <strong className={"text-gold font-bold text-3xl"}>WORLD</strong></h2>
+                <h2>
+                    Challenge friends and the <strong className={"text-gold font-bold text-3xl"}>WORLD</strong>
+                    <FontAwesomeIcon icon={faGlobeAmericas} className="text-sky-500 inline mx-2 size=7" />
+
+                </h2>
                 <p>Can you reach the <strong className={"text-gold font-bold text-md"}>TOP</strong>?</p>
                 <div className={"w-full h-[250px] bg-gold"}>
                     PRINT LEADER BOARD? SOMETHING WITH FIGHT?
@@ -52,8 +64,12 @@ export default function Home() {
             </LandSection>
 
             <LandSection>
-                <h2>The Game</h2>
-                <ul className="list-disc list-inside px-2 text-start ">
+                <h2>
+                    The Game
+                    <FontAwesomeIcon icon={faDashboard} className="text-primary-foreground inline mx-2 size=7" />
+                    
+                    </h2>
+                <ul className="list-disc ml-[12px] px-2 text-start ">
                     <li>Try to reach the million dollar prize</li>
                     <li>You will need to answer 15 questions and the million dollar question</li>
                     <li>No mistake tolerance</li>
