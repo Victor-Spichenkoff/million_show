@@ -11,11 +11,13 @@
 
 html {
   overflow-y: hidden;
+  height: 100vh;
 }
 
 body {
   /* background: linear-gradient(135deg, var(--back), var(--back-secondary), var(--back-tertiary), var(--back-quaternary)); */
   background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+  height: 100%;
   overflow: scroll;
 }
 
@@ -80,7 +82,6 @@ body {
 .link:hover::before {
   width: 100%;
 }
-
 
 /* SCROLL */
 

@@ -9,12 +9,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { faDashboard, faBrain, faMoneyBillWaveAlt, faGlobeAmericas } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from "next/image";
+import PiramidImage from "@/assets/images/prize_piramid.png"
 
 export default function Home() {
 
     return (
         <div className={"flex flex-col items-center overflow-hidden"} >
-            <Header label={"Welcome"} showLoginButton />
+            <Header label={"Welcome"} showLoginButton showLogo/>
             <LandSection>
                 <h2>
                     Are you really the smartest?
@@ -35,7 +37,7 @@ export default function Home() {
                     <Link href={"/auth/create"} className={"auth-link underline hover:text-black ml-1"}>Test it now</Link>
                 </p>
                 <div className={"w-full h-[250px] bg-gold"}>
-                    PIRAMID? PRIZE ROUTE? PIRAMID + PRIZES?
+                    <Image src={PiramidImage} alt="Prize Route" className="w-full"/>
                 </div>
             </LandSection>
 

@@ -13,9 +13,8 @@ interface ILandSection {
 * */
 export const LandSection = ({children}: ILandSection) => {
     return (
-        <section className={"landSection px-4 w-full text-start md:text-center max-w-[500px]"}>
-
-                {children}
-        </section>
+            <section className={"landSection px-4 w-full text-start md:text-center max-w-[500px] overflow-visible h-fit"}>
+                    {children}
+            </section>
     )
 }
