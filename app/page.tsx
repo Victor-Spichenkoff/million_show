@@ -36,8 +36,8 @@ export default function Home() {
                 <p>How far can you go?
                     <Link href={"/auth/create"} className={"auth-link underline hover:text-black ml-1"}>Test it now</Link>
                 </p>
-                <div className={"w-full h-[250px] bg-gold"}>
-                    <Image src={PiramidImage} alt="Prize Route" className="w-full"/>
+                <div className={"w-full bg-gold"}>
+                    <Image src={PiramidImage} alt="Prize Route" className="w-full" id="img-shadow"/>
                 </div>
             </LandSection>
 
