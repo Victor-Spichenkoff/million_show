@@ -35,7 +35,6 @@ export const LoginForm = () => {
 
 
     const onSubmit = async  (values: z.infer<typeof LoginSchema>) => {
-        console.log("Dados:")
         const res = await loginService(values.userName, values.password)
 
         if(res.isError)

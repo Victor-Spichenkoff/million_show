@@ -23,7 +23,6 @@ export default function Home() {
         if(res.isError)
             return toast.error(res.errorMessage)
 
-        console.log(res.response)
         setName(res.response.userName)
     }
 

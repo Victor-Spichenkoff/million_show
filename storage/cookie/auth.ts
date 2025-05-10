@@ -13,6 +13,7 @@ export const saveAccessToken = async (accessToken: string, expiresAt: Date) => {
     })
 }
 
+
 export const saveExpiresAt = async (expiresAt: Date) => {
     const cookieStore = await cookies()
     cookieStore.set('expires_at', expiresAt.toString(), {
@@ -36,7 +37,7 @@ export const getAccessToken = async () => {
 }
 
 
-export const logout = async () => {
+export const logoutCookies = async () => {
     const cookieStore = await cookies()
     cookieStore.delete('access_token')
     cookieStore.delete('refresh_token')

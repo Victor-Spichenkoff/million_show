@@ -1,6 +1,6 @@
 "use client"
 
-import {logout} from "@/storage/cookie/auth";
+import {logoutCookies} from "@/storage/cookie/auth";
 import {useRouter} from "next/navigation";
 import {Button} from "@/components/ui/button";
 
@@ -8,7 +8,7 @@ export const LogoutButton = () => {
     const router = useRouter()
 
     const handleLogout = async () => {
-        await logout()
+        await logoutCookies()
         router.push('/auth/login')
     }
 

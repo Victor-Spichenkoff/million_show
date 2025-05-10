@@ -1,9 +1,13 @@
-import {GenericApiResponse, handleApiCall, IHandleApiCall} from "@/services/handleApiCall";
-import {getAccessToken} from "@/storage/cookie/auth";
+import { handleApiCall, IHandleApiCall} from "@/services/handleApiCall";
+import {getAccessToken, saveAccessToken} from "@/storage/cookie/auth";
 import {usePathname, useRouter} from "next/navigation";
 import {getLoginPathnameWithPreviousUrl} from "@/routes";
 
 
+/**
+ * Receive the config and are type-safe
+ * If is not logged/expired, push to login, but keep previous url
+ */
 export const useProtectedApiCall = <TReturn = any, TBody = any>(config: IHandleApiCall<TBody>, autoShowError?: boolean) => {
     const router = useRouter()
     const pathname = usePathname()
