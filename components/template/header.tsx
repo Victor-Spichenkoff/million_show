@@ -20,7 +20,7 @@ export const Header = ({label, showConfig, showLoginButton, showLogo}: IHeader) 
 
 
     const handleLoginClick = () => {
-        if (isLogged)
+        if (!isLogged)
             return router.push("/auth/create")
 
         router.push("/home")
@@ -44,7 +44,6 @@ export const Header = ({label, showConfig, showLoginButton, showLogo}: IHeader) 
                                 ""}>{isLogged ? "Home" : "SignUp"}
                         </Button>
                     </Bounce>
-
                 )}
             </div>
         </header>

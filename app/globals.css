@@ -18,7 +18,7 @@ body {
   /* background: linear-gradient(135deg, var(--back), var(--back-secondary), var(--back-tertiary), var(--back-quaternary)); */
   background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
   height: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 /*
@@ -106,6 +106,13 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
   
+
+@media screen and (max-width: 742px) {
+  body::-webkit-scrollbar {
+    width: 2px;
+  }
+}
+
 
 @theme inline {
   --color-background: var(--background);
