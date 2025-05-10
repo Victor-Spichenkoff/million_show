@@ -15,7 +15,7 @@ export const LogoutButton = () => {
     return (
         <Button
             onClick={() =>handleLogout()}
-            className={"bg-secondary text-white bg-red-600 hover:bg-red-800 " +
+            className={"text-white bg-red-600 hover:bg-red-800 " +
                 "shadow-black/30 shadow-md"}
         >
             Logout

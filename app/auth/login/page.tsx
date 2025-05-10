@@ -1,8 +1,6 @@
 "use client"
 
 import {LoginForm} from "@/components/auth/loginForm";
-import Image from "next/image"
-import GoldImage from "@/assets/images/gold.jpg"
 import {Header} from "@/components/template/header";
 import {Footer} from "@/components/template/footer";
 import {Suspense} from "react";

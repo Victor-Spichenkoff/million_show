@@ -21,7 +21,6 @@ export const LoginForm = () => {
         const isLoginError = searchParams.get('loginError')
         if(isLoginError) {
             toast.error("You need to login to access it!")
-            return
         }
     }, [])
 
