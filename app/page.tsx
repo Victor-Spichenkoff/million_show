@@ -1,7 +1,6 @@
+"use client"
+
 import ThemeToggle from "@/components/utils/themeToggle";
-
-// import { Trophy } from "@/components/animation/trophy";
-
 import { Header } from "@/components/template/header";
 import { LandSection } from "@/components/home/landSection";
 import { GoldMount } from "@/components/animation/goldMount";
@@ -11,8 +10,10 @@ import { faDashboard, faBrain, faMoneyBillWaveAlt, faGlobeAmericas } from "@fort
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from "next/image";
 import PiramidImage from "@/assets/images/prize_piramid.png"
+import { useIsLogged } from "@/hooks/useIsLogged";
 
 export default function Home() {
+    const isLogged = useIsLogged()
 
     return (
         <div className={"flex flex-col items-center overflow-hidden"} >
@@ -79,13 +80,16 @@ export default function Home() {
                     <li>You have 3 types of help at your disposal</li>
                     <li>Can you do this?</li>
                 </ul>
-                {/* <DropInstructions /> */}
             </LandSection>
 
 
-            <Button className={"bg-transparent shine-btn shine-btn-gold border my-16"}>
+        <Link href={isLogged ? "/home" : "/auth/create"}>
+            <Button className={"bg-transparent shine-btn shine-btn-gold border my-16"}
+            >
                 Lets Play?
             </Button>
+        
+        </Link>
 
             <ThemeToggle />
         </div>

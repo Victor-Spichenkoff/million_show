@@ -10,15 +10,17 @@
 
 
 html {
-  overflow-y: hidden;
-  height: 100vh;
+  overflow: hidden;
+  height: 100dvh;
 }
 
 body {
   /* background: linear-gradient(135deg, var(--back), var(--back-secondary), var(--back-tertiary), var(--back-quaternary)); */
   background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
 }
 
 /*
@@ -82,6 +84,8 @@ body {
 .link:hover::before {
   width: 100%;
 }
+
+
 
 /* SCROLL */
 
