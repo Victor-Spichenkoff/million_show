@@ -53,7 +53,7 @@ export default function RootLayout({
         ${oswald.variable} 
         ${merriweather.variable}
         ${roboto.variable}
-         antialiased transition-colors duration-500 h-screen bg-back text-text font-roboto`}
+         antialiased transition-colors duration-500 h-screen text-text font-roboto `}
       >
         <Providers>
           {children}
