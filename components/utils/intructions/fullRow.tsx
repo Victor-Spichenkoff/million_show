@@ -1,5 +1,7 @@
+import {ReactNode} from "react";
+
 type IInstructionsFullRowProps = {
-    children?: React.ReactNode
+    children?: ReactNode
     isFirstItem?: boolean
     title?: string
 }

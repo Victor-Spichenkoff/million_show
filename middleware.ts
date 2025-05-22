@@ -34,6 +34,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/((?!_next|api|static|favicon.ico|.jpg|.png).*)'], // ajuste para suas rotas protegidas
-    // matcher: ['/:path*'], // ajuste para suas rotas protegidas
+    matcher: ['/((?!_next|api|static|favicon.ico|.jpg|.png).*)'],
 }

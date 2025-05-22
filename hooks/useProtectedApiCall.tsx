@@ -6,13 +6,13 @@ import {getLoginPathnameWithPreviousUrl} from "@/routes";
 
 /**
  * Receive the config and are type-safe
- * If is not logged/expired, push to login, but keep previous url
+ * If is not logged/expired, push to login screen, but keep previous url
  */
 export const useProtectedApiCall = <TReturn = any, TBody = any>(config: IHandleApiCall<TBody>, autoShowError?: boolean) => {
     const router = useRouter()
     const pathname = usePathname()
 
-    const execute = async () => {
+    return async () => {
         const token = await getAccessToken()
 
         if (!token)
@@ -29,7 +29,4 @@ export const useProtectedApiCall = <TReturn = any, TBody = any>(config: IHandleA
 
         return res
     }
-
-
-    return execute
 }
