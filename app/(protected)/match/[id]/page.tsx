@@ -3,11 +3,18 @@
 import {useParams} from "next/navigation"
 import {useEffect, useState} from "react";
 import {Question} from "@/types/responses/question";
-import {getCurrentQuestion, getNextQuestion} from "@/services/question";
+import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 
 export default function Match() {
     const {id} = useParams()
     const [question, setQuestion] = useState<Question | null>(null)
+    const getNextQuestion = useProtectedApiCall<Question>({
+        endpoint: "/match/next"
+    })
+
+    const getCurrentQuestion = useProtectedApiCall({
+        endpoint: "/match/current/question"
+    })
 
 
     useEffect(() => {

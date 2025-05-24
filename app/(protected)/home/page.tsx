@@ -4,13 +4,13 @@ import {Header} from "@/components/template/header";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
-import { useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {HomeInfos} from "@/types/responses/home";
 import {HomeSkeleton} from "@/components/home/homeSkeleton";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {toast} from "sonner";
 import {Match} from "@/types/responses/match";
-import {getNextQuestion} from "@/services/question";
+import {NewDialog} from "@/components/home/newDialog";
 
 export default function Home() {
     const router = useRouter()
@@ -18,11 +18,15 @@ export default function Home() {
     const getHomeData = useProtectedApiCall<HomeInfos>({
         endpoint: "/historic/home"
     })
-
     const createMatch = useProtectedApiCall<Match>({
         endpoint: "/match/start",
         method: "post"
     })
+    const createMatchForced = useProtectedApiCall<Match>({
+        endpoint: "/match/start?force=true",
+        method: "post"
+    })
+
 
     useEffect(() => {
         (async () => {
@@ -32,30 +36,41 @@ export default function Home() {
         })()
     }, [])
 
+    // Handlers
+    console.log(homeInfo)
 
-    const handleNewButton = async () => {
-        const result = await createMatch()
-        if(result.isError)
+    const handleNewButton = async (e: any, force?: boolean) => {
+        let result
+        if (force)
+            result = await createMatchForced()
+        else
+            result = await createMatch()
+
+        if (result.isError)
             return toast.error("Can't create match")
 
         router.push(`/match/${result.response.id}`)
     }
 
     const handleContinueButton = () => {
-        if(!homeInfo?.alreadyStarted)
+        if (!homeInfo?.alreadyStarted)
             return toast.error("You don't have any started match")
 
         router.push(`/match/${homeInfo.matchId}`)
     }
 
-console.log(homeInfo)
     return (<>
         <Header label="Home" showConfig showLogo/>
         <div className="flex flex-col items-center text-2xl h-screen w-screen">
             {homeInfo ? (<>
                 <Link href={"/leaderboard"}>LeaderBoard</Link>
-                <Button onClick={handleNewButton}>New</Button>
+                {homeInfo.alreadyStarted ? (
+                    <NewDialog onClick={(e) => handleNewButton(e, true)}/>
+                ) : (
+                    <Button variant={"gold"} onClick={handleNewButton}>New</Button>
+                )}
                 <Button onClick={handleContinueButton} disabled={!homeInfo.alreadyStarted}>Continue</Button>
+
             </>) : <HomeSkeleton/>}
         </div>
     </>)

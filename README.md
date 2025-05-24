@@ -1,3 +1,6 @@
+# NOW
+- Implementar proteção no new
+
 # TODO
 - Bug no celular, ele não chega no final ou corta o header; overflow provavelmente
 - Ver se expire do cookie do token já e suficiente
@@ -12,4 +15,4 @@
 
 ## TODO -> Continue match
 - Apenas pega
-- New -> avisa, ignora o pegar e já da um next direto
+- New -> avisa, ignora o pegar e já dar um next direto
