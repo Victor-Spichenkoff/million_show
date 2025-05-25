@@ -32,13 +32,12 @@ export default function Home() {
         (async () => {
             const result = await getHomeData()
             if (!result.isError)
-                setHomeInfo(result.response)
+                return setHomeInfo(result.response)
         })()
     }, [])
 
-    // Handlers
-    console.log(homeInfo)
 
+    // Handlers
     const handleNewButton = async (e: any, force?: boolean) => {
         let result
         if (force)
@@ -49,7 +48,7 @@ export default function Home() {
         if (result.isError)
             return toast.error("Can't create match")
 
-        router.push(`/match/${result.response.id}`)
+        router.push(`/match/${result.response.id}?isNew`)
     }
 
     const handleContinueButton = () => {

@@ -1,5 +1,4 @@
 # NOW
-- Implementar proteção no new
 
 # TODO
 - Bug no celular, ele não chega no final ou corta o header; overflow provavelmente
