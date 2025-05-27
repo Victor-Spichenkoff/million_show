@@ -1,21 +1,24 @@
 "use client"
 
-import { Button } from "@/components/ui/button";
-import { Bounce } from "react-awesome-reveal";
-import { useIsLogged } from "@/hooks/useIsLogged";
-import { useRouter } from "next/navigation";
+import {Button} from "@/components/ui/button";
+import {Bounce} from "react-awesome-reveal";
+import {useIsLogged} from "@/hooks/useIsLogged";
+import {useRouter} from "next/navigation";
 import Image from "next/image";
 import LogoImage from "@/assets/images/logo.png"
-import { ConfigDropDown } from "./config";
+import {ConfigDropDown} from "./config";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 interface IHeader {
     label: string
     showConfig?: boolean
     showLoginButton?: boolean
     showLogo?: boolean
+    showBackButton?: boolean
 }
 
-export const Header = ({ label, showConfig, showLoginButton, showLogo }: IHeader) => {
+export const Header = ({label, showConfig, showLoginButton, showLogo, showBackButton}: IHeader) => {
     const isLogged = useIsLogged()
     const router = useRouter()
 
@@ -27,12 +30,28 @@ export const Header = ({ label, showConfig, showLoginButton, showLogo }: IHeader
         router.push("/home")
     }
 
+    const handleBackClick = () => router.back()
+
     return (
-        <header className={"relative border-text border-b-2 w-screen text-center py-3 text-3xl " +
+        // <header className={"relative border-text border-b-2 w-screen text-center py-3 text-3xl " +
+        <header className={"relative border-text  w-screen text-center py-6 text-3xl " +
             "font-black font-merriweather mb-2 max-w-[1200px]"}>
-            {showLogo && (
+            {showLogo && !showBackButton && (
                 <div className="absolute top-1/2 -translate-y-1/2 left-3">
-                    <Image src={LogoImage} alt="LOGO" width="50" className="hover:scale-105" />
+                    <Image src={LogoImage} alt="LOGO" width="50" className="hover:scale-105"/>
+                </div>
+            )}
+
+            {showBackButton && (
+                <div className="absolute top-1/2 -translate-y-1/2 left-3">
+                    <Button
+                        variant={"ghost"}
+                        className={"hover:bg-text/50 dark:hover:bg-text/50 border border-text p-2 rounded-full aspect-square"}
+                        onClick={handleBackClick}
+                    >
+                        <FontAwesomeIcon icon={faArrowLeft} className={"size-6"}/>
+
+                    </Button>
                 </div>
             )}
             <h1>{label}</h1>
@@ -46,7 +65,7 @@ export const Header = ({ label, showConfig, showLoginButton, showLogo }: IHeader
                         </Button>
                     </Bounce>
                 )}
-                {showConfig && <ConfigDropDown />}
+                {showConfig && <ConfigDropDown/>}
             </div>
         </header>
     )

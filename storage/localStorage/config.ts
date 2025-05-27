@@ -1,6 +1,7 @@
 import { key_config, site_tag } from "./storage_keys"
 import {ConfigStorage} from "@/types/storage/config";
-import {GetSafeType} from "@/types/storage/generalStorage";
+
+import {GetSafeType} from "@/storage/localStorage/getSageType"
 
 
 export const GetConfigStorage = () => {

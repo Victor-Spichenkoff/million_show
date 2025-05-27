@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {Question} from "@/types/responses/question";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {GetConfigStorage} from "@/storage/localStorage/config";
+import {Header} from "@/components/template/header";
 
 export default function Match() {
     const {id} = useParams()
@@ -42,9 +43,10 @@ export default function Match() {
         })()
     }, [])
 
-    return (
+    return (<>
+        <Header label={"Million Show"} showBackButton showConfig/>
         <div>
             match {question?.label}
         </div>
-    )
+    </>)
 }

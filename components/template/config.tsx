@@ -19,6 +19,8 @@ export const ConfigDropDown = () => {
     const [config, setConfig] = useState<null | ConfigStorage>(null)
 
     useEffect(() => {
+        if(typeof  window == "undefined") return
+
         const currentConfig = GetConfigStorage()
         setConfig(currentConfig)
     }, [])
