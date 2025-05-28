@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "../css/tailwind.css";
 @import "../css/auth.css";
+@import "../css/home.css";
 @import "../components/home/home.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -109,7 +110,7 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
-  
+
 
 @media screen and (max-width: 742px) {
   body::-webkit-scrollbar {

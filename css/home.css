@@ -1,0 +1,3 @@
+.hint-box {
+    @apply flex-1 p-2 text-center hover:bg-[#091836];
+}

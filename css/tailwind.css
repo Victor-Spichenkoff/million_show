@@ -10,9 +10,13 @@
   --color-gold: var(--gold);
   --color-foreground: var(--foreground);
   --color-form-btn: #0057FF;
+  --color-primary-foreground: var(--primary-foreground);
+  --color-hint: var(--hint);
+  --color-question: var(--question);
+  --color-question-border: var(--question-border );
+
 
   /*font*/
-  --color-primary-foreground: var(--primary-foreground);
 
   --font-oswald: var(--font-oswald);
   --font-merriweather: var(--font-merriweather);
@@ -23,9 +27,7 @@
   --primary-foreground: #222;
   --back: #e3f2fd;
   --back-secondary: #cfe0f5;
-  /* Azul mais suave */
   --back-tertiary: #f5fbff;
-  /* Quase branco com toque azulado */
   --back-quaternary: #dcedf9;
 
   --semi-muted: #0a0a23;
@@ -38,45 +40,29 @@
   --success: #4caf50;
   --error: #f44336;
   --gold: #d4af37;
+
+/*  Questions*/
+  --hint: #0A1C3F;
+  /*--hint: #091836;*/
+  --question: #0b224f;
+  --question-border: #0F356D;
 }
 
 .dark {
   /*--primary-foreground: #DDD;*/
   --primary-foreground: #fff;
   --back: #0a0a23;
-  /* --back-secondary: #040450; */
-  
---back-secondary: #151538;     /* Azul bem escuro puxando pro roxo */
+  --back-secondary: #040450;
+
+/* --back-secondary: #151538;     Azul bem escuro puxando pro roxo */
 --back-tertiary: #1f1f3a;      /* Azul-noite desaturado */
 --back-quaternary: #2c2c4c;
   --highlight: #64b5f6;
-  /*--primary: #1a237e; mais fraco*/
   --primary: #0F187D;
   --secondary: #0d47a1;
   --text: #ffffff;
   --success: #00e676;
   --error: #ff5252;
   --gold: #ffd700;
+
 }
-
-/* dourado, success e erro bom */
-/* * O dourado é bem bonito, dinheiro*/
-/* :root {
-    --highlight: #d4af37;
-  --primary: #ffffff;
-    --secondary: #e6e6e6;
-    --text: #111;
-    --back: #f7f7f7;
-    --success: #4caf50;
-    --error: #f44336;
-  }
-
-  .dark {
-    --highlight: #ffd700;
-    --primary: #1e1e1e;
-    --secondary: #2c2c2c;
-    --text: #f1f1f1;
-    --back: #121212;
-    --success: #00ff00;
-    --error: #ff3333;
-  } */

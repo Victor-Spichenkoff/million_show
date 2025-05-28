@@ -1,4 +1,18 @@
 # NOW
+- Return match ID at /match/univer
+- Add back hint avaliable validation
+
+# Question
+
+
+
+- good design
+- build areas
+- Prepare to receive helps
+- Funcions later
+- Flash at correct/wrong/million
+- 
+
 
 # TODO
 - Bug no celular, ele não chega no final ou corta o header; overflow provavelmente
