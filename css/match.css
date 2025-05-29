@@ -1,0 +1,17 @@
+.hint-box {
+    @apply flex-1 p-2 text-center hover:bg-[#091836];
+}
+
+.answer {
+    @apply bg-question py-1 px-3 rounded-lg text-xl font-roboto border-2 cursor-pointer;
+}
+
+.answer-letter {
+    @apply mr-4 text-highlight bg-hint border border-question-border rounded-full w-8 h-8 inline-flex
+        justify-center items-center text-white ;
+}
+
+.answer-letter-selected {
+    @apply bg-question text-highlight;
+    /*@apply bg-question text-white;*/
+}

@@ -11,17 +11,15 @@ export default function Match() {
         <Header label={"Million Show"} showBackButton showConfig/>
         <main className={"p-2"}>
             {/* bar */}
-            <div className="max-w-[500px] mx-auto p-[.8px] bg-question text-white rounded-lg">
-                <Helps
-                    half={2}
-                    skip={3}
-                    univer={3}
-                />
+            <div className="max-w-[500px] mx-auto text-white rounded-lg">
+                <div className={"bg-question p-[.8px] rounded-lg"}>
+                    <Helps
+                        half={2}
+                        skip={3}
+                        univer={3}
+                    />
+                </div>
                 <FullQuestion/>
-                <FullQuestion/>
-                <FullQuestion/>
-                <FullQuestion/>
-
             </div>
             {/* prizes */}
         </main>

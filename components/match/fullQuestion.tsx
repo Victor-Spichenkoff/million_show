@@ -1,15 +1,41 @@
-import { useGetQuestion } from "@/hooks/useGetQuestion"
+import {useGetQuestion} from "@/hooks/useGetQuestion"
+import {Button} from "@/components/ui/button";
+import {useState} from "react";
+import {MatchHint} from "@/types/hint";
+import {Answers} from "@/components/match/answers";
+import { CircularProgress } from '@mui/material';
+import {Loading} from "@/components/template/loading";
+
 
 interface IFullQuestion {
 }
 
 
-export const FullQuestion = ({ }: IFullQuestion) => {
-    const { question, setQuestion } = useGetQuestion()
+export const FullQuestion = ({}: IFullQuestion) => {
+    const {question, setQuestion} = useGetQuestion()
+    const [selected, setSelected] = useState<number>(0)
+    const [hintState, setHintState] = useState<MatchHint>(null)
 
-    return (
-        <div>
-            match {question?.label}
+    if(!question)
+        return <Loading />
+
+
+    return (<>
+        <div className={"bg-question rounded-b-lg px-4 py-2 font-semibold font-roboto text-xl"}>
+            {question?.label}
         </div>
-    )
+
+        <Answers
+            selected={selected}
+            question={question}
+            hintState={hintState}
+            setSelected={setSelected}
+        />
+
+
+        <div className={"mt-3 gap-x-6 flex justify-around"}>
+            <Button className={"flex-1 "} variant={"gold"}>Stop</Button>
+            <Button className={"flex-1 "} variant={"gold"} disabled={selected == 0}>Answer</Button>
+        </div>
+    </>)
 }

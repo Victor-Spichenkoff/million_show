@@ -1,5 +1,5 @@
 # NOW
-- Return match ID at /match/univer
+- Match + hint relation and states exchanges
 - Add back hint avaliable validation
 
 # Question

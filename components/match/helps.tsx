@@ -13,7 +13,7 @@ export const Helps = ({univer, skip, half}: IHelps) => {
 
     return (
         <div className={"flex justify-around bg-hint border-b border-question-border border-collapse" +
-            "rounded-tl-lg rounded-tr-lg relative"}>
+            " rounded-tl-lg rounded-tr-lg relative"}>
             <button className={"hint-box"}>
                 <div><FontAwesomeIcon icon={faLightbulb} className={"text-yellow-500"}/> 50/50</div>
                 <span className={"text-gold"}>X{half}</span>
