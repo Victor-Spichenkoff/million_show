@@ -5,17 +5,18 @@ import {LoginSchema} from "@/lib/schema/login";
 import {useForm} from "react-hook-form"
 import {Button} from "@/components/ui/button";
 import {zodResolver} from "@hookform/resolvers/zod"
-import {useEffect} from "react";
+import {useEffect, useTransition} from "react";
 import Link from "next/link";
 import {loginService} from "@/services/auth";
 import {useRouter, useSearchParams} from "next/navigation";
 import {saveAccessToken, saveExpiresAt} from "@/storage/cookie/auth";
 import {toast} from "sonner";
+import {Loading} from "@/components/template/loading";
 
 export const LoginForm = () => {
+    const [isLoading, startTransition] = useTransition()
     const router = useRouter()
     const searchParams = useSearchParams()
-
 
     useEffect(() => {
         const isLoginError = searchParams.get('loginError')
@@ -34,27 +35,31 @@ export const LoginForm = () => {
 
 
     const onSubmit = async  (values: z.infer<typeof LoginSchema>) => {
+        startTransition(async ()=> {
+
         const res = await loginService(values.userName, values.password)
 
-        if(res.isError)
-            return
+            if (res.isError)
+                return
 
 
-        const now = new Date()
-        const expiresAt = new Date(now.getTime() + res.response.expires_in * 1000)
+            const now = new Date()
+            const expiresAt = new Date(now.getTime() + res.response.expires_in * 1000)
 
-        await saveAccessToken(res.response.access_token, expiresAt)
-        await saveExpiresAt(expiresAt)
+            await saveAccessToken(res.response.access_token, expiresAt)
+            await saveExpiresAt(expiresAt)
 
-        const previous = searchParams.get('previous')
-        const pathname = previous ?? "/home"
+            const previous = searchParams.get('previous')
+            const pathname = previous ?? "/home"
 
-        router.push(pathname)
+            router.push(pathname)
+        })
     }
 
     return (
         <div className={"flex flex-col items-center justify-center px-3 py-2 rounded-b-xl min-h-[400px]" +
             " px-8 py-8 min-w-[300px]" }>
+            { isLoading && <Loading /> }
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7 w-full">
                     <FormInput form={form}
