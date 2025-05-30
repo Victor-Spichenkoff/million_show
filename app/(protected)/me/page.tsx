@@ -8,7 +8,7 @@ import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {Button} from "@/components/ui/button";
 import {useState} from "react";
 import {toast} from "sonner";
-import {User} from "@/types/User";
+import {User} from "@/types/user";
 
 export default function Home() {
     const [name, setName] = useState("")

@@ -2,8 +2,9 @@
 
 import {getLocalIP} from "@/lib/IP";
 const ip = getLocalIP()
-console.log(ip)
+const hostname = typeof window !== 'undefined' ? window.location.hostname : 'localhost'
+console.log(hostname)
 export const baseUrl =
     process.env.NODE_ENV === 'development'
-        ? `http://${ip}:2006`
+        ? `http://${hostname}:2006`
         : 'https://million-show-api.onrender.com'

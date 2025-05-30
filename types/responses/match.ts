@@ -1,4 +1,4 @@
-import {User} from "@/types/User";
+import {User} from "@/types/user";
 
 export type Match = {
     id: number
@@ -23,6 +23,6 @@ export type Match = {
     user?: User
 }
 
-export type States = "playing" | "lost" | "stopped" | "won" | "cancelled"
+type States = "playing" | "lost" | "stopped" | "won" | "cancelled"
 
-export type HintState = "none" | "skip" | "half" | "univertitary"
+type HintState = "none" | "skip" | "half" | "univertitary"

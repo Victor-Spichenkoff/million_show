@@ -8,13 +8,13 @@ import {Loading} from "@/components/template/loading";
 
 
 interface IFullQuestion {
+    hintState: MatchHint
 }
 
 
-export const FullQuestion = ({}: IFullQuestion) => {
+export const FullQuestion = ({hintState}: IFullQuestion) => {
     const {question, setQuestion} = useGetQuestion()
     const [selected, setSelected] = useState<number>(0)
-    const [hintState, setHintState] = useState<MatchHint>(null)
 
     if(!question)
         return <Loading />

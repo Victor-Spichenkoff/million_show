@@ -1,4 +1,6 @@
 # NOW
+Arrumar login
+- Add storage locally univer help
 - Match + hint relation and states exchanges
 - Add back hint avaliable validation
 

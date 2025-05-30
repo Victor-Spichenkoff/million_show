@@ -10,14 +10,14 @@ interface IAnswers {
 
 export const Answers = ({question, hintState, selected, setSelected}: IAnswers) => {
     const handleOptionSelection = (index: number) => {
-        if(index === selected)
+        if (index === selected)
             return setSelected(0)
 
         setSelected(index)
     }
 
 
-    if (hintState == null)
+    // if (hintState.type == null)
         return (
             <div className={"mt-3 space-y-1 rounded-lg"}>
                 <div onClick={() => handleOptionSelection(1)}
@@ -41,6 +41,7 @@ export const Answers = ({question, hintState, selected, setSelected}: IAnswers) 
                     {question?.option4}
                 </div>
             </div>
+
         )
 
 }
