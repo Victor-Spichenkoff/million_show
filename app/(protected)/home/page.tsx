@@ -11,6 +11,7 @@ import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {toast} from "sonner";
 import {Match} from "@/types/responses/match";
 import {NewDialog} from "@/components/home/newDialog";
+import {UpdateHintStateStorage} from "@/storage/localStorage/match";
 
 export default function Home() {
     const router = useRouter()
@@ -48,6 +49,7 @@ export default function Home() {
         if (result.isError)
             return toast.error("Can't create match")
 
+        UpdateHintStateStorage("")
         router.push(`/match/${result.response.id}?isNew`)
     }
 

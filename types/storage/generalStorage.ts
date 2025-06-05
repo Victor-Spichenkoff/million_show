@@ -2,7 +2,7 @@
 
 import {site_tag} from "@/storage/localStorage/storage_keys";
 
-export type SelectableStore = "config"
+export type SelectableStore = "config" | "hint_state"
 
 
 export const ChangeStorage = <T>(tag:SelectableStore, newThing: T) => {

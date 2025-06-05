@@ -13,5 +13,4 @@
 
 .answer-letter-selected {
     @apply bg-question text-highlight;
-    /*@apply bg-question text-white;*/
 }

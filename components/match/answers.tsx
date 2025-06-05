@@ -17,7 +17,7 @@ export const Answers = ({question, hintState, selected, setSelected}: IAnswers) 
     }
 
 
-    // if (hintState.type == null)
+    if (hintState.type == "none")
         return (
             <div className={"mt-3 space-y-1 rounded-lg"}>
                 <div onClick={() => handleOptionSelection(1)}
@@ -39,6 +39,60 @@ export const Answers = ({question, hintState, selected, setSelected}: IAnswers) 
                      className={`answer ${selected == 4 && "font-bold border-highlight"}`}>
                     <span className={`answer-letter ${selected == 4 && "answer-letter-selected"}`}>D</span>
                     {question?.option4}
+                </div>
+            </div>
+        )
+
+    if (hintState.type == "univer")
+        return (
+            <div className={"mt-3 space-y-1 rounded-lg"}>
+                <div onClick={() => handleOptionSelection(1)}
+                     className={`answer ${selected == 1 && "font-bold border-highlight"} 
+                     opacity-[${hintState.option1 + 30}%]`}>
+                    <span className={`answer-letter ${selected == 1 && "answer-letter-selected"}`}>A</span>
+                    {question?.option1}
+                    <span
+                        className={`text-md float-right self-center `}
+                    >
+                        {hintState.option1}
+                    </span>
+                </div>
+
+                <div onClick={() => handleOptionSelection(2)}
+                     className={`answer ${selected == 2 && "font-bold border-highlight"} 
+                     opacity-[${hintState.option2 + 30}%]`}>
+                    <span className={`answer-letter ${selected == 2 && "answer-letter-selected"}`}>B</span>
+                    {question?.option2}
+                    <span
+                        className={`text-md float-right self-center `}
+                    >
+                        {hintState.option2}
+                    </span>
+                </div>
+
+                <div onClick={() => handleOptionSelection(3)}
+                     className={`answer ${selected == 3 && "font-bold border-highlight"} 
+                     opacity-[${hintState.option3 + 30}%]
+                     `}>
+                    <span className={`answer-letter ${selected == 3 && "answer-letter-selected"}`}>C</span>
+                    {question?.option3}
+                    <span
+                        className={`text-md float-right self-center `}
+                    >
+                        {hintState.option3}
+                    </span>
+                </div>
+
+                <div onClick={() => handleOptionSelection(4)}
+                     className={`answer ${selected == 4 && "font-bold border-highlight"} 
+                     opacity-[${hintState.option4 + 30}%]`}>
+                    <span className={`answer-letter ${selected == 4 && "answer-letter-selected"}`}>D</span>
+                    {question?.option4}
+                    <span
+                        className={`text-md float-right self-center `}
+                    >
+                        {hintState.option4}
+                    </span>
                 </div>
             </div>
 
