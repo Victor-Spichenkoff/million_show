@@ -10,11 +10,11 @@ export type MatchHint = {
     type: "half"
     id: number
     isBr: boolean
-    label: number
-    option1: number
-    option2: number
-    option3: number
-    option4: number
+    label: string
+    option1: string
+    option2: string
+    option3: string
+    option4: string
     level: number
 
 } | { type: "none" }

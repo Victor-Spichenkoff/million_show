@@ -20,6 +20,18 @@ export default function MatchPage() {
     //     option3: 50,
     //     option4: 50,
     // })
+    // const [hintState, setHintState] = useState<MatchHint>({
+    //     type: "half",
+    //     "id": 158,
+    //     "isBr": false,
+    //     "label": "What do we use to eat soup?",
+    //     "option1": "X",
+    //     "option2": "Knife",
+    //     "option3": "Spoon",
+    //     "option4": "X",
+    //     "level": 1
+    // })
+
     const [matchState, setMatchState] = useState<Match | null>()
 
     const getMatchInfo = useProtectedApiCall({endpoint: "/match/status"})
@@ -27,28 +39,28 @@ export default function MatchPage() {
     useEffect(() => {
         startTransition(async () => {
             const response = await getMatchInfo()
-            if(!response.isError)
+            if (!response.isError)
                 setMatchState(response.response)
         })
     }, [hintState])
 
 
     return (<>
-        { isLoading && <Loading/> }
+        {isLoading && <Loading/>}
         <Header label={"Million Show"} showBackButton showConfig/>
         <main className={"p-2"}>
             {/* bar */}
             <div className="max-w-[500px] mx-auto text-white">
                 <div className={"bg-question p-[.8px] rounded-tl-lg rounded-tr-lg overflow-hidden"}>
-                    { matchState && (
-                    <Helps
-                        setMatchHint={setHintState}
-                        match={matchState}
-                        hintState={hintState}
-                    />
-                    ) }
+                    {matchState && (
+                        <Helps
+                            setMatchHint={setHintState}
+                            match={matchState}
+                            hintState={hintState}
+                        />
+                    )}
                 </div>
-                <FullQuestion hintState={hintState} />
+                <FullQuestion hintState={hintState}/>
             </div>
             {/* prizes */}
         </main>

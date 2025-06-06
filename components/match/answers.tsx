@@ -20,35 +20,35 @@ export const Answers = ({question, hintState, selected, setSelected}: IAnswers) 
     if (hintState.type == "none")
         return (
             <div className={"mt-3 space-y-1 rounded-lg"}>
-                <div onClick={() => handleOptionSelection(1)}
-                     className={`answer ${selected == 1 && "font-bold border-highlight"}`}>
+                <button onClick={() => handleOptionSelection(1)}
+                        className={`answer ${selected == 1 && "font-bold border-highlight"}`}>
                     <span className={`answer-letter ${selected == 1 && "answer-letter-selected"}`}>A</span>
                     {question?.option1}
-                </div>
-                <div onClick={() => handleOptionSelection(2)}
-                     className={`answer ${selected == 2 && "font-bold border-highlight"}`}>
+                </button>
+                <button onClick={() => handleOptionSelection(2)}
+                        className={`answer ${selected == 2 && "font-bold border-highlight"}`}>
                     <span className={`answer-letter ${selected == 2 && "answer-letter-selected"}`}>B</span>
                     {question?.option2}
-                </div>
-                <div onClick={() => handleOptionSelection(3)}
-                     className={`answer ${selected == 3 && "font-bold border-highlight"}`}>
+                </button>
+                <button onClick={() => handleOptionSelection(3)}
+                        className={`answer ${selected == 3 && "font-bold border-highlight"}`}>
                     <span className={`answer-letter ${selected == 3 && "answer-letter-selected"}`}>C</span>
                     {question?.option3}
-                </div>
-                <div onClick={() => handleOptionSelection(4)}
-                     className={`answer ${selected == 4 && "font-bold border-highlight"}`}>
+                </button>
+                <button onClick={() => handleOptionSelection(4)}
+                        className={`answer ${selected == 4 && "font-bold border-highlight"}`}>
                     <span className={`answer-letter ${selected == 4 && "answer-letter-selected"}`}>D</span>
                     {question?.option4}
-                </div>
+                </button>
             </div>
         )
 
-    if (hintState.type == "univer")
+    else if (hintState.type == "univer")
         return (
             <div className={"mt-3 space-y-1 rounded-lg"}>
-                <div onClick={() => handleOptionSelection(1)}
-                     className={`answer ${selected == 1 && "font-bold border-highlight"}`}
-                    style={{opacity: (hintState.option1 + 30)/100}}
+                <button onClick={() => handleOptionSelection(1)}
+                        className={`answer ${selected == 1 && "font-bold border-highlight"}`}
+                        style={{opacity: (hintState.option1 + 30) / 100}}
                 >
                     <span className={`answer-letter ${selected == 1 && "answer-letter-selected"}`}>A</span>
                     {question?.option1}
@@ -57,11 +57,11 @@ export const Answers = ({question, hintState, selected, setSelected}: IAnswers) 
                     >
                         {hintState.option1}
                     </span>
-                </div>
+                </button>
 
-                <div onClick={() => handleOptionSelection(2)}
-                     className={`answer ${selected == 2 && "font-bold border-highlight"}`}
-                     style={{opacity: (hintState.option2 + 30)/100}}
+                <button onClick={() => handleOptionSelection(2)}
+                        className={`answer ${selected == 2 && "font-bold border-highlight"}`}
+                        style={{opacity: (hintState.option2 + 30) / 100}}
                 >
                     <span className={`answer-letter ${selected == 2 && "answer-letter-selected"}`}>B</span>
                     {question?.option2}
@@ -70,11 +70,11 @@ export const Answers = ({question, hintState, selected, setSelected}: IAnswers) 
                     >
                         {hintState.option2}
                     </span>
-                </div>
+                </button>
 
-                <div onClick={() => handleOptionSelection(3)}
-                     className={`answer ${selected == 3 && "font-bold border-highlight"}`}
-                     style={{opacity: (hintState.option3 + 30)/100}}
+                <button onClick={() => handleOptionSelection(3)}
+                        className={`answer ${selected == 3 && "font-bold border-highlight"}`}
+                        style={{opacity: (hintState.option3 + 30) / 100}}
                 >
                     <span className={`answer-letter ${selected == 3 && "answer-letter-selected"}`}>C</span>
                     {question?.option3}
@@ -83,11 +83,11 @@ export const Answers = ({question, hintState, selected, setSelected}: IAnswers) 
                     >
                         {hintState.option3}
                     </span>
-                </div>
+                </button>
 
-                <div onClick={() => handleOptionSelection(4)}
-                     className={`answer ${selected == 4 && "font-bold border-highlight"}`}
-                     style={{opacity: (hintState.option4 + 30)/100}}>
+                <button onClick={() => handleOptionSelection(4)}
+                        className={`answer ${selected == 4 && "font-bold border-highlight"}`}
+                        style={{opacity: (hintState.option4 + 30) / 100}}>
                     <span className={`answer-letter ${selected == 4 && "answer-letter-selected"}`}>D</span>
                     {question?.option4}
                     <span
@@ -95,9 +95,42 @@ export const Answers = ({question, hintState, selected, setSelected}: IAnswers) 
                     >
                         {hintState.option4}
                     </span>
-                </div>
+                </button>
             </div>
+        )
 
+    else if (hintState.type == "half")
+        return (
+            <div className={"mt-3 space-y-1 rounded-lg"}>
+                <button
+                    disabled={hintState.option1.toLowerCase().includes("x")}
+                    onClick={() => handleOptionSelection(1)}
+                    className={`answer ${hintState.option1.toLowerCase().includes("x") && "removed"} ${selected == 1 && "font-bold border-highlight"}`}>
+                    <span className={`answer-letter ${selected == 1 && "answer-letter-selected"}`}>A</span>
+                    {hintState?.option1}
+                </button>
+                <button
+                    disabled={hintState.option2.toLowerCase().includes("x")}
+                    onClick={() => handleOptionSelection(2)}
+                    className={`answer ${hintState.option2.toLowerCase().includes("x") && "removed"} ${selected == 2 && "font-bold border-highlight"}`}>
+                    <span className={`answer-letter ${selected == 2 && "answer-letter-selected"}`}>B</span>
+                    {hintState?.option2}
+                </button>
+                <button
+                    disabled={hintState.option3.toLowerCase().includes("x")}
+                    onClick={() => handleOptionSelection(3)}
+                    className={`answer ${hintState.option3.toLowerCase().includes("x") && "removed"} ${selected == 3 && "font-bold border-highlight"}`}>
+                    <span className={`answer-letter ${selected == 3 && "answer-letter-selected"}`}>C</span>
+                    {hintState?.option3}
+                </button>
+                <button
+                    disabled={hintState.option4.toLowerCase().includes("x")}
+                    onClick={() => handleOptionSelection(4)}
+                    className={`answer ${hintState.option4.toLowerCase().includes("x") && "removed"} ${selected == 4 && "font-bold border-highlight"}`}>
+                    <span className={`answer-letter ${selected == 4 && "answer-letter-selected"}`}>D</span>
+                    {hintState?.option4}
+                </button>
+            </div>
         )
 
 }

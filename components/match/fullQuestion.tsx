@@ -22,6 +22,7 @@ export const FullQuestion = ({hintState}: IFullQuestion) => {
 
     const handleAnswer = () => {
         //TODO: FINISH THIS
+        console.log("JABf")
         UpdateHintStateStorage("")
     }
 

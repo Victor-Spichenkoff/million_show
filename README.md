@@ -1,10 +1,8 @@
 # NOW
-- NÂO ESTÀ MOSTRANDO ANSWERS> APARECEU DEPOIS DE MEXER NA LOCAL STORADE DE HITN
-
-Arrumar login
-- Add storage locally univer help
+- Salvar dados do half
+- Arrumar login
 - Match + hint relation and states exchanges
-- Add back hint avaliable validation
+- Add back hint available validation
 
 # Question
 - good design
@@ -12,7 +10,6 @@ Arrumar login
 - Prepare to receive helps
 - Funcions later
 - Flash at correct/wrong/million
-- 
 
 
 # TODO
