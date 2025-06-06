@@ -8,5 +8,7 @@ export const GetHintStateStorage = () => {
 
 
 export const UpdateHintStateStorage = (newThing: MatchHint | string) => {
+    if(typeof newThing === "string")
+        return localStorage.setItem(key_hint_state, newThing)
     localStorage.setItem(key_hint_state, JSON.stringify(newThing))
 }

@@ -1,13 +1,12 @@
 # NOW
+- NÂO ESTÀ MOSTRANDO ANSWERS> APARECEU DEPOIS DE MEXER NA LOCAL STORADE DE HITN
+
 Arrumar login
 - Add storage locally univer help
 - Match + hint relation and states exchanges
 - Add back hint avaliable validation
 
 # Question
-
-
-
 - good design
 - build areas
 - Prepare to receive helps
