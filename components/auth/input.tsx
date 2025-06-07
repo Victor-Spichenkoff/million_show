@@ -16,7 +16,6 @@ interface IFormInput<TSchema extends FieldValues> {
 
 export const FormInput =
     <TSchema extends FieldValues>({form, name, placeholder, label, desc, type, onEnter}: IFormInput<TSchema>) => {
-
         const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
             if (e.key === "Enter") {
                 if (onEnter)
@@ -43,7 +42,7 @@ export const FormInput =
                                     className={"" +
                                         "bg-highlight border-0 rounded-4xl shadow-black/50 shadow-md" +
                                         "  min-w-[300px] w-full text-2xl text-white px-3 py-5 md:py-2 text-2xl md:text-2xl " +
-                                        "border-0 bg-transparent border-b-2 border-highlight focus:border-b-3"}
+                                        "border-0 bg-transparent border-b-2  border-form-btn focus:border-b-3"}
                                 />
                             </FormControl>
                             <FormDescription>
