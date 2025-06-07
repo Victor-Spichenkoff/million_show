@@ -45,7 +45,7 @@ export const Header = ({label, showConfig, showLoginButton, showLogo, showBackBu
                 <div className="absolute top-1/2 -translate-y-1/2 left-3">
                     <Button
                         variant={"ghost"}
-                        className={"hover:bg-text/50 dark:hover:bg-text/50 border border-text p-2 rounded-full aspect-square"}
+                        className={"hover:bg-text/50 dark:hover:bg-text/50 border border-text w-9 h-9 rounded-full aspect-square"}
                         onClick={handleBackClick}
                     >
                         <FontAwesomeIcon icon={faArrowLeft} className={"size-6"}/>

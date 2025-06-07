@@ -1,68 +1,72 @@
 @import "tailwindcss";
 
 @theme {
-  --color-back: var(--back);
-  --color-text: var(--text);
-  --color-secondary: var(--secondary);
-  --color-highlight: var(--highlight);
-  --color-success: var(--success);
-  --color-error: var(--error);
-  --color-gold: var(--gold);
-  --color-foreground: var(--foreground);
-  --color-form-btn: #0057FF;
-  --color-primary-foreground: var(--primary-foreground);
-  --color-hint: var(--hint);
-  --color-question: var(--question);
-  --color-question-border: var(--question-border );
+    --color-back: var(--back);
+    --color-text: var(--text);
+    --color-secondary: var(--secondary);
+    --color-highlight: var(--highlight);
+    --color-success: var(--success);
+    --color-error: var(--error);
+    --color-gold: var(--gold);
+    --color-foreground: var(--foreground);
+    --color-form-btn: #0057FF;
+    --color-primary-foreground: var(--primary-foreground);
+    --color-hint: var(--hint);
+    --color-question: var(--question);
+    --color-question-border: var(--question-border);
 
 
-  /*font*/
-
-  --font-oswald: var(--font-oswald);
-  --font-merriweather: var(--font-merriweather);
-  --font-roboto: var(--font-roboto);
+    /*font*/
+    --font-oswald: var(--font-oswald);
+    --font-merriweather: var(--font-merriweather);
+    --font-roboto: var(--font-roboto);
 }
 
 :root {
-  --primary-foreground: #222;
-  --back: #e3f2fd;
-  --back-secondary: #cfe0f5;
-  --back-tertiary: #f5fbff;
-  --back-quaternary: #dcedf9;
+    --primary-foreground: #222;
+    --back: #e3f2fd;
+    --back-secondary: #cfe0f5;
+    --back-tertiary: #f5fbff;
+    --back-quaternary: #dcedf9;
 
-  --semi-muted: #0a0a23;
-  --highlight: #2196f3;
-  --primary: #0d47a1;
-  --darker-primary: #0F187D;
-  --secondary: #bbdefb;
-  --text: #0a0a23;
-  --foreground: #DDD;
-  --success: #4caf50;
-  --error: #f44336;
-  --gold: #d4af37;
+    --semi-muted: #0a0a23;
+    --highlight: #2196f3;
+    --primary: #0d47a1;
+    --darker-primary: #0F187D;
+    --secondary: #bbdefb;
+    --text: #0a0a23;
+    --foreground: #DDD;
+    --success: #4caf50;
+    --error: #f44336;
+    --gold: #d4af37;
 
-/*  Questions*/
-  --hint: #0A1C3F;
-  /*--hint: #091836;*/
-  --question: #0b224f;
-  --question-border: #0F356D;
+    /*  Questions*/
+    --hint: #0A1C3F;
+    /*--hint: #091836;*/
+    --question: #0b224f;
+    --question-border: #0F356D;
 }
 
 .dark {
-  /*--primary-foreground: #DDD;*/
-  --primary-foreground: #fff;
-  --back: #0a0a23;
-  --back-secondary: #040450;
+    /*--primary-foreground: #DDD;*/
+    --primary-foreground: #fff;
+    --back: #0a0a23;
+    --back-secondary: #040450;
 
-/* --back-secondary: #151538;     Azul bem escuro puxando pro roxo */
---back-tertiary: #1f1f3a;      /* Azul-noite desaturado */
---back-quaternary: #2c2c4c;
-  --highlight: #64b5f6;
-  --primary: #0F187D;
-  --secondary: #0d47a1;
-  --text: #ffffff;
-  --success: #00e676;
-  --error: #ff5252;
-  --gold: #ffd700;
+    /* --back-secondary: #151538;     Azul bem escuro puxando pro roxo */
+    --back-tertiary: #1f1f3a; /* Azul-noite desaturado */
+    --back-quaternary: #2c2c4c;
+    --highlight: #64b5f6;
+    --primary: #0F187D;
+    --secondary: #0d47a1;
+    --text: #ffffff;
+    --success: #00e676;
+    --error: #ff5252;
+    --gold: #ffd700;
 
+    /*  Questions*/
+    --hint: #0A1C3F;
+    /*--hint: #091836;*/
+    --question: #0b224f;
+    --question-border: #0F356D;
 }

@@ -13,28 +13,10 @@ import {UpdateHintStateStorage} from "@/storage/localStorage/match";
 export default function MatchPage() {
     const [isLoading, startTransition] = useTransition()
     const [hintState, setHintState] = useState<MatchHint>({ type: "none"})
-    // const [hintState, setHintState] = useState<MatchHint>({ type: "univer",
-    //     id: 64,
-    //     option1: 12,
-    //     option2: 2,
-    //     option3: 50,
-    //     option4: 50,
-    // })
-    // const [hintState, setHintState] = useState<MatchHint>({
-    //     type: "half",
-    //     "id": 158,
-    //     "isBr": false,
-    //     "label": "What do we use to eat soup?",
-    //     "option1": "X",
-    //     "option2": "Knife",
-    //     "option3": "Spoon",
-    //     "option4": "X",
-    //     "level": 1
-    // })
-
     const [matchState, setMatchState] = useState<Match | null>()
 
     const getMatchInfo = useProtectedApiCall({endpoint: "/match/status"})
+
 
     useEffect(() => {
         startTransition(async () => {

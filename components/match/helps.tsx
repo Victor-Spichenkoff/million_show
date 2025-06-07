@@ -62,9 +62,6 @@ export const Helps = ({setMatchHint, match, hintState}: IHelps) => {
         startTransition(async () => {
             const res = await getHalfHelp()
 
-            console.log(res)
-
-
             if (res.isError) {
                 toast.error(res.errorMessage)
                 return
