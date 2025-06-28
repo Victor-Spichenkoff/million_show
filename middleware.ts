@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import {toast} from "sonner";
-import {authRoutes, getLoginPathnameWithPreviousUrl, protectedRoutes, publicRoutes} from "@/routes";
+import {authRoutes, getLoginPathnameWithPreviousUrl, protectedRoutes} from "@/routes"
+
 
 const PUBLIC_PATHS = ['/', '/auth/login', '/auth/register', "/public"]
 

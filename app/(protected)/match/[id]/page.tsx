@@ -14,6 +14,8 @@ export default function MatchPage() {
     const [isLoading, startTransition] = useTransition()
     const [hintState, setHintState] = useState<MatchHint>({ type: "none"})
     const [matchState, setMatchState] = useState<Match | null>()
+    //TODO: show locally the final prize screen, build a component for it
+    const [finalPrize, setFinalPrize] = useState<number | null>(null)
 
     const getMatchInfo = useProtectedApiCall({endpoint: "/match/status"})
 
