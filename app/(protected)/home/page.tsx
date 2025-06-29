@@ -61,12 +61,14 @@ export default function Home() {
         router.push(`/match/${homeInfo.matchId}`)
     }
 
+    console.log(homeInfo?.matchId)
+
     return (<>
         <Header label="Home" showConfig showLogo/>
         <div className="flex flex-col items-center text-2xl h-screen w-screen">
             {homeInfo ? (<>
                 <Link href={"/leaderboard"}>LeaderBoard</Link>
-                {homeInfo.alreadyStarted ? (
+                {homeInfo.matchId ? (
                     <NewDialog onClick={(e) => handleNewButton(e, true)}/>
                 ) : (
                     <Button variant={"gold"} onClick={handleNewButton}>New</Button>
