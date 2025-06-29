@@ -1,12 +1,15 @@
 # NOW
-- it's using hint over hint (50), can exclude3 of 4
-  - use a hint, refresh, use again, only 1 remaning. Or maybe because of fast reload
+- Match com ID já usado/finalizado/inexistente (match/37)
 - STOP -> You stop the match (adicionar confirm)
 - Salvar dados do half
 - Arrumar login
 - Match + hint relation and states exchanges
 - Add back hint available validation
 - After use a hint, it's not discounted in the interface
+
+
+# FINAL REVISION
+- it's giving extra helps on half -> answer (not skipping now, but resets hint storage) -> half == shows only the correct one  
 
 # Question
 - good design

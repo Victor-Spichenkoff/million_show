@@ -9,13 +9,20 @@ import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {MatchHint} from "@/types/hint";
 import {Loading} from "@/components/template/loading";
 import {UpdateHintStateStorage} from "@/storage/localStorage/match";
+import {FinalScreenData, FinalScreenDataTitle} from "@/types/matchHelpersTypes";
+import {FinalScreen} from "@/components/match/finalScreen";
 
 export default function MatchPage() {
     const [isLoading, startTransition] = useTransition()
     const [hintState, setHintState] = useState<MatchHint>({ type: "none"})
     const [matchState, setMatchState] = useState<Match | null>()
     //TODO: show locally the final prize screen, build a component for it
-    const [finalPrize, setFinalPrize] = useState<number | null>(null)
+    // const [finalScreenData, setFinalScreenData] = useState<FinalScreenData | null>({
+    //     subtitle: "STOP",
+    //     title: "You decided to",
+    //      finalPrize: 1_000_000
+    // })
+    const [finalScreenData, setFinalScreenData] = useState<FinalScreenData | null>(null)
 
     const getMatchInfo = useProtectedApiCall({endpoint: "/match/status"})
 
@@ -32,6 +39,11 @@ export default function MatchPage() {
     return (<>
         {isLoading && <Loading/>}
         <Header label={"Million Show"} showBackButton showConfig/>
+        { finalScreenData ? (
+            <div className={"h-full flex flex-col justify-center items-center"}>
+                <FinalScreen finalScreenData={finalScreenData} />
+            </div>
+        ) : (
         <main className={"p-2"}>
             {/* bar */}
             <div className="max-w-[500px] mx-auto text-white">
@@ -44,9 +56,13 @@ export default function MatchPage() {
                         />
                     )}
                 </div>
-                <FullQuestion hintState={hintState}/>
+                <FullQuestion
+                    hintState={hintState}
+                    setFinalScreenData={setFinalScreenData}
+                />
             </div>
             {/* prizes */}
         </main>
+        )}
     </>)
 }

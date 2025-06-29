@@ -37,7 +37,7 @@ export const Helps = ({setMatchHint, match, hintState}: IHelps) => {
 
     const handleGetUniverHelp = async () => {
         if (hintState && hintState.type != "none")
-            return toast.warning("You already got helped")
+            return toast.warning("you've already been helped")
 
         startTransition(async () => {
             const token = await getAccessToken()
@@ -57,7 +57,7 @@ export const Helps = ({setMatchHint, match, hintState}: IHelps) => {
 
     const handleGetHalfHelp = async () => {
         if (hintState && hintState.type != "none")
-            return toast.warning("You already got helped")
+            return toast.warning("you've already been helped")
 
         startTransition(async () => {
             const res = await getHalfHelp()

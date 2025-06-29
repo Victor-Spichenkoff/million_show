@@ -9,14 +9,16 @@ import {UpdateHintStateStorage} from "@/storage/localStorage/match";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {toast} from "sonner";
 import {StopDialog} from "@/components/match/stopDialog";
+import {FinalScreenData} from "@/types/matchHelpersTypes";
 
 
 interface IFullQuestion {
     hintState: MatchHint
+    setFinalScreenData: (n: FinalScreenData) => void
 }
 
 
-export const FullQuestion = ({hintState}: IFullQuestion) => {
+export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => {
     const {question, setQuestion} = useGetQuestion()
     const [selected, setSelected] = useState<number>(0)
     const [isLoading, startTransition] = useTransition()
@@ -43,9 +45,12 @@ export const FullQuestion = ({hintState}: IFullQuestion) => {
                 return
             }
 
-            toast.success("You decided to stop")
-            //TODO: REDIRECT TO FINAL SCREEN/SHOW IT IN HERE
-            //TODO: REDIRECIONA PARA A PAGINA COM O FINAL/MOSTRA A
+            toast.success("You choose to stop")
+            setFinalScreenData({
+                title: "You decided to",
+                subtitle: "STOP",
+                finalPrize: res.response.finalPrize
+            })
         })
     }
 

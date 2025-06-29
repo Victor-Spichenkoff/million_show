@@ -8,3 +8,6 @@ export const baseUrl =
     process.env.NODE_ENV === 'development'
         ? `http://${hostname}:2006`
         : 'https://million-show-api.onrender.com'
+
+
+export const HEADER_HEIGHT = 84
