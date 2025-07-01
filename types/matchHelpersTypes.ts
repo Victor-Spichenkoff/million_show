@@ -1,5 +1,6 @@
 export type FinalScreenData = {
     finalPrize: number
+    points?: number
     title: FinalScreenDataTitle
     subtitle: FinalScreenDataSubtitle
 }

@@ -1,4 +1,6 @@
 # NOW
+- stop wrong value
+
 - Match com ID já usado/finalizado/inexistente (match/37)
 - STOP -> You stop the match (adicionar confirm)
 - Salvar dados do half
@@ -10,6 +12,10 @@
 
 # FINAL REVISION
 - it's giving extra helps on half -> answer (not skipping now, but resets hint storage) -> half == shows only the correct one  
+
+# Match
+- answer and exit. Must have a way to get the new question whether  it's new or not
+
 
 # Question
 - good design

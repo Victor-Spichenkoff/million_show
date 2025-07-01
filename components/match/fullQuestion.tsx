@@ -49,7 +49,8 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
             setFinalScreenData({
                 title: "You decided to",
                 subtitle: "STOP",
-                finalPrize: res.response.finalPrize
+                finalPrize: res.response.finalPrize,
+                points: res.response.points,
             })
         })
     }
@@ -68,10 +69,6 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
 
 
         <div className={"mt-3 gap-x-6 flex justify-around"}>
-            {/*<Button*/}
-            {/*    className={"flex-1 "}*/}
-            {/*    variant={"gold"}*/}
-            {/*>Stop</Button>*/}
             <StopDialog onClick={handleStop}/>
             <Button
                 className={"flex-1 "}

@@ -11,8 +11,12 @@ import {Loading} from "@/components/template/loading";
 import {UpdateHintStateStorage} from "@/storage/localStorage/match";
 import {FinalScreenData, FinalScreenDataTitle} from "@/types/matchHelpersTypes";
 import {FinalScreen} from "@/components/match/finalScreen";
+import {useRouter} from "next/navigation";
+import {toast} from "sonner";
+import {Prizes} from "@/components/match/prizes";
 
 export default function MatchPage() {
+    const router = useRouter()
     const [isLoading, startTransition] = useTransition()
     const [hintState, setHintState] = useState<MatchHint>({ type: "none"})
     const [matchState, setMatchState] = useState<Match | null>()
@@ -32,6 +36,10 @@ export default function MatchPage() {
             const response = await getMatchInfo()
             if (!response.isError)
                 setMatchState(response.response)
+            else {
+                toast.error("You don't have any active match")
+                router.push("/home")
+            }
         })
     }, [hintState])
 
@@ -60,6 +68,11 @@ export default function MatchPage() {
                     hintState={hintState}
                     setFinalScreenData={setFinalScreenData}
                 />
+
+                <Prizes
+                    stopPrize={matchState?.stopPrize}
+                    nextPrize={matchState?.nextPrize}
+                    wrongPrize={matchState?.wrongPrize}/>
             </div>
             {/* prizes */}
         </main>
