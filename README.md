@@ -1,5 +1,5 @@
 # NOW
-- stop wrong value
+- Color on light question
 
 - Match com ID já usado/finalizado/inexistente (match/37)
 - STOP -> You stop the match (adicionar confirm)

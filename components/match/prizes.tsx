@@ -4,10 +4,62 @@ interface IPrizes {
     nextPrize?: number
 }
 
-export const Prizes = ({stopPrize,wrongPrize,nextPrize}: IPrizes) => {
+export const Prizes = ({stopPrize, wrongPrize, nextPrize}: IPrizes) => {
+    if(nextPrize == undefined || wrongPrize == undefined || stopPrize == undefined) return null
+
+    const styleFinal = nextPrize == 1_000_000 ? "1 M" : nextPrize / 1_000
+
     return (
-        <div>
-            {stopPrize}
-        </div>
-    )
+        <div className={"flex justify-between px-4 mt-10"}>
+
+            <div className="flex flex-col items-center">
+                <div
+                    className="
+                      px-5 py-1
+                      bg-gradient-to-b from-yellow-300 to-yellow-500
+                      flex justify-center items-center
+                      text-2xl font-bold text-red-600
+                      rounded-md shadow-inner shadow-yellow-900 border border-yellow-700
+                      "
+                >
+                    {wrongPrize / 1_000} K
+                </div>
+                <div className="text-lg text-center font-semibold mt-1 tracking-wide text-foreground">
+                    WRONG
+                </div>
+            </div>
+            <div className="flex flex-col items-center">
+                <div
+                    className="
+                      px-5 py-1
+                      bg-gradient-to-b from-yellow-300 to-yellow-500
+                      flex justify-center items-center
+                      text-2xl font-bold text-red-600
+                      rounded-md shadow-inner shadow-yellow-900 border border-yellow-700
+                      "
+                >
+                    {stopPrize/1_000} K
+                </div>
+                <div className="text-lg text-center font-semibold mt-1 tracking-wide text-foreground">
+                    STOP
+                </div>
+            </div>
+            <div className="flex flex-col items-center">
+                <div
+                    className="
+                      px-5 py-1
+                      bg-gradient-to-b from-yellow-300 to-yellow-500
+                      flex justify-center items-center
+                      text-2xl font-bold text-red-600
+                      rounded-md shadow-inner shadow-yellow-900 border border-yellow-700
+                      "
+                >
+                    {styleFinal} K
+                </div>
+                <div className="text-lg text-center font-semibold mt-1 tracking-wide text-foreground">
+                    CORRECT
+                </div>
+            </div>
+
+        </div>)
 }

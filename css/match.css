@@ -22,3 +22,4 @@
 .answer-letter-selected {
     @apply bg-question text-highlight;
 }
+
