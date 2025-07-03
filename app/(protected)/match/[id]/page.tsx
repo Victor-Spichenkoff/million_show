@@ -13,6 +13,7 @@ import {FinalScreen} from "@/components/match/finalScreen";
 import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 import {Prizes} from "@/components/match/prizes";
+import {ProgressBar} from "@/components/match/progressBar";
 
 export default function MatchPage() {
     const router = useRouter()
@@ -52,7 +53,7 @@ export default function MatchPage() {
             </div>
         ) : (
         <main className={"p-2"}>
-            {/* bar */}
+            <ProgressBar questionIndex={matchState?.questionIndex ?? 0}/>
             <div className="max-w-[500px] mx-auto text-zinc-800 dark:text-white">
                 <div className={"bg-question p-[.8px] rounded-tl-lg rounded-tr-lg overflow-hidden"}>
                     {matchState && (
