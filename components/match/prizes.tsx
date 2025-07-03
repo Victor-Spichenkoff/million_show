@@ -1,3 +1,5 @@
+import {MAX_W_QUESTION} from "@/global";
+
 interface IPrizes {
     wrongPrize?: number
     stopPrize?: number
@@ -10,7 +12,7 @@ export const Prizes = ({stopPrize, wrongPrize, nextPrize}: IPrizes) => {
     const styleFinal = nextPrize == 1_000_000 ? "1 M" : nextPrize / 1_000
 
     return (
-        <div className={"flex justify-between px-4 mt-8"}>
+        <div className={`flex justify-between px-4 mt-8 w-full max-w-[${MAX_W_QUESTION}px]`}>
 
             <div className="flex flex-col items-center">
                 <div

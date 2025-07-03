@@ -11,3 +11,6 @@ export const baseUrl =
 
 
 export const HEADER_HEIGHT = 84
+
+export const MAX_W_QUESTION = 500
+export const MAX_W_HEADER = 1200

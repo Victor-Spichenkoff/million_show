@@ -14,11 +14,12 @@ import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 import {Prizes} from "@/components/match/prizes";
 import {ProgressBar} from "@/components/match/progressBar";
+import {MAX_W_QUESTION} from "@/global";
 
 export default function MatchPage() {
     const router = useRouter()
     const [isLoading, startTransition] = useTransition()
-    const [hintState, setHintState] = useState<MatchHint>({ type: "none"})
+    const [hintState, setHintState] = useState<MatchHint>({type: "none"})
     const [matchState, setMatchState] = useState<Match | null>()
     //TODO: show locally the final prize screen, build a component for it
     // const [finalScreenData, setFinalScreenData] = useState<FinalScreenData | null>({
@@ -42,9 +43,9 @@ export default function MatchPage() {
             }
         })
 
-        setTimeout(()=> {
-            if(matchState)
-            setMatchState({...matchState, questionIndex: 15})
+        setTimeout(() => {
+            if (matchState)
+                setMatchState({...matchState, questionIndex: 15})
         }, 1200)
     }, [hintState])
 
@@ -52,34 +53,35 @@ export default function MatchPage() {
     return (<>
         {isLoading && <Loading/>}
         <Header label={"Million Show"} showBackButton showConfig/>
-        { finalScreenData ? (
-            <div className={"h-full flex flex-col justify-center items-center"}>
-                <FinalScreen finalScreenData={finalScreenData} />
+        {finalScreenData ? (
+            <div className={"h-full flex flex-col justify-center"}>
+                <FinalScreen finalScreenData={finalScreenData}/>
             </div>
         ) : (
-        <main className={"px-2"}>
-            <ProgressBar questionIndex={matchState?.questionIndex ?? 0}/>
-            <div className="max-w-[500px] mx-auto text-zinc-800 dark:text-white">
-                <div className={"bg-question p-[.8px] rounded-tl-lg rounded-tr-lg overflow-hidden"}>
-                    {matchState && (
-                        <Helps
-                            setMatchHint={setHintState}
-                            match={matchState}
+            <main className={"px-2"}>
+                <ProgressBar questionIndex={matchState?.questionIndex ?? 0} className={"lg:self-end"}/>
+                <div className={`mx-auto max-w-[${MAX_W_QUESTION}px] text-zinc-800 dark:text-white `}>
+                    <div className={`max-w-[${MAX_W_QUESTION}px]`}>
+                        <div className={"bg-question p-[.8px] rounded-tl-lg rounded-tr-lg overflow-hidden"}>
+                            {matchState && (
+                                <Helps
+                                    setMatchHint={setHintState}
+                                    match={matchState}
+                                    hintState={hintState}
+                                />
+                            )}
+                        </div>
+                        <FullQuestion
                             hintState={hintState}
-                        />
-                    )}
-                </div>
-                <FullQuestion
-                    hintState={hintState}
-                    setFinalScreenData={setFinalScreenData}
-                />
+                            setFinalScreenData={setFinalScreenData} />
+                    </div>
 
-                <Prizes
-                    stopPrize={matchState?.stopPrize}
-                    nextPrize={matchState?.nextPrize}
-                    wrongPrize={matchState?.wrongPrize}/>
-            </div>
-        </main>
+                    <Prizes
+                        stopPrize={matchState?.stopPrize}
+                        nextPrize={matchState?.nextPrize}
+                        wrongPrize={matchState?.wrongPrize}/>
+                </div>
+            </main>
         )}
     </>)
 }
