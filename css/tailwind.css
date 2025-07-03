@@ -23,6 +23,11 @@
     --font-oswald: var(--font-oswald);
     --font-merriweather: var(--font-merriweather);
     --font-roboto: var(--font-roboto);
+
+/*    Sizes*/
+    --spacing-max_w_question: 500px;
+    --spacing-max_w: var(--max_w);
+    --spacing-header-height: var(--header-height);
 }
 
 :root {
@@ -49,6 +54,10 @@
     --hint-hover: #99caf1;
     --question: #42a5f5;       /* Azul vibrante */
     --question-border: #0F356D;
+
+/*    SIZES*/
+    --header-height: 86px;
+    --max_w: 1200px;
 }
 
 .dark {

@@ -14,7 +14,7 @@ import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 import {Prizes} from "@/components/match/prizes";
 import {ProgressBar} from "@/components/match/progressBar";
-import {MAX_W_QUESTION} from "@/global";
+import {HEADER_HEIGHT, MAX_W_QUESTION} from "@/global";
 
 export default function MatchPage() {
     const router = useRouter()
@@ -58,10 +58,12 @@ export default function MatchPage() {
                 <FinalScreen finalScreenData={finalScreenData}/>
             </div>
         ) : (
-            <main className={"px-2"}>
-                <ProgressBar questionIndex={matchState?.questionIndex ?? 0} className={"lg:self-end"}/>
-                <div className={`mx-auto max-w-[${MAX_W_QUESTION}px] text-zinc-800 dark:text-white `}>
-                    <div className={`max-w-[${MAX_W_QUESTION}px]`}>
+            <main className={"max-w-max_w mx-auto lg:flex items-center lg:items-center  lg:justify-around lg:flex-row-reverse h-full lg:-mt-[84px] px-8"}>
+                <div className={`lg:flex-end px-24`}>
+                    <ProgressBar questionIndex={matchState?.questionIndex ?? 0} className={""}/>
+                </div>
+                <div className={`mx-auto text-zinc-800 dark:text-white lg:w-full lg:flex-1 lg:flex lg:flex-row lg:justify-around`}>
+                    <div className={`mx-auto max-w-max_w_question lg:flex-1 lg:max-w-[800px]`}>
                         <div className={"bg-question p-[.8px] rounded-tl-lg rounded-tr-lg overflow-hidden"}>
                             {matchState && (
                                 <Helps
@@ -73,14 +75,16 @@ export default function MatchPage() {
                         </div>
                         <FullQuestion
                             hintState={hintState}
-                            setFinalScreenData={setFinalScreenData} />
+                            setFinalScreenData={setFinalScreenData}/>
                     </div>
-
-                    <Prizes
-                        stopPrize={matchState?.stopPrize}
-                        nextPrize={matchState?.nextPrize}
-                        wrongPrize={matchState?.wrongPrize}/>
+                    <div className={"mx-auto max-w-max_w_question lg:px-12 "}>
+                        <Prizes
+                            stopPrize={matchState?.stopPrize}
+                            nextPrize={matchState?.nextPrize}
+                            wrongPrize={matchState?.wrongPrize}/>
+                    </div>
                 </div>
+
             </main>
         )}
     </>)

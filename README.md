@@ -1,4 +1,5 @@
 # NOW
+- tailwind global variables s
 
 - Match com ID já usado/finalizado/inexistente (match/37)
 - STOP -> You stop the match (adicionar confirm)
