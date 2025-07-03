@@ -53,7 +53,7 @@ export default function MatchPage() {
         ) : (
         <main className={"p-2"}>
             {/* bar */}
-            <div className="max-w-[500px] mx-auto text-white">
+            <div className="max-w-[500px] mx-auto text-zinc-800 dark:text-white">
                 <div className={"bg-question p-[.8px] rounded-tl-lg rounded-tr-lg overflow-hidden"}>
                     {matchState && (
                         <Helps

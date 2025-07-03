@@ -12,8 +12,11 @@
     --color-form-btn: #0057FF;
     --color-primary-foreground: var(--primary-foreground);
     --color-hint: var(--hint);
+    --color-hint-hover: var(--hint-hover);
     --color-question: var(--question);
     --color-question-border: var(--question-border);
+    /*NO VARIATION*/
+    --color-bar: #00E676;
 
 
     /*font*/
@@ -38,12 +41,13 @@
     --foreground: #DDD;
     --success: #4caf50;
     --error: #f44336;
-    --gold: #d4af37;
+    --gold: #d3ab26;
 
     /*  Questions*/
-    --hint: #0A1C3F;
     /*--hint: #091836;*/
-    --question: #0b224f;
+    --hint: #c5e1f7;
+    --hint-hover: #99caf1;
+    --question: #42a5f5;       /* Azul vibrante */
     --question-border: #0F356D;
 }
 
@@ -67,6 +71,7 @@
     /*  Questions*/
     --hint: #0A1C3F;
     /*--hint: #091836;*/
+    --hint-hover: #091836;
     --question: #0b224f;
     --question-border: #0F356D;
 }

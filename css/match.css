@@ -1,5 +1,5 @@
 .hint-box {
-    @apply flex-1 p-2 text-center hover:bg-[#091836];
+    @apply flex-1 p-2 text-center  hover:bg-hint-hover dark:hover:bg-hint-hover;
 }
 
 .answer {
@@ -20,6 +20,6 @@
 }
 
 .answer-letter-selected {
-    @apply bg-question text-highlight;
+    @apply bg-blue-900 dark:bg-question text-highlight;
 }
 
