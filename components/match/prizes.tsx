@@ -57,7 +57,7 @@ export const Prizes = ({stopPrize, wrongPrize, nextPrize}: IPrizes) => {
                     {styleFinal} K
                 </div>
                 <div className="text-lg text-center font-semibold mt-1 tracking-wide text-foreground">
-                    CORRECT
+                    RIGHT
                 </div>
             </div>
 

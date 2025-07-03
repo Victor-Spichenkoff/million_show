@@ -41,6 +41,11 @@ export default function MatchPage() {
                 router.push("/home")
             }
         })
+
+        setTimeout(()=> {
+            if(matchState)
+            setMatchState({...matchState, questionIndex: 15})
+        }, 1200)
     }, [hintState])
 
 
@@ -52,7 +57,7 @@ export default function MatchPage() {
                 <FinalScreen finalScreenData={finalScreenData} />
             </div>
         ) : (
-        <main className={"p-2"}>
+        <main className={"px-2"}>
             <ProgressBar questionIndex={matchState?.questionIndex ?? 0}/>
             <div className="max-w-[500px] mx-auto text-zinc-800 dark:text-white">
                 <div className={"bg-question p-[.8px] rounded-tl-lg rounded-tr-lg overflow-hidden"}>
@@ -74,7 +79,6 @@ export default function MatchPage() {
                     nextPrize={matchState?.nextPrize}
                     wrongPrize={matchState?.wrongPrize}/>
             </div>
-            {/* prizes */}
         </main>
         )}
     </>)
