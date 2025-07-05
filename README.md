@@ -1,5 +1,6 @@
 # NOW
-- tailwind global variables s
+- flash animation
+- is prize and q index being updated?
 
 - Match com ID já usado/finalizado/inexistente (match/37)
 - STOP -> You stop the match (adicionar confirm)

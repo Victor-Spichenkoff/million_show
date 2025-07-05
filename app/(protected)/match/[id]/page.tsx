@@ -32,6 +32,7 @@ export default function MatchPage() {
     const getMatchInfo = useProtectedApiCall({endpoint: "/match/status"})
 
 
+
     useEffect(() => {
         startTransition(async () => {
             const response = await getMatchInfo()

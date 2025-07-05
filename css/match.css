@@ -23,3 +23,88 @@
     @apply bg-blue-900 dark:bg-question text-highlight;
 }
 
+
+
+/* ANIMATIONS */
+
+.bg-flash-green {
+    animation: flash-green 2.5s ease-in-out forwards;
+}
+.bg-flash-red {
+    animation: flash-red 2.5s ease-in-out forwards;
+}
+
+
+@keyframes flash-green {
+    0% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    10% {
+        background: var(--success);
+    }
+    20% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    30% {
+        background: var(--success);
+    }
+    40% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    50% {
+        background: var(--success);
+    }
+    60% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    70% {
+        background: var(--success);
+    }
+    80% {
+        /*background: var(--success);*/
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    90% {
+        background: var(--success);
+    }
+    100% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+}
+
+@keyframes flash-red {
+    0% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    10% {
+        background: var(--error);
+    }
+    20% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    30% {
+        background: var(--error);
+    }
+    40% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    50% {
+        background: var(--error);
+    }
+    60% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    70% {
+        background: var(--error);
+    }
+    80% {
+        /*background: var(--error);*/
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    90% {
+        background: var(--error);
+    }
+    100% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+}

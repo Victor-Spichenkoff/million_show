@@ -23,6 +23,19 @@ export type Match = {
     user?: User
 }
 
+
+export type AnswerActionResponse = {
+    isCorrect: true,
+    points?: number
+} | {
+    isCorrect: false,
+    finalPrize: number
+    correctAnswer: 1 | 2 | 3 | 4,
+    points: number
+}
+
+
+
 type States = "playing" | "lost" | "stopped" | "won" | "cancelled"
 
 type HintState = "none" | "skip" | "half" | "univertitary"

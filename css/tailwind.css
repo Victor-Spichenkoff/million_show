@@ -73,8 +73,10 @@
     --primary: #0F187D;
     --secondary: #0d47a1;
     --text: #ffffff;
-    --success: #00e676;
-    --error: #ff5252;
+    --success: #036b17;
+    /*--success: #00e676;*/
+    /*--error: #ff5252;*/
+    --error: #880404;
     --gold: #ffd700;
 
     /*  Questions*/

@@ -14,3 +14,6 @@ export const HEADER_HEIGHT = 84
 
 export const MAX_W_QUESTION = 500
 export const MAX_W_HEADER = 1200
+
+
+export const FLASH_ANIMATION_DURATION = 2_500
