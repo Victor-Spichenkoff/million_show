@@ -1,6 +1,6 @@
 import {useGetQuestion} from "@/hooks/useGetQuestion"
 import {Button} from "@/components/ui/button";
-import {useEffect, useState, useTransition} from "react";
+import {useState, useTransition} from "react";
 import {MatchHint} from "@/types/hint";
 import {Answers} from "@/components/match/answers";
 import {Loading} from "@/components/template/loading";
@@ -10,14 +10,12 @@ import {toast} from "sonner";
 import {StopDialog} from "@/components/match/stopDialog";
 import {FinalScreenData} from "@/types/matchHelpersTypes";
 import {AnswerActionResponse} from "@/types/responses/match";
-import {flashGreen, flashRed} from "@/util/match";
+import {flashGold, flashGreen, flashRed, showConfetti} from "@/util/match";
 import {GetConfigStorage} from "@/storage/localStorage/config";
 import {Question} from "@/types/responses/question";
 import {motion, AnimatePresence} from "framer-motion"
-import {QuestionSkeleton} from "@/components/match/questionSkeleton";
-import {GenericApiResponse} from "@/services/handleApiCall";
+import {QuestionSkeleton} from "@/components/match/questionSkeleton"
 import {FLASH_ANIMATION_DURATION} from "@/global";
-
 
 interface IFullQuestion {
     hintState: MatchHint
@@ -31,6 +29,7 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
     const [isLoading, startTransition] = useTransition()
     const [showSkeleton, setShowSkeleton] = useState<boolean>(false)
     const [isLoading2, setIsLoading2] = useState<boolean>(false)
+    const [blockActions, setBlockActions] = useState(false)
 
     const stopMatchAction = useProtectedApiCall({
         endpoint: "/match/stop",
@@ -51,6 +50,8 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
         return <Loading/>
 
     const handleAnswer = async () => {
+        if(blockActions) return toast.error("Waiting...")
+
         setIsLoading2(true)
         const res = await answerAction()
         if (res.isError) {
@@ -59,21 +60,32 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
         }
 
         setIsLoading2(false)
+        setBlockActions(true)
 
         // TODO: IS MILLION
         if (res.response.isCorrect && res.response.points) {
-            toast.success("MILÂOO")
+            flashGold()
+            showConfetti()
+            await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION))
+            setFinalScreenData({
+                title:"Congratulations",
+                subtitle: "You WON!!!",
+                points: res.response.points,
+                finalPrize: 1_000_000,
+                isMillion: true,
+            })
         } else if (res.response.isCorrect) {
             flashGreen()
             await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
-            // fade and remove
             await getNextQuestion()
             setShowSkeleton(false)
         } else {
             flashRed()
         }
+        setBlockActions(false)
         UpdateHintStateStorage("")
     }
+
 
     const handleStop = () => {
         startTransition(async () => {
@@ -115,6 +127,10 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
             "level": 1
         })
     }
+
+
+
+
 
     return (<>
         {isLoading || isLoading2 && <Loading/>}

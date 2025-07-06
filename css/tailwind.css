@@ -48,6 +48,8 @@
     --error: #f44336;
     --gold: #d3ab26;
 
+    --flash-yellow: #ad8001;
+
     /*  Questions*/
     /*--hint: #091836;*/
     --hint: #c5e1f7;
@@ -78,6 +80,8 @@
     /*--error: #ff5252;*/
     --error: #880404;
     --gold: #ffd700;
+
+    --flash-yellow: #866703;
 
     /*  Questions*/
     --hint: #0A1C3F;

@@ -55,13 +55,13 @@ export default function MatchPage() {
         {isLoading && <Loading/>}
         <Header label={"Million Show"} showBackButton showConfig/>
         {finalScreenData ? (
-            <div className={"h-full flex flex-col justify-center"}>
+            <div className={"h-full flex flex-col justify-center px-2 -mt-[95px]"}>
                 <FinalScreen finalScreenData={finalScreenData}/>
             </div>
         ) : (
-            <main className={"max-w-max_w mx-auto lg:flex items-center lg:items-center  lg:justify-around lg:flex-row-reverse h-full lg:-mt-[84px] px-8"}>
-                <div className={`lg:flex-end px-24`}>
-                    <ProgressBar questionIndex={matchState?.questionIndex ?? 0} className={""}/>
+            <main className={"max-w-max_w mx-auto lg:flex items-center lg:items-center  lg:justify-around lg:flex-row-reverse h-full lg:-mt-[92px] px-8"}>
+                <div className={`lg:flex-end lg:px-24`}>
+                    <ProgressBar questionIndex={matchState?.questionIndex ?? 0}/>
                 </div>
                 <div className={`mx-auto text-zinc-800 dark:text-white lg:w-full lg:flex-1 lg:flex lg:flex-row lg:justify-around`}>
                     <div className={`mx-auto max-w-max_w_question lg:flex-1 lg:max-w-[800px]`}>

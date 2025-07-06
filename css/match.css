@@ -33,6 +33,9 @@
 .bg-flash-red {
     animation: flash-red 2.5s ease-in-out forwards;
 }
+.bg-flash-gold {
+    animation: flash-gold 2.5s ease-in-out forwards;
+}
 
 
 @keyframes flash-green {
@@ -103,6 +106,44 @@
     }
     90% {
         background: var(--error);
+    }
+    100% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+}
+
+
+@keyframes flash-gold {
+    0% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    10% {
+        background: var(--flash-yellow);
+    }
+    20% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    30% {
+        background: var(--flash-yellow);
+    }
+    40% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    50% {
+        background: var(--flash-yellow);
+    }
+    60% {
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    70% {
+        background: var(--flash-yellow);
+    }
+    80% {
+        /*background: var(--flash-yellow);*/
+        background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;
+    }
+    90% {
+        background: var(--flash-yellow);
     }
     100% {
         background: linear-gradient(135deg, var(--back), var(--back-secondary)) no-repeat;

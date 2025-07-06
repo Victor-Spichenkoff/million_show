@@ -3,6 +3,7 @@ export type FinalScreenData = {
     points?: number
     title: FinalScreenDataTitle
     subtitle: FinalScreenDataSubtitle
+    isMillion?: boolean
 }
 
 
