@@ -30,6 +30,8 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
     const [showSkeleton, setShowSkeleton] = useState<boolean>(false)
     const [isLoading2, setIsLoading2] = useState<boolean>(false)
     const [blockActions, setBlockActions] = useState(false)
+    const [correctAnswerIndex, setCorrectAnswerIndex] = useState<null | number>(null)
+    const [playerWrongAnswerIndex, setPlayerWrongAnswerIndex] = useState<null | number>(null)
 
     const stopMatchAction = useProtectedApiCall({
         endpoint: "/match/stop",
@@ -81,6 +83,15 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
             setShowSkeleton(false)
         } else {
             flashRed()
+            setCorrectAnswerIndex(res.response.correctAnswer)
+            setPlayerWrongAnswerIndex(selected)
+            await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
+            setFinalScreenData({
+                title: "Sorry",
+                subtitle: "You Lost",
+                finalPrize: res.response.finalPrize,
+                points: res.response.points,
+            })
         }
         setBlockActions(false)
         UpdateHintStateStorage("")
@@ -131,7 +142,6 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
 
 
 
-
     return (<>
         {isLoading || isLoading2 && <Loading/>}
         <AnimatePresence mode="wait">
@@ -161,6 +171,8 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
                             question={question}
                             hintState={hintState}
                             setSelected={setSelected}
+                            playerWrongAnswerIndex={playerWrongAnswerIndex}
+                            correctAnswerIndex={correctAnswerIndex}
                         />
                     </div>
                 </motion.div>

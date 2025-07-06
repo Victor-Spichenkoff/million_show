@@ -24,6 +24,20 @@
 }
 
 
+.correct-answer {
+    @apply bg-success border-none
+}
+
+.correct-answer .answer-letter {
+    @apply bg-success/80
+}
+.wrong-answer {
+    @apply bg-error border-none
+}
+
+.wrong-answer .answer-letter {
+    @apply bg-error/80  text-white
+}
 
 /* ANIMATIONS */
 
