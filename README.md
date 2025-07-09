@@ -1,6 +1,11 @@
 # NOW
-- flash animation
-- is prize and q index being updated?
+- Os dois enpoints /next e /current/question estão dando erro
+- Repondo 2 vezes, na hora de pegar a terceira pergunta ele quebra, simplesmente não atualiza e não permite pegar uma nova
+- Não atualiza após primeira passada (os valores, mas pisca)
+
+- I've answered but it didn't change to prize 2 (0k,1k, 2k)
+- is prize and q index being updated? NO (match ID)
+  - Use a force or get it locally and inherit the setter for match state?
 
 - Match com ID já usado/finalizado/inexistente (match/37)
 - STOP -> You stop the match (adicionar confirm)

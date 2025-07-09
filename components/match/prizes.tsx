@@ -7,7 +7,18 @@ interface IPrizes {
 export const Prizes = ({stopPrize, wrongPrize, nextPrize}: IPrizes) => {
     if(nextPrize == undefined || wrongPrize == undefined || stopPrize == undefined) return null
 
-    const styleFinal = nextPrize == 1_000_000 ? "1 M" : nextPrize / 1_000
+    // const styleFinal = nextPrize == 1_000_000 ? "1 MILLION" : `${nextPrize / 1_000} K`
+
+    const formatPrize = (prize: number) => {
+        switch (prize) {
+            case 0:
+                return 0
+            case 1_000_000:
+                return "1 MILLION"
+            default:
+                return `${prize / 1_000} K`
+        }
+    }
 
     return (
         <div className={`flex justify-between px-4 mt-8 w-full max-w-max_w_question lg:flex-col-reverse lg:h-full lg:mt-0`}>
@@ -22,7 +33,8 @@ export const Prizes = ({stopPrize, wrongPrize, nextPrize}: IPrizes) => {
                       rounded-md shadow-inner shadow-yellow-900 border border-yellow-700
                       "
                 >
-                    {wrongPrize / 1_000} K
+                    { formatPrize(wrongPrize)}
+                    {/*{wrongPrize / 1_000} K*/}
                 </div>
                 <div className="text-lg text-center font-semibold mt-1 tracking-wide text-foreground">
                     WRONG
@@ -38,7 +50,8 @@ export const Prizes = ({stopPrize, wrongPrize, nextPrize}: IPrizes) => {
                       rounded-md shadow-inner shadow-yellow-900 border border-yellow-700
                       "
                 >
-                    {stopPrize/1_000} K
+                    { formatPrize(stopPrize)}
+                    {/*{stopPrize/1_000} K*/}
                 </div>
                 <div className="text-lg text-center font-semibold mt-1 tracking-wide text-foreground">
                     STOP
@@ -54,7 +67,8 @@ export const Prizes = ({stopPrize, wrongPrize, nextPrize}: IPrizes) => {
                       rounded-md shadow-inner shadow-yellow-900 border border-yellow-700
                       "
                 >
-                    {styleFinal} K
+                    {/*{styleFinal}*/}
+                    { formatPrize(nextPrize)}
                 </div>
                 <div className="text-lg text-center font-semibold mt-1 tracking-wide text-foreground">
                     RIGHT

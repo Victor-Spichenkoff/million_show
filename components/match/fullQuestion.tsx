@@ -20,11 +20,12 @@ import {FLASH_ANIMATION_DURATION} from "@/global";
 interface IFullQuestion {
     hintState: MatchHint
     setFinalScreenData: (n: FinalScreenData) => void
+    setForceMatchUpdate: (n: number) => void
 }
 
 
-export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => {
-    const {question, setQuestion} = useGetQuestion()
+export const FullQuestion = ({hintState, setFinalScreenData, setForceMatchUpdate}: IFullQuestion) => {
+    const {question, setQuestion, getQuestionOnApi} = useGetQuestion()
     const [selected, setSelected] = useState<number>(0)
     const [isLoading, startTransition] = useTransition()
     const [showSkeleton, setShowSkeleton] = useState<boolean>(false)
@@ -64,8 +65,7 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
         setIsLoading2(false)
         setBlockActions(true)
 
-        // TODO: IS MILLION
-        if (res.response.isCorrect && res.response.points) {
+        if (res.response.isCorrect && res.response.points) {// it's million
             flashGold()
             showConfetti()
             await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION))
@@ -76,12 +76,14 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
                 finalPrize: 1_000_000,
                 isMillion: true,
             })
-        } else if (res.response.isCorrect) {
+        } else if (res.response.isCorrect) { // normal correct
+            setCorrectAnswerIndex(selected)
             flashGreen()
             await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
             await getNextQuestion()
-            setShowSkeleton(false)
-        } else {
+            setForceMatchUpdate(Math.random())
+            resetStatesAfterAnswer()
+        } else { // wrong
             flashRed()
             setCorrectAnswerIndex(res.response.correctAnswer)
             setPlayerWrongAnswerIndex(selected)
@@ -126,19 +128,29 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
         // }
         // setQuestion(res.response)
 
-        await new Promise((resolve) => setTimeout(resolve, 2000))
-        setQuestion({
-            "id": 133,
-            "isBr": false,
-            "label": "How many months are there in a year?",
-            "option1": "10",
-            "option2": "12",
-            "option3": "11",
-            "option4": "14",
-            "level": 1
-        })
+        await getQuestionOnApi(true)
+
+
+        // await new Promise((resolve) => setTimeout(resolve, 2000))
+        // setQuestion({
+        //     "id": 133,
+        //     "isBr": false,
+        //     "label": "How many months are there in a year?",
+        //     "option1": "10",
+        //     "option2": "12",
+        //     "option3": "11",
+        //     "option4": "14",
+        //     "level": 1
+        // })
     }
 
+
+    const resetStatesAfterAnswer = () => {
+        setPlayerWrongAnswerIndex(null)
+        setShowSkeleton(false)
+        setCorrectAnswerIndex(null)
+        setSelected(0)
+    }
 
 
 
@@ -171,8 +183,8 @@ export const FullQuestion = ({hintState, setFinalScreenData}: IFullQuestion) => 
                             question={question}
                             hintState={hintState}
                             setSelected={setSelected}
-                            playerWrongAnswerIndex={playerWrongAnswerIndex}
                             correctAnswerIndex={correctAnswerIndex}
+                            playerWrongAnswerIndex={playerWrongAnswerIndex}
                         />
                     </div>
                 </motion.div>
