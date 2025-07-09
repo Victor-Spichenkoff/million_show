@@ -17,53 +17,30 @@ import {ProgressBar} from "@/components/match/progressBar";
 import {HEADER_HEIGHT, MAX_W_QUESTION} from "@/global";
 
 
-
-
-
-
-
-
-
-//a ordem, conforme apareceu> 1 -> 2 -> 3 (nem foi carregado e ainda apareceu uma sobre EUA)
-//Ele usou o answerIndex do 2 (2; tanto o 0 quanto o EUA tinham resposta 1)
-
 export default function MatchPage() {
     const router = useRouter()
     const [isLoading, startTransition] = useTransition()
     const [hintState, setHintState] = useState<MatchHint>({type: "none"})
     const [matchState, setMatchState] = useState<Match | null>()
-    const [forceMatchUpdate, setForceMatchUpdate] = useState<number>(1)
-    //TODO: show locally the final prize screen, build a component for it
-    // const [finalScreenData, setFinalScreenData] = useState<FinalScreenData | null>({
-    //     subtitle: "STOP",
-    //     title: "You decided to",
-    //      finalPrize: 1_000_000
-    // })
     const [finalScreenData, setFinalScreenData] = useState<FinalScreenData | null>(null)
 
     const getMatchInfo = useProtectedApiCall({endpoint: "/match/status"})
 
 
     useEffect(() => {
-        startTransition(async () => {
-            const response = await getMatchInfo()
-            if (!response.isError) {
-                setMatchState(response.response)
-                toast.success("UPDATE MATCH STATE")
-            }
-            else {
-                toast.error("You don't have any active match")
-                router.push("/home")
-            }
-        })
+        startTransition(getAndSetMatchInfo)
+    }, [hintState])
 
-        // TODO: WHY????:
-        // setTimeout(() => {
-        //     if (matchState)
-        //         setMatchState({...matchState, questionIndex: 15})
-        // }, 1200)
-    }, [hintState, forceMatchUpdate])
 
+    const getAndSetMatchInfo = async () => {
+        const response = await getMatchInfo()
+        if (!response.isError)
+            setMatchState(response.response)
+        else {
+            toast.error("You don't have any active match")
+            router.push("/home")
+        }
+    }
 
     return (<>
         {isLoading && <Loading/>}
@@ -75,8 +52,7 @@ export default function MatchPage() {
         ) : (
             <main className={"max-w-max_w mx-auto lg:flex items-center lg:items-center  lg:justify-around lg:flex-row-reverse h-full lg:-mt-[92px] px-8"}>
                 <div className={`lg:flex-end lg:px-24`}>
-                    <ProgressBar questionIndex={5}/>
-                    {/*<ProgressBar questionIndex={matchState?.questionIndex ?? 0}/>*/}
+                    <ProgressBar questionIndex={matchState?.questionIndex ?? 0}/>
                 </div>
                 <div className={`mx-auto text-zinc-800 dark:text-white lg:w-full lg:flex-1 lg:flex lg:flex-row lg:justify-around`}>
                     <div className={`mx-auto max-w-max_w_question lg:flex-1 lg:max-w-[800px]`}>
@@ -90,8 +66,9 @@ export default function MatchPage() {
                             )}
                         </div>
                         <FullQuestion
-                            setForceMatchUpdate={setForceMatchUpdate}
+                            getAndSetMatchInfo={getAndSetMatchInfo}
                             hintState={hintState}
+                            setHintState={setHintState}
                             setFinalScreenData={setFinalScreenData}/>
                     </div>
                     <div className={"mx-auto max-w-max_w_question lg:px-12 "}>

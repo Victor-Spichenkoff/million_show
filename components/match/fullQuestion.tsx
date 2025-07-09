@@ -4,7 +4,7 @@ import {useState, useTransition} from "react";
 import {MatchHint} from "@/types/hint";
 import {Answers} from "@/components/match/answers";
 import {Loading} from "@/components/template/loading";
-import {UpdateHintStateStorage} from "@/storage/localStorage/match";
+import {GetHintStateStorage, UpdateHintStateStorage} from "@/storage/localStorage/match";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {toast} from "sonner";
 import {StopDialog} from "@/components/match/stopDialog";
@@ -16,15 +16,17 @@ import {Question} from "@/types/responses/question";
 import {motion, AnimatePresence} from "framer-motion"
 import {QuestionSkeleton} from "@/components/match/questionSkeleton"
 import {FLASH_ANIMATION_DURATION} from "@/global";
+import {GenericApiResponse} from "@/services/handleApiCall";
 
 interface IFullQuestion {
     hintState: MatchHint
+    setHintState: (hintState: MatchHint) => void
     setFinalScreenData: (n: FinalScreenData) => void
-    setForceMatchUpdate: (n: number) => void
+    getAndSetMatchInfo: () => Promise<any>
 }
 
 
-export const FullQuestion = ({hintState, setFinalScreenData, setForceMatchUpdate}: IFullQuestion) => {
+export const FullQuestion = ({hintState, setFinalScreenData, getAndSetMatchInfo, setHintState}: IFullQuestion) => {
     const {question, setQuestion, getQuestionOnApi} = useGetQuestion()
     const [selected, setSelected] = useState<number>(0)
     const [isLoading, startTransition] = useTransition()
@@ -81,7 +83,7 @@ export const FullQuestion = ({hintState, setFinalScreenData, setForceMatchUpdate
             flashGreen()
             await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
             await getNextQuestion()
-            setForceMatchUpdate(Math.random())
+            await getAndSetMatchInfo()
             resetStatesAfterAnswer()
         } else { // wrong
             flashRed()
@@ -115,6 +117,9 @@ export const FullQuestion = ({hintState, setFinalScreenData, setForceMatchUpdate
                 finalPrize: res.response.finalPrize,
                 points: res.response.points,
             })
+
+            UpdateHintStateStorage("")
+            setHintState({type: "none"})
         })
     }
 
@@ -150,6 +155,8 @@ export const FullQuestion = ({hintState, setFinalScreenData, setForceMatchUpdate
         setShowSkeleton(false)
         setCorrectAnswerIndex(null)
         setSelected(0)
+        setHintState({type: "none"})
+        UpdateHintStateStorage("")
     }
 
 
