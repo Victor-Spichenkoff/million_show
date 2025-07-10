@@ -14,7 +14,7 @@ import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 import {Prizes} from "@/components/match/prizes";
 import {ProgressBar} from "@/components/match/progressBar";
-import {HEADER_HEIGHT, MAX_W_QUESTION} from "@/global";
+import {useGetQuestion} from "@/hooks/useGetQuestion";
 
 
 export default function MatchPage() {
@@ -23,6 +23,7 @@ export default function MatchPage() {
     const [hintState, setHintState] = useState<MatchHint>({type: "none"})
     const [matchState, setMatchState] = useState<Match | null>()
     const [finalScreenData, setFinalScreenData] = useState<FinalScreenData | null>(null)
+    const {question, setQuestion, getQuestionOnApi} = useGetQuestion()
 
     const getMatchInfo = useProtectedApiCall({endpoint: "/match/status"})
 
@@ -52,13 +53,18 @@ export default function MatchPage() {
         ) : (
             <main className={"max-w-max_w mx-auto lg:flex items-center lg:items-center  lg:justify-around lg:flex-row-reverse h-full lg:-mt-[92px] px-8"}>
                 <div className={`lg:flex-end lg:px-24`}>
-                    <ProgressBar questionIndex={matchState?.questionIndex ?? 0}/>
+                    {/*{ matchState ? <ProgressBar questionIndex={matchState?.questionIndex}/> : <ProgressBar questionIndex={1}/> }*/}
+                    <ProgressBar questionIndex={matchState?.questionIndex ?? 1}/>
+
                 </div>
                 <div className={`mx-auto text-zinc-800 dark:text-white lg:w-full lg:flex-1 lg:flex lg:flex-row lg:justify-around`}>
                     <div className={`mx-auto max-w-max_w_question lg:flex-1 lg:max-w-[800px]`}>
                         <div className={"bg-question p-[.8px] rounded-tl-lg rounded-tr-lg overflow-hidden"}>
                             {matchState && (
                                 <Helps
+                                    getAndSetMatchInfo={getAndSetMatchInfo}
+                                    setQuestion={setQuestion}
+                                    getQuestionOnApi={getQuestionOnApi}
                                     setMatchHint={setHintState}
                                     match={matchState}
                                     hintState={hintState}
@@ -66,6 +72,8 @@ export default function MatchPage() {
                             )}
                         </div>
                         <FullQuestion
+                            question={question}
+                            getQuestionOnApi={getQuestionOnApi}
                             getAndSetMatchInfo={getAndSetMatchInfo}
                             hintState={hintState}
                             setHintState={setHintState}

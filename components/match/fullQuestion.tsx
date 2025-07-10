@@ -1,33 +1,40 @@
-import {useGetQuestion} from "@/hooks/useGetQuestion"
+import {FrontendQuestion} from "@/hooks/useGetQuestion"
 import {Button} from "@/components/ui/button";
-import {useState, useTransition} from "react";
+import { useEffect, useState, useTransition} from "react";
 import {MatchHint} from "@/types/hint";
 import {Answers} from "@/components/match/answers";
 import {Loading} from "@/components/template/loading";
-import {GetHintStateStorage, UpdateHintStateStorage} from "@/storage/localStorage/match";
+import { UpdateHintStateStorage} from "@/storage/localStorage/match";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {toast} from "sonner";
 import {StopDialog} from "@/components/match/stopDialog";
 import {FinalScreenData} from "@/types/matchHelpersTypes";
 import {AnswerActionResponse} from "@/types/responses/match";
 import {flashGold, flashGreen, flashRed, showConfetti} from "@/util/match";
-import {GetConfigStorage} from "@/storage/localStorage/config";
-import {Question} from "@/types/responses/question";
 import {motion, AnimatePresence} from "framer-motion"
 import {QuestionSkeleton} from "@/components/match/questionSkeleton"
 import {FLASH_ANIMATION_DURATION} from "@/global";
-import {GenericApiResponse} from "@/services/handleApiCall";
+
 
 interface IFullQuestion {
     hintState: MatchHint
     setHintState: (hintState: MatchHint) => void
     setFinalScreenData: (n: FinalScreenData) => void
     getAndSetMatchInfo: () => Promise<any>
+    question: FrontendQuestion
+    getQuestionOnApi: (isNew?: boolean) => Promise<void>
 }
 
 
-export const FullQuestion = ({hintState, setFinalScreenData, getAndSetMatchInfo, setHintState}: IFullQuestion) => {
-    const {question, setQuestion, getQuestionOnApi} = useGetQuestion()
+export const FullQuestion = ({
+                                 hintState,
+                                 setFinalScreenData,
+                                 getAndSetMatchInfo,
+                                 setHintState,
+                                 getQuestionOnApi,
+                                 question
+                             }: IFullQuestion) => {
+
     const [selected, setSelected] = useState<number>(0)
     const [isLoading, startTransition] = useTransition()
     const [showSkeleton, setShowSkeleton] = useState<boolean>(false)
@@ -46,16 +53,22 @@ export const FullQuestion = ({hintState, setFinalScreenData, getAndSetMatchInfo,
         method: 'patch'
     })
 
-    const newQuestionAction = useProtectedApiCall<Question>({
-        endpoint: `/match/next?isEn=${GetConfigStorage()?.isPortuguese ? "false" : "true"}`,
-    })
+
+    useEffect(() => {
+        console.log("STATE")
+        if(question == "loading")
+            setShowSkeleton(true)
+        else {
+            setShowSkeleton(false)
+        }
+    }, [question])
 
 
     if (!question)
         return <Loading/>
 
     const handleAnswer = async () => {
-        if(blockActions) return toast.error("Waiting...")
+        if (blockActions) return toast.error("Waiting...")
 
         setIsLoading2(true)
         const res = await answerAction()
@@ -72,7 +85,7 @@ export const FullQuestion = ({hintState, setFinalScreenData, getAndSetMatchInfo,
             showConfetti()
             await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION))
             setFinalScreenData({
-                title:"Congratulations",
+                title: "Congratulations",
                 subtitle: "You WON!!!",
                 points: res.response.points,
                 finalPrize: 1_000_000,
@@ -125,17 +138,9 @@ export const FullQuestion = ({hintState, setFinalScreenData, getAndSetMatchInfo,
 
     const getNextQuestion = async () => {
         setShowSkeleton(true)
-        // TODO: UNCOMMENT
-        // const res = await newQuestionAction()
-        // if (res.isError) {
-        //     toast.error(res.errorMessage)
-        //     return
-        // }
-        // setQuestion(res.response)
-
         await getQuestionOnApi(true)
 
-
+        //TO TEST GET NEW
         // await new Promise((resolve) => setTimeout(resolve, 2000))
         // setQuestion({
         //     "id": 133,
@@ -160,11 +165,10 @@ export const FullQuestion = ({hintState, setFinalScreenData, getAndSetMatchInfo,
     }
 
 
-
     return (<>
         {isLoading || isLoading2 && <Loading/>}
         <AnimatePresence mode="wait">
-            {showSkeleton ? (
+            {showSkeleton || question == "loading" ? (
                 <motion.div
                     key="skeleton"
                     initial={{opacity: 0}}
@@ -196,10 +200,10 @@ export const FullQuestion = ({hintState, setFinalScreenData, getAndSetMatchInfo,
                     </div>
                 </motion.div>
 
-                    )}
-                </AnimatePresence>
+            )}
+        </AnimatePresence>
 
-                <div className={"mt-3 gap-x-6 flex justify-around"}>
+        <div className={"mt-3 gap-x-6 flex justify-around"}>
             <StopDialog onClick={handleStop}/>
             <Button
                 className={"flex-1 "}

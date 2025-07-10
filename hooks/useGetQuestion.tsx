@@ -4,10 +4,13 @@ import {Question} from "@/types/responses/question"
 import {useSearchParams} from "next/navigation"
 import {useEffect, useState} from "react"
 
+// It's just to implement skeleton loading on fullQuestion and help exchange
+export type ISetFrontendQuestion = (q: FrontendQuestion) => void
+export type FrontendQuestion = Question | null | "loading"
 
 export const useGetQuestion = () => {
     const searchParams = useSearchParams()
-    const [question, setQuestion] = useState<Question | null>(null)
+    const [question, setQuestion] = useState<FrontendQuestion>(null)
     const isPortuguese = GetConfigStorage()?.isPortuguese
 
     const getCurrentQuestion = useProtectedApiCall({
