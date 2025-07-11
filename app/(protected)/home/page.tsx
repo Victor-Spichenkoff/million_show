@@ -54,7 +54,7 @@ export default function Home() {
     }
 
     const handleContinueButton = () => {
-        if (!homeInfo?.alreadyStarted || !homeInfo.matchId)
+        if (!homeInfo?.matchId)
             return toast.error("You don't have any started match")
         console.log(homeInfo)
 
@@ -73,7 +73,7 @@ export default function Home() {
                 ) : (
                     <Button variant={"gold"} onClick={handleNewButton}>New</Button>
                 )}
-                <Button onClick={handleContinueButton} disabled={!homeInfo.alreadyStarted || !homeInfo.matchId}>Continue</Button>
+                <Button onClick={handleContinueButton} disabled={!homeInfo.matchId}>Continue</Button>
 
             </>) : <HomeSkeleton/>}
         </div>
