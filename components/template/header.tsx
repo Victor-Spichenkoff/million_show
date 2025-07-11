@@ -24,7 +24,7 @@ export const Header = ({label, showConfig, showLoginButton, showLogo, showBackBu
 
     const handleLoginClick = () => {
         if (!isLogged)
-            return router.push("/auth?create")
+            return router.push("/auto-login")
 
         router.push("/home")
     }
@@ -52,14 +52,14 @@ export const Header = ({label, showConfig, showLoginButton, showLogo, showBackBu
                     </Button>
                 </div>
             )}
-            <h1>{label}</h1>
+            <h1 className={"tracking-widest"}>{label.toUpperCase()}</h1>
             <div className={"absolute top-1/2 -translate-y-1/2 right-3"}>
                 {showLoginButton && (
                     <Bounce>
                         <Button
                             onClick={handleLoginClick}
                             className={"shine-btn shine-btn-gold border-2 border-gold text-primary-foreground hover:bg-gold/90" +
-                                ""}>{isLogged ? "Home" : "SignUp"}
+                                ""}>{isLogged ? "Home" : "Quick Login"}
                         </Button>
                     </Bounce>
                 )}

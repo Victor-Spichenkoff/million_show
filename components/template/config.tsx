@@ -14,6 +14,7 @@ import {Switch} from "@/components/ui/switch";
 import {useEffect, useState} from "react";
 import {GetConfigStorage, UpdateConfigStorage} from "@/storage/localStorage/config";
 import {ConfigStorage} from "@/types/storage/config";
+import {toast} from "sonner";
 
 interface IConfigDropDown {
     hideLogout?: boolean
@@ -32,6 +33,8 @@ export const ConfigDropDown = ({hideLogout}: IConfigDropDown) => {
 
     const handleLangChange = () => {
         const final = {...config, isPortuguese: !config?.isPortuguese}
+        if(final.isPortuguese)
+            toast.info("ATTENTION: It only affects the questions")
         UpdateConfigStorage(final)
         setConfig(final)
     }

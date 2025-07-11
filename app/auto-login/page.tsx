@@ -29,14 +29,14 @@ export default function AutoLogin() {
 
         (async () => {
             setIsLoading(true)
-            const successLogin = await login()
+            const errorMessage = await login()
             setIsLoading(false)
-            if (successLogin) {
+            if (!errorMessage) {
                 toast.success("You're logged in successfully!", {position: "top-left"})
                 return router.push("/")
             }
 
-            toast.error("Sorry, we can't login you in...", {position: "top-left"})
+            toast.error(errorMessage, {position: "top-left"})
             setLoginError(true)
         })()
     }, [lockAction])
@@ -44,15 +44,15 @@ export default function AutoLogin() {
 
     const handleCreateClick = async () => {
         setIsLoading(true)
-        const successCreate = await createAndLogin()
+        const errorMessage = await createAndLogin()
 
-        if (successCreate) {
+        if (!errorMessage) {
             toast.success("Account created successfully!", {position: "top-left"})
             return router.push("/home")
         }
 
         setIsLoading(false)
-        toast.error("Sorry, we can't create account...", {position: "top-left"})
+        toast.error(errorMessage, {position: "top-left"})
     }
 
 
@@ -77,7 +77,7 @@ export default function AutoLogin() {
                 )}
             </main>
 
-            <footer className={"absolute bottom-0 right-0 mx-4 bg-question px-2 py-1 rounded-md"}>
+            <footer className={"absolute bottom-0 right-0 bg-primary px-2 py-1 rounded-md text-sm text-gray-100/80"}>
                 Having trouble? Make manual <Link className={"link text-gold"} href={"/auth"}>Sign Up</Link>
             </footer>
         </div>

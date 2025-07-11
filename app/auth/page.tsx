@@ -20,11 +20,12 @@ export default function LoginScreen() {
     }, [])
 
     return (
+        <Suspense>
         <div className={"flex flex-col justify-between items-center h-full"}>
             <Header label={"Login"}/>
             <div
                 className={"flex flex-col-reverse md:flex-row max-w-[400px] min-h-[600px] md:max-w-[1000px] md:min-h-0 " +
-                    " bg-primary mx-3 rounded-xl overflow-hidden shadow-xl shadow-black/30"}
+                    " bg-primary mx-3 rounded-4xl overflow-hidden shadow-lg shadow-black/30"}
             >
                 <Suspense>
                     {isLogin ? (
@@ -44,5 +45,6 @@ export default function LoginScreen() {
             </div>
             <Footer notAbsolute/>
         </div>
+        </Suspense>
     )
 }

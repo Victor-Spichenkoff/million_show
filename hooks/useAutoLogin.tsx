@@ -10,7 +10,7 @@ export const useAutoLogin = () => {
 
         if (res.isError) {
             console.log("LOGIN ERROR: " + res.errorMessage)
-            return false
+            return res.errorMessage
         }
 
         const now = new Date()
@@ -19,7 +19,7 @@ export const useAutoLogin = () => {
         await saveAccessToken(res.response.access_token, expiresAt)
         await saveExpiresAt(expiresAt)
 
-        return true
+        return null
     }
 
 
@@ -28,7 +28,7 @@ export const useAutoLogin = () => {
 
         if (res.isError) {
             console.log("CREATE ERROR: " + res.errorMessage)
-            return false
+            return res.errorMessage
         }
 
         const now = new Date()
@@ -37,7 +37,7 @@ export const useAutoLogin = () => {
         await saveAccessToken(res.response.access_token, expiresAt)
         await saveExpiresAt(expiresAt)
 
-        return true
+        return null
     }
 
     return { login, createAndLogin }

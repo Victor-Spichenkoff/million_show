@@ -87,12 +87,12 @@ export const LoginForm = ({setIsLogin}:ILoginForm) => {
 
                     <div className="flex justify-center">
                         <Button type="submit" className={"border-2 border-highlight text-white/90 " +
-                            "w-full rounded-4xl hover:bg-highlight hover:border-0 text-xl " +
+                            "w-full rounded-3xl hover:bg-highlight hover:border-0 text-xl " +
                             "py-2 mb-8"}>Login</Button>
                     </div>
                 </form>
             </Form>
-            <p className={"text-gray-200 text-sm font-bold "}>
+            <p className={"text-gray-200/80 text-sm font-bold "}>
                 Don't have an account? <button onClick={()=>setIsLogin(false)} className={" text-gold link"}>Create Here</button>
             </p>
         </div>
