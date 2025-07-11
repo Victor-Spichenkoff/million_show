@@ -34,16 +34,34 @@ export const FormInput =
                             <FormLabel>{label}</FormLabel>
                             <FormControl>
                                 <Input
-                                    autoComplete={type=="password" ? "password" :  undefined}
+                                    autoComplete={type === "password" ? "password" : undefined}
                                     onKeyDown={handleKeyDown}
                                     type={type}
                                     placeholder={placeholder}
                                     {...field}
-                                    className={"" +
-                                        "bg-highlight border-0 rounded-4xl shadow-black/50 shadow-md" +
-                                        "  min-w-[300px] w-full text-2xl text-white px-3 py-5 md:py-2 text-2xl md:text-2xl " +
-                                        "border-0 bg-transparent border-b-2  border-form-btn focus:border-b-3"}
+                                    className="
+                                        w-full min-w-[300px] px-4 py-5 md:py-3 text-2xl text-white
+                                        bg-white/10 backdrop-blur-md rounded-2xl
+                                        border border-white/20
+                                        placeholder:text-white/60
+                                        shadow-lg shadow-black/30
+                                        focus:ring-2 focus:ring-highlight outline-none
+                                        transition-all
+                                        "
                                 />
+
+
+                                {/*<Input*/}
+                                {/*    autoComplete={type=="password" ? "password" :  undefined}*/}
+                                {/*    onKeyDown={handleKeyDown}*/}
+                                {/*    type={type}*/}
+                                {/*    placeholder={placeholder}*/}
+                                {/*    {...field}*/}
+                                {/*    className={*/}
+                                {/*        "bg-highlight border-0 rounded-4xl shadow-black/50 shadow-md " +*/}
+                                {/*        " min-w-[300px] w-full text-2xl text-white px-3 py-5 md:py-2 text-2xl md:text-2xl " +*/}
+                                {/*        " border-0 bg-transparent border-b-2  border-form-btn focus:border-b-3"}*/}
+                                {/*/>*/}
                             </FormControl>
                             <FormDescription>
                                 {desc}

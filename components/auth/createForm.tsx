@@ -89,7 +89,7 @@ export const CreateForm = ({setIsLogin}:ICreateForm) => {
                                onEnter={form.handleSubmit(onSubmit)}
                     />
                     <FormInput form={form}
-                               type={"passwordConfirm"}
+                               type={"password"}
                                name={"passwordConfirm"}
                                // label="Password"
                                placeholder="confirm password"

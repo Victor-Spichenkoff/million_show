@@ -31,8 +31,6 @@ export default function LoginScreen() {
                         <LoginForm setIsLogin={setIsLogin}/>
 
                     ) : <CreateForm setIsLogin={setIsLogin}/>}
-
-
                 </Suspense>
                 <div
                     className={"flex-1 bg-gold min-h-[205] amd:amin-w-[550px] lg:min-w-[550px] shadow-black/40 shadow-md"}>
