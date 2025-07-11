@@ -19,8 +19,8 @@ interface IHeader {
 }
 
 export const Header = ({label, showConfig, showLoginButton, showLogo, showBackButton}: IHeader) => {
-    const isLogged = useIsLogged()
     const router = useRouter()
+    const isLogged = useIsLogged()
 
     const handleLoginClick = () => {
         if (!isLogged)
@@ -49,7 +49,6 @@ export const Header = ({label, showConfig, showLoginButton, showLogo, showBackBu
                         onClick={handleBackClick}
                     >
                         <FontAwesomeIcon icon={faArrowLeft} className={"size-6"}/>
-
                     </Button>
                 </div>
             )}
@@ -64,7 +63,7 @@ export const Header = ({label, showConfig, showLoginButton, showLogo, showBackBu
                         </Button>
                     </Bounce>
                 )}
-                {showConfig && <ConfigDropDown/>}
+                {showConfig && <ConfigDropDown hideLogout={!isLogged}/>}
             </div>
         </header>
     )

@@ -1,4 +1,9 @@
-# 
+# NOW
+- FIX / uncomment: 
+  - test connection
+- NÂO FUNCIOAN HIDE LOGOUT
+- Implementar create
+  - usar isso no auto login
 - HINT: 
   - skip
 

@@ -14,6 +14,7 @@ import {flashGold, flashGreen, flashRed, showConfetti} from "@/util/match";
 import {motion, AnimatePresence} from "framer-motion"
 import {QuestionSkeleton} from "@/components/match/questionSkeleton"
 import {FLASH_ANIMATION_DURATION} from "@/global";
+import {Sleep} from "@/helpers/time";
 
 
 interface IFullQuestion {
@@ -83,7 +84,7 @@ export const FullQuestion = ({
         if (res.response.isCorrect && res.response.points) {// it's million
             flashGold()
             showConfetti()
-            await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION))
+            await Sleep(FLASH_ANIMATION_DURATION)
             setFinalScreenData({
                 title: "Congratulations",
                 subtitle: "You WON!!!",
@@ -94,7 +95,8 @@ export const FullQuestion = ({
         } else if (res.response.isCorrect) { // normal correct
             setCorrectAnswerIndex(selected)
             flashGreen()
-            await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
+            await Sleep(FLASH_ANIMATION_DURATION * 2)
+            // await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
             await getNextQuestion()
             await getAndSetMatchInfo()
             resetStatesAfterAnswer()
@@ -102,7 +104,8 @@ export const FullQuestion = ({
             flashRed()
             setCorrectAnswerIndex(res.response.correctAnswer)
             setPlayerWrongAnswerIndex(selected)
-            await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
+            await Sleep(FLASH_ANIMATION_DURATION * 2)
+            // await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
             setFinalScreenData({
                 title: "Sorry",
                 subtitle: "You Lost",

@@ -39,8 +39,10 @@ export const LoginForm = () => {
 
         const res = await loginService(values.userName, values.password)
 
-            if (res.isError)
+            if (res.isError) {
+                toast.error(res.errorMessage)
                 return
+            }
 
 
             const now = new Date()

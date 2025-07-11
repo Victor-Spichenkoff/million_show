@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 import {authRoutes, getLoginPathnameWithPreviousUrl, protectedRoutes} from "@/routes"
 
 
-const PUBLIC_PATHS = ['/', '/auth/login', '/auth/register', "/public"]
+const PUBLIC_PATHS = ['/', '/auth/login', '/auth/register', "/public", "/auto-login"]
 
 
 export function middleware(request: NextRequest) {

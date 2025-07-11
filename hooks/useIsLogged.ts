@@ -1,15 +1,18 @@
 import {useEffect, useState} from "react";
-import {getExpiresAt} from "@/storage/cookie/auth";
+import {getAccessToken} from "@/storage/cookie/auth";
 
 export const useIsLogged = () => {
     const [isLogged, setIsLogged] = useState(false)
 
     useEffect( () => {
         (async ()=>{
-            const expiresAt: any = await getExpiresAt()
-            if(new Date(expiresAt?.value) > new Date())
+            // IF want to use to refresh token:
+            // const expiresAt: any = await getAccessToken()
+            // if(new Date(expiresAt?.value) > new Date())
+            const accessToken: any = await getAccessToken()
+            if(accessToken)
                 return setIsLogged(true)
-            
+
             return setIsLogged(false)
         })()
     }, [])
