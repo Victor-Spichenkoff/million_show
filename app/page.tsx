@@ -35,7 +35,7 @@ export default function Home() {
                     <FontAwesomeIcon icon={faMoneyBillWaveAlt} className="text-[#168118] inline mx-2 size=7" />
                 </h2>
                 <p>How far can you go?
-                    <Link href={"auth?create"} className={"auth-link underline hover:text-black ml-1"}>Test it now</Link>
+                    <Link href={"auth?create&previous=home"} className={"auth-link underline hover:text-black ml-1"}>Test it now</Link>
                 </p>
                 <div className={"w-full bg-slate-800"} id="pyramid-img">
                     <Image src={PiramidImage} alt="Prize Route" className="w-full" id="img-shadow"
@@ -83,7 +83,7 @@ export default function Home() {
             </LandSection>
 
 
-        <Link href={isLogged ? "/home" : "/auth?create"}>
+        <Link href={isLogged ? "/home" : "/auth?create&previous=home"}>
             <Button className={"bg-transparent shine-btn shine-btn-gold border my-16"}
             >
                 Lets Play?

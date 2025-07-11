@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 import {useAutoLogin} from "@/hooks/useAutoLogin";
 import {toast} from "sonner";
 import {Loading} from "@/components/template/loading";
-import {useRouter} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import Link from "next/link";
 import {LoginDialog} from "@/components/autoLogin/loginDialog";
 import {useIsLogged} from "@/hooks/useIsLogged";
@@ -18,6 +18,7 @@ export default function AutoLogin() {
     const [lockAction, setLockActions] = useState(true)
     const {login, createAndLogin} = useAutoLogin()
     const isLogged = useIsLogged()
+    const searchParams = useSearchParams()
 
     useEffect(() => {
         if (isLogged) {
@@ -31,13 +32,15 @@ export default function AutoLogin() {
             setIsLoading(true)
             const errorMessage = await login()
             setIsLoading(false)
-            if (!errorMessage) {
-                toast.success("You're logged in successfully!", {position: "top-left"})
-                return router.push("/")
+            if (errorMessage) {
+                toast.error(errorMessage, {position: "top-left"})
+                setLoginError(true)
             }
 
-            toast.error(errorMessage, {position: "top-left"})
-            setLoginError(true)
+            toast.success("You're logged in successfully!", {position: "top-left"})
+            const previous = searchParams.get('previous')
+            const pathname = previous ?? "/"
+            return router.push(pathname)
         })()
     }, [lockAction])
 
@@ -46,13 +49,16 @@ export default function AutoLogin() {
         setIsLoading(true)
         const errorMessage = await createAndLogin()
 
-        if (!errorMessage) {
-            toast.success("Account created successfully!", {position: "top-left"})
-            return router.push("/home")
+        if (errorMessage) {
+            setIsLoading(false)
+            toast.error(errorMessage, {position: "top-left"})
         }
 
-        setIsLoading(false)
-        toast.error(errorMessage, {position: "top-left"})
+        toast.success("Account created successfully!", {position: "top-left"})
+        const previous = searchParams.get('previous')
+        const pathname = previous ?? "/"
+        return router.push(pathname)
+
     }
 
 

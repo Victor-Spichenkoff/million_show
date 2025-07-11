@@ -16,7 +16,6 @@ export default function LoginScreen() {
     useEffect(() => {
         if(searchParams.has("create"))
             setIsLogin(false)
-
     }, [])
 
     return (

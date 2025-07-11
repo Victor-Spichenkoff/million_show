@@ -24,7 +24,7 @@ export const Header = ({label, showConfig, showLoginButton, showLogo, showBackBu
 
     const handleLoginClick = () => {
         if (!isLogged)
-            return router.push("/auto-login")
+            return router.push("/auto-login?previous=home")
 
         router.push("/home")
     }
