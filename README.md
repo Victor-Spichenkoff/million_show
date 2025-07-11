@@ -1,4 +1,5 @@
 # NOW
+- AUTH DESIGN
 - FIX / uncomment: 
   - test connection
 - NÂO FUNCIOAN HIDE LOGOUT

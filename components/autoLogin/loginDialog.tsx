@@ -6,7 +6,7 @@ import {
     AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
 import {Button} from "@/components/ui/button";
-import {autoLoginUserName, autoLoginUserPassword} from "@/hooks/useAutoLogin";
+import {autoLoginUserName, autoLoginUserPassword} from "@/global";
 
 interface ILoginDialog {
     onClick: () => void

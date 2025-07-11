@@ -14,7 +14,7 @@ export const LogoutButton = ({useFullSize}: ILogoutButton) => {
 
     const handleLogout = async () => {
         await logoutCookies()
-        router.push('/auth/login')
+        router.push('/auth')
     }
 
     return (

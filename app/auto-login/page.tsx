@@ -22,7 +22,7 @@ export default function AutoLogin() {
     useEffect(() => {
         if (isLogged) {
             toast.success("You're already logged in")
-            return router.push("/home")
+            return router.push("/")
         }
         if (lockAction)
             return
@@ -33,7 +33,7 @@ export default function AutoLogin() {
             setIsLoading(false)
             if (successLogin) {
                 toast.success("You're logged in successfully!", {position: "top-left"})
-                return router.push("/home")
+                return router.push("/")
             }
 
             toast.error("Sorry, we can't login you in...", {position: "top-left"})
@@ -55,6 +55,7 @@ export default function AutoLogin() {
         toast.error("Sorry, we can't create account...", {position: "top-left"})
     }
 
+
     return (
         <div className={"relative flex flex-col justify-center items-center min-h-screen max-w-max_w mx-auto"}>
             <Header showConfig showLogo label={"Auto Login"}/>
@@ -63,7 +64,6 @@ export default function AutoLogin() {
                 {isLoading && (
                     <Loading isDisplayBlock/>
                 )}
-
 
                 <h1 className="text-2xl font-bold">{isLoginError ? "Sign Up..." : "Signing you in..."}</h1>
                 <p className="text-muted-foreground">
@@ -75,8 +75,6 @@ export default function AutoLogin() {
                         <LoginDialog onClick={handleCreateClick}/>
                     </div>
                 )}
-
-
             </main>
 
             <footer className={"absolute bottom-0 right-0 mx-4 bg-question px-2 py-1 rounded-md"}>

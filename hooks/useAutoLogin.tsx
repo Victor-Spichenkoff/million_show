@@ -1,10 +1,7 @@
 import {createService, loginService} from "@/services/auth";
 import {saveAccessToken, saveExpiresAt} from "@/storage/cookie/auth";
+import {autoLoginUserName, autoLoginUserPassword} from "@/global";
 
-// export const autoLoginUserName = "cool_person"
-// export const autoLoginUserPassword = "12345"
-export const autoLoginUserName = "string"
-export const autoLoginUserPassword = "1234"
 
 
 export const useAutoLogin = () => {

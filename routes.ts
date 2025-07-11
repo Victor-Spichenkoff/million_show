@@ -10,11 +10,12 @@ export const protectedRoutes = [
 export const authRoutes = [
     "/auth/login",
     "/auth/register",
+    "/auth"
 ]
 
 export const getLoginPathnameWithPreviousUrl = (previous?: string) => {
     if(!previous)
-     return  "/auth/login?loginError=true"
+     return  "/auth?loginError=true"
 
-    return `/auth/login?loginError=true&previous=${previous}`
+    return `/auth?loginError=true&previous=${previous}`
 }

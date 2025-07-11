@@ -7,18 +7,19 @@ import {Button} from "@/components/ui/button";
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useEffect, useTransition} from "react";
 import Link from "next/link";
-import {loginService} from "@/services/auth";
+import {createService, loginService} from "@/services/auth";
 import {useRouter, useSearchParams} from "next/navigation";
 import {saveAccessToken, saveExpiresAt} from "@/storage/cookie/auth";
 import {toast} from "sonner";
 import {Loading} from "@/components/template/loading";
+import {CreateSchema} from "@/lib/schema/create";
 
 
-interface ILoginForm {
+interface ICreateForm {
     setIsLogin: (s: boolean) => void
 }
 
-export const LoginForm = ({setIsLogin}:ILoginForm) => {
+export const CreateForm = ({setIsLogin}:ICreateForm) => {
     const [isLoading, startTransition] = useTransition()
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -30,25 +31,28 @@ export const LoginForm = ({setIsLogin}:ILoginForm) => {
         }
     }, [])
 
-    const form = useForm<z.infer<typeof LoginSchema>>({
-        resolver: zodResolver(LoginSchema),
+    const form = useForm<z.infer<typeof CreateSchema>>({
+        resolver: zodResolver(CreateSchema),
         defaultValues: {
             userName: "",
-            password: ""
+            password: "",
+            passwordConfirm: ""
         },
     })
 
 
-    const onSubmit = async  (values: z.infer<typeof LoginSchema>) => {
+    const onSubmit = async  (values: z.infer<typeof CreateSchema>) => {
+        if(values.password !== values.passwordConfirm)
+            return toast.error("Password and Confirm not match!")
+
         startTransition(async ()=> {
 
-        const res = await loginService(values.userName, values.password)
+        const res = await createService(values.userName, values.password)
 
             if (res.isError) {
                 toast.error(res.errorMessage)
                 return
             }
-
 
             const now = new Date()
             const expiresAt = new Date(now.getTime() + res.response.expires_in * 1000)
@@ -84,16 +88,24 @@ export const LoginForm = ({setIsLogin}:ILoginForm) => {
                                // placeholder="****"
                                onEnter={form.handleSubmit(onSubmit)}
                     />
+                    <FormInput form={form}
+                               type={"passwordConfirm"}
+                               name={"passwordConfirm"}
+                               // label="Password"
+                               placeholder="confirm password"
+                               // placeholder="****"
+                               onEnter={form.handleSubmit(onSubmit)}
+                    />
 
                     <div className="flex justify-center">
                         <Button type="submit" className={"border-2 border-form-btn text-white/90 " +
                             "w-full rounded-4xl hover:bg-form-btn hover:border-0 text-xl " +
-                            "py-2 mb-8"}>Login</Button>
+                            "py-2 mb-8"}>Create</Button>
                     </div>
                 </form>
             </Form>
             <p className={"text-gray-200 text-sm font-bold "}>
-                Don't have an account? <button onClick={()=>setIsLogin(false)} className={" text-gold link"}>Create Here</button>
+                Already have an account? <button onClick={()=>setIsLogin(true)} className={" text-gold link"}>Login Here</button>
             </p>
         </div>
     )

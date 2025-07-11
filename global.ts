@@ -12,8 +12,12 @@ export const baseUrl =
 
 export const HEADER_HEIGHT = 84
 
-export const MAX_W_QUESTION = 500
-export const MAX_W_HEADER = 1200
+// AUTH
+// export const autoLoginUserName = "cool_person"
+// export const autoLoginUserPassword = "12345"
+export const autoLoginUserName = "string"
+export const autoLoginUserPassword = "1234"
+
 
 
 export const FLASH_ANIMATION_DURATION = 2_500
