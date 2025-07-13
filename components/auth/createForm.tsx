@@ -13,6 +13,7 @@ import {saveAccessToken, saveExpiresAt} from "@/storage/cookie/auth";
 import {toast} from "sonner";
 import {Loading} from "@/components/template/loading";
 import {CreateSchema} from "@/lib/schema/create";
+import {UpdateUserStorage} from "@/storage/localStorage/user";
 
 
 interface ICreateForm {
@@ -59,6 +60,7 @@ export const CreateForm = ({setIsLogin}:ICreateForm) => {
 
             await saveAccessToken(res.response.access_token, expiresAt)
             await saveExpiresAt(expiresAt)
+            UpdateUserStorage(res.response)
 
             const previous = searchParams.get('previous')
             const pathname = previous ?? "/home"

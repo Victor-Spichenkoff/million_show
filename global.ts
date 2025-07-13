@@ -9,7 +9,6 @@ export const baseUrl =
         ? `http://${hostname}:2006`
         : 'https://million-show-api.onrender.com'
 
-
 export const HEADER_HEIGHT = 84
 
 // AUTH

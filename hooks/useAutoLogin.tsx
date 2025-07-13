@@ -1,6 +1,7 @@
 import {createService, loginService} from "@/services/auth";
 import {saveAccessToken, saveExpiresAt} from "@/storage/cookie/auth";
 import {autoLoginUserName, autoLoginUserPassword} from "@/global";
+import {UpdateUserStorage} from "@/storage/localStorage/user";
 
 
 
@@ -18,6 +19,7 @@ export const useAutoLogin = () => {
 
         await saveAccessToken(res.response.access_token, expiresAt)
         await saveExpiresAt(expiresAt)
+        UpdateUserStorage(res.response)
 
         return null
     }
@@ -36,6 +38,7 @@ export const useAutoLogin = () => {
 
         await saveAccessToken(res.response.access_token, expiresAt)
         await saveExpiresAt(expiresAt)
+        UpdateUserStorage(res.response)
 
         return null
     }

@@ -1,12 +1,36 @@
 @import "tailwindcss";
 
-.home-box {
-    @apply: bg-secondary p-4 ;
+.home-card {
+    @apply bg-primary/40 p-4 rounded-xl shadow-xl shadow-black/30;
+}
+
+.home-box-title {
+    @apply text-primary-foreground/80 text-xl
+}
+
+.home-box-value {
+    @apply text-highlight font-black
 }
 
 
+@media (min-width: 1024px) {
 
+    .home-action-large {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
 
+    .home-historic-area-container {
+        grid-column-start: 2;
+        height: 100%;
+
+    }
+
+    .home-action-area-container {
+        grid-column-start: 3;
+    }
+
+}
 
 
 /*   /  */
@@ -27,7 +51,7 @@
     transition-duration: 2s;
 }
 
-.game-instructions:last-child div{
+.game-instructions:last-child div {
     border: 3px solid red;
     border-radius: 0 0 12px 12px;
 }
@@ -39,7 +63,7 @@
 #img-shadow {
     position: relative;
     display: inline-block;
-  }
+}
 
 #img-shadow::after {
     content: "";

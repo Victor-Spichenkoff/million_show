@@ -1,4 +1,5 @@
 # NOW
+- Ver se está salvando bem o role e cruiar btn de adm no home (semi-faded if not adm)
 - AUTH DESIGN
 - FIX / uncomment: 
   - test connection

@@ -4,3 +4,5 @@ export const site_tag = "million_show"
 export const key_config = `${site_tag}_config`
 
 export const key_hint_state = `${site_tag}_hint_state`
+
+export const key_user = `${site_tag}_user`

@@ -50,7 +50,7 @@ export const HomeActionArea = ({homeInfo}:IHomeActionArea) => {
     }
 
     return (
-        <div>
+        <div className={"flex flex-col gap-2 mt-4 lg:mt-0"}>
             {homeInfo.matchId ? (
                 <NewDialog onClick={(e) => handleNewButton(e, true)}/>
             ) : (

@@ -1,6 +1,5 @@
 "use client"
 
-import ThemeToggle from "@/components/utils/themeToggle";
 import { Header } from "@/components/template/header";
 import { LandSection } from "@/components/home/landSection";
 import { GoldMount } from "@/components/animation/goldMount";
@@ -14,6 +13,7 @@ import { useIsLogged } from "@/hooks/useIsLogged";
 
 export default function Home() {
     const isLogged = useIsLogged()
+
 
     return (
         <div className={"flex flex-col items-center overflow-hidden"} >
