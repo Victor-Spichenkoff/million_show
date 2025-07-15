@@ -1,3 +1,5 @@
+import {formatPrize} from "@/util/match";
+
 interface IPrizes {
     wrongPrize?: number
     stopPrize?: number
@@ -9,16 +11,7 @@ export const Prizes = ({stopPrize, wrongPrize, nextPrize}: IPrizes) => {
 
     // const styleFinal = nextPrize == 1_000_000 ? "1 MILLION" : `${nextPrize / 1_000} K`
 
-    const formatPrize = (prize: number) => {
-        switch (prize) {
-            case 0:
-                return 0
-            case 1_000_000:
-                return "1 MILLION"
-            default:
-                return `${prize / 1_000} K`
-        }
-    }
+
 
     return (
         <div className={`flex justify-between px-4 mt-8 w-full max-w-max_w_question lg:flex-col-reverse lg:h-full lg:mt-0`}>

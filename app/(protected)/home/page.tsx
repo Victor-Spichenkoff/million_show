@@ -3,20 +3,16 @@
 import {Header} from "@/components/template/header";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
-import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import {HomeInfos} from "@/types/responses/home";
 import {HomeSkeleton} from "@/components/home/homeSkeleton";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
-import {toast} from "sonner";
-import {Match} from "@/types/responses/match";
-import {NewDialog} from "@/components/home/newDialog";
-import {UpdateHintStateStorage} from "@/storage/localStorage/match";
 import {HomeActionArea} from "@/components/home/actionArea";
 import {HomeStatisticsArea} from "@/components/home/statisticsArea";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrophy} from "@fortawesome/free-solid-svg-icons/faTrophy";
 import {HomeAdm} from "@/components/home/homeAdm";
+import {HistoricItems} from "@/components/template/homeHistoric";
 
 export default function Home() {
 
@@ -37,9 +33,10 @@ export default function Home() {
 
     return (<>
         <Header label="Home" showConfig showLogo/>
-        <div className="flex flex-col items-center text-2xl min-h-screen">
+        <div className="flex flex-col justify-center items-center text-2xl h-full lg:-mt-header-height bg-red-900">
             {homeInfo ? (<>
-                <div className={"max-w-[400px] px-4 lg:max-w-[var(--max_w)]  lg:w-full lg:flex flex-col bg-red-600"}>
+                <div
+                    className={"max-w-[400px] px-4 lg:max-w-[var(--max_w)]  lg:w-full lg:flex flex-col"}>
                     <div className={"flex-1"}>
                         <Link href={"/leaderboard"} className={""}>
                             <div
@@ -59,17 +56,25 @@ export default function Home() {
                         <div>
                             <HomeStatisticsArea homeInfos={homeInfo}/>
                         </div>
-                        <div className={"home-action-area-container bg-sky-600"}>
-                            <HomeAdm />
+                        <div className={"home-action-area-container"}>
+                            <div className={"flex-1 mt-4 flex justify-center items-center"}>
+                                <HomeAdm/>
+
+                            </div>
+
                             <HomeActionArea homeInfo={homeInfo}/>
                         </div>
-                        <div className={"bg-emerald-600 w-full h-full home-historic-area-container"}>
-                            Historic
+                        <div className={"w-full max-h-full home-historic-area-container mt-4 lg:mt-0"}>
+                            <div className={"lg:max-h-[176px] truncate lg:pb-8"}>
+                                {<HistoricItems historic={homeInfo.recentHistoric}/>}
+                            </div>
+                            <Button
+                                className="mt-4 w-full font-bold py-2 rounded-lg transition">
+                                View Full History
+                            </Button>
                         </div>
                     </div>
-
                 </div>
-
             </>) : <HomeSkeleton/>}
         </div>
     </>)

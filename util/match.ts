@@ -1,6 +1,18 @@
 import {FLASH_ANIMATION_DURATION} from "@/global"
 import confetti from "canvas-confetti"
 
+export     const formatPrize = (prize: number) => {
+    switch (prize) {
+        case 0:
+            return 0
+        case 1_000_000:
+            return "1 MILLION"
+        default:
+            return `${prize / 1_000} K`
+    }
+}
+
+
 export const flashGreen = () => {
     document.body.classList.add("bg-flash-green")
     setTimeout(() => {
