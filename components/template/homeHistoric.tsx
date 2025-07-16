@@ -1,5 +1,5 @@
-import {Historic} from "@/types/Historic";
-import {formatPrize} from "@/util/match";
+import {Historic} from "@/types/Historic"
+import {formatPrize} from "@/util/match"
 
 interface IHistoricItems {
     historic: Historic[] | null
@@ -35,7 +35,9 @@ export const HistoricItems = ({ historic }:IHistoricItems) => {
                         {formatPrize(item.finalPrize)}
                     </div>
 
-                    <StateBadge state={item.finalState} />
+                    <div className={"min-w-[90px] flex justify-center"}>
+                        <StateBadge state={item.finalState}/>
+                    </div>
                 </div>
             ))}
 
@@ -45,18 +47,21 @@ export const HistoricItems = ({ historic }:IHistoricItems) => {
 }
 
 
-const StateBadge = ({ state }: { state?: Historic["finalState"] }) => {
-    const base = "px-3 py-1 text-xs rounded-full font-semibold";
+export const StateBadge = ({state}: { state?: Historic["finalState"] }) => {
+    const base = "px-3 py-1 text-xs rounded-full font-semibold"
     switch (state) {
         case "won":
-            return <span className={`${base} bg-success text-white`}>WON</span>;
+            return <span className={`${base} bg-success text-white`}>WON</span>
         case "lost":
-            return <span className={`${base} bg-error text-white`}>LOST</span>;
+            return <span className={`${base} bg-error text-white`}>LOST</span>
         case "stopped":
-            return <span className={`${base} bg-highlight text-black`}>STOPPED</span>;
+            return <span className={`${base} bg-highlight text-black`}>STOPPED</span>
         case "cancelled":
-            return <span className={`${base} bg-gray-400 text-black`}>CANCELLED</span>;
+            return <span className={`${base} bg-gray-400 text-black`}>CANCELLED</span>
+        case "playing":
+            return <span className={`${base} bg-sky-600 text-black`}>PLAYING</span>
         default:
-            return <span className={`${base} bg-foreground text-black`}>None</span>;
+            console.log(state)
+            return <span className={`${base} bg-foreground text-white dark:text-black`}>None</span>
     }
 }
