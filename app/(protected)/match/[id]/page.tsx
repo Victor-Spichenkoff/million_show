@@ -53,7 +53,6 @@ export default function MatchPage() {
         ) : (
             <main className={"max-w-max_w mx-auto lg:flex items-center lg:items-center  lg:justify-around lg:flex-row-reverse h-full lg:-mt-[92px] px-8"}>
                 <div className={`lg:flex-end lg:px-24`}>
-                    {/*{ matchState ? <ProgressBar questionIndex={matchState?.questionIndex}/> : <ProgressBar questionIndex={1}/> }*/}
                     <ProgressBar questionIndex={matchState?.questionIndex ?? 1}/>
 
                 </div>

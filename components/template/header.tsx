@@ -34,7 +34,7 @@ export const Header = ({label, showConfig, showLoginButton, showLogo, showBackBu
     return (
         // <header className={"relative border-text border-b-2 w-screen text-center py-3 text-3xl " +
         <header className={"relative border-text  w-screen text-center py-6 text-3xl " +
-            `font-black font-merriweather mb-2 max-w-max_w mx-auto`}>
+            `font-black font-merriweather max-w-max_w mx-auto`}>
             {showLogo && !showBackButton && (
                 <div className="absolute top-1/2 -translate-y-1/2 left-3">
                     <Image src={LogoImage} alt="LOGO" width="50" className="hover:scale-105"/>

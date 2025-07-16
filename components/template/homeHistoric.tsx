@@ -6,6 +6,14 @@ interface IHistoricItems {
 }
 
 export const HistoricItems = ({ historic }:IHistoricItems) => {
+    if(!historic) {
+        return (
+            <div className={"flex justify-center items-center w-full h-full text-text/80 text-2xl"}>
+                Nothing yet
+            </div>
+        )
+    }
+
     return (
         <div className="space-y-4 w-full">
             {historic?.map((item) => (

@@ -4,6 +4,10 @@
     @apply bg-primary/40 p-4 rounded-xl shadow-xl shadow-black/30;
 }
 
+.skeleton-home-card {
+    @apply bg-highlight/80 p-4 rounded-xl shadow-xl shadow-black/30 h-[92px];
+}
+
 .home-box-title {
     @apply text-primary-foreground/80 text-xl
 }
