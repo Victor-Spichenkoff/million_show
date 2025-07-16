@@ -30,9 +30,11 @@ export function AutoLoginPage() {
             setIsLoading(true)
             const errorMessage = await login()
             setIsLoading(false)
+            console.log(errorMessage)
             if (errorMessage) {
                 toast.error(errorMessage, {position: "top-left"})
                 setLoginError(true)
+                return
             }
 
             toast.success("You're logged in successfully!", {position: "top-left"})
@@ -50,13 +52,13 @@ export function AutoLoginPage() {
         if (errorMessage) {
             setIsLoading(false)
             toast.error(errorMessage, {position: "top-left"})
+            return
         }
 
         toast.success("Account created successfully!", {position: "top-left"})
         const previous = searchParams.get('previous')
         const pathname = previous ?? "/"
         return router.push(pathname)
-
     }
 
 

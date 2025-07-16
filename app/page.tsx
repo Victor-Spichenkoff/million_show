@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from "next/image";
 import PiramidImage from "@/assets/images/prize_piramid.png"
 import { useIsLogged } from "@/hooks/useIsLogged";
+import {ConnectionTest} from "@/components/utils/connectionTest";
 
 export default function Home() {
     const isLogged = useIsLogged()
@@ -17,7 +18,9 @@ export default function Home() {
 
     return (
         <div className={"flex flex-col items-center overflow-hidden"} >
+            <ConnectionTest isSilent/>
             <Header label={"Welcome"} showLoginButton showLogo/>
+
             <LandSection>
                 <h2>
                     Are you really the smartest?

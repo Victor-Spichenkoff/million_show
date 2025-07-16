@@ -1,10 +1,6 @@
 # NOW
-- Remove unnecessary scroll bar (remove mb-2 from header)
-- Ver se está salvando bem o role e cruiar btn de adm no home (semi-faded if not adm)
-- AUTH DESIGN
 - FIX / uncomment: 
   - test connection
-- NÂO FUNCIOAN HIDE LOGOUT
 - Implementar create
   - usar isso no auto login
 - HINT: 

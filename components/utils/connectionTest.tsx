@@ -6,20 +6,22 @@ import {Button} from "@/components/ui/button";
 
 
 interface IConnectionTest {
-    setLockActions: (s: boolean) => void
+    setLockActions?: (s: boolean) => void
+    isSilent?: boolean
 }
 
 let attempts = 0
 /*
 * setNavigationLock → true _> não navega para outras áreas
 * */
-export const ConnectionTest = ({ setLockActions }:IConnectionTest) => {
+export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
     const [errorToastId, setErrorToastId] = useState<string | number | null>(null)
 
     const handleCancel = () => {
         toast.dismiss(errorToastId ?? 1)
-        toast.warning("Cancelled", { position: "top-left" })
-        setLockActions(false)
+        toast.warning("Cancelled", {position: "top-left"})
+        if (setLockActions)
+            setLockActions(false)
     }
 
     const actionArea = (
@@ -35,7 +37,7 @@ export const ConnectionTest = ({ setLockActions }:IConnectionTest) => {
 
     const handleTestAgainClick = async () => {
         if (attempts > 12) {
-            toast.error("Server didn't started, sorry!", { position: "top-left" })
+            toast.error("Server didn't started, sorry!", {position: "top-left"})
             return true
         }
 
@@ -44,7 +46,6 @@ export const ConnectionTest = ({ setLockActions }:IConnectionTest) => {
         const now = Date.now()
 
         if (oldTime + 1000 * 60 * 10 > now) {
-
             return true
         }
 
@@ -52,12 +53,14 @@ export const ConnectionTest = ({ setLockActions }:IConnectionTest) => {
         if (res.isError)
             return false
 
+        storeLastUsedTime(now)
 
-        // storeLastUsedTime(now)//TODO: UNCOMMENT
+        if (!isSilent)
+            toast.info("Server is ready!", {position: "top-left"})
 
-
-        toast.info("Server is ready!", { position: "top-left" })
-        setLockActions(false)
+        console.log("GOOD TO GO")
+        if (setLockActions)
+            setLockActions(false)
         return true
     }
 
@@ -77,29 +80,27 @@ export const ConnectionTest = ({ setLockActions }:IConnectionTest) => {
     }
 
     useEffect(() => {
-        //TODO: UNCOMMETNT
-        // if(process.env.NODE_ENV == "development") {
-        //     return
-        // }
-
+        if (process.env.NODE_ENV == "development") {
+            return
+        }
 
         (async () => {
             const success = await handleTestAgainClick()
 
-            // caso dê errado
             if (success)
                 return
 
+            if (!isSilent) {
+                const toastErrorID = toast.info("Server starting, please wait 1 minute...", {
+                    position: "top-left",
+                    action: actionArea,
+                    duration: 60_000,
+                })
 
-            const toastErrorID = toast.info("Server starting, please wait 1 minute...", {
-                position: "top-left",
-                action: actionArea,
-                duration: 60_000,
-            })
+                setErrorToastId(toastErrorID)
+            }
 
-            setErrorToastId(toastErrorID)
-
-            // recursivo
+            // recursive
             setTimeout(() => TryAgain(), 5000)
         })()
     }, [])
