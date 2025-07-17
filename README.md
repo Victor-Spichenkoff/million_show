@@ -1,8 +1,8 @@
 # NOW
+- ADM views
 - FIX / uncomment: 
   - test connection
-- Implementar create
-  - usar isso no auto login
+
 - HINT: 
   - skip
 
