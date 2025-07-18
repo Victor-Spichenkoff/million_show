@@ -23,7 +23,8 @@ const buttonVariants = cva(
         form: "",
         discreet: "",
         gold: "bg-gold hover:bg-gold/90 dark:text-gray-900",
-        "dark-green": ""
+        "outline-success": "border-2 border-success bg-transparent hover:bg-success",
+        "outline-highlight": "border-2 border-highlight bg-transparent hover:bg-highlight"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

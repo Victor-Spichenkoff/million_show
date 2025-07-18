@@ -7,4 +7,5 @@ export type Question = {
     option3: string,
     option4: string,
     level: number
+    answerIndex?: 1 | 2 | 3 | 4
 }

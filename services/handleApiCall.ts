@@ -15,10 +15,12 @@ const handleApiCallWithCallBack = async <TReturn>
         }
     } catch (e: any) {
         console.log(e.status)
-        if (isAxiosError(e) && (e.status == 401 || e.code == "UNAUTHORIZED")) {
+        if (isAxiosError(e) && (e.status == 401)) {
+            //TODO: IS STILL WORKING without this?
+        // if (isAxiosError(e) && (e.status == 401 || e.code == "UNAUTHORIZED")) {
             return {
                 isError: true,
-                errorMessage: `Please, login to access it`
+                errorMessage: `Please, log in to access it`
             }
         }
 
@@ -61,12 +63,12 @@ export const handleApiCall = async <TReturn, TBody = any>
             config.headers = {}
 
         config.headers.Authorization = `Bearer ${token}`
+        console.log(config?.headers)
     }
-
 
     //simula uma request usando essas infos
     const query = async () => {
-        if (method == "get") {// he doesn't use body
+        if (method == "get" || (method=="delete" && !body)) {// he doesn't use body
             if (fullUrl)
                 return await axios[method](fullUrl, config)
             else {
@@ -83,6 +85,7 @@ export const handleApiCall = async <TReturn, TBody = any>
 
     return await handleApiCallWithCallBack(query)
 }
+
 
 // Retorna tudo normal, mas já dá um toast de erro
 export const handleApiCallAndShowError = async <TReturn, TBody = any>

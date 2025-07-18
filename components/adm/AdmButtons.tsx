@@ -3,30 +3,70 @@ import {Button} from "@/components/ui/button";
 import {Dispatch, SetStateAction} from "react";
 
 interface IAdmChooseButtons {
-    setMode:  Dispatch<SetStateAction<AdmModes>>
+    setMode: Dispatch<SetStateAction<AdmModes>>
+    mode: AdmModes
 }
 
-export const AdmChooseButtons = ({ setMode }: IAdmChooseButtons) => {
-    const handleQuestionClick =  () => {
+export const AdmChooseButtons = ({setMode, mode}: IAdmChooseButtons) => {
+    const handleEditQuestionClick = () => {
         setMode(c => {
-            if(c == "none")
-                return "editQuestions"
+            if (c != "viewQuestions" && c != "editQuestions")
+                return "viewQuestions"
             return "none"
         })
     }
 
-    const handleUserClick =  () => {
+    const handleEditUserClick = () => {
         setMode(c => {
-            if(c == "none")
-                return "editUsers"
+            if (c != "viewUsers" && c != "editUsers")
+                return "viewUsers"
+            return "none"
+        })
+    }
+
+    const handleAddUserClick = () => {
+        setMode(c => {
+            if (c != "addUser")
+                return "addUser"
+            return "none"
+        })
+    }
+
+    const handleAddQuestionClick = () => {
+        setMode(c => {
+            if (c != "addQuestion")
+                return "addQuestion"
             return "none"
         })
     }
 
     return (
         <div className={"flex justify-between max-w-max_w_question mx-auto"}>
-            <Button onClick={handleUserClick}>Edit Users</Button>
-            <Button onClick={handleQuestionClick}>Edit Questions</Button>
+            <div>
+                <Button
+                    onClick={handleEditUserClick}
+                    variant={"outline-success"}
+                    className={`${mode == "editUsers" || mode == "viewUsers" && "bg-success"} `}
+                >Edit Users</Button>
+                <Button
+                    onClick={handleAddUserClick}
+                    variant={"outline-highlight"}
+                    className={`${mode == "addUser" && "bg-highlight"} ml-4`}
+                >+</Button>
+            </div>
+            <div>
+
+                <Button
+                    onClick={handleEditQuestionClick}
+                    variant={"outline-success"}
+                    className={`${mode == "editQuestions" || mode == "viewQuestions" && "bg-success"} `}
+                >Edit Questions</Button>
+                <Button
+                    onClick={handleAddQuestionClick}
+                    variant={"outline-highlight"}
+                    className={`${mode == "addQuestion" && "bg-highlight"} ml-4`}
+                >+</Button>
+            </div>
         </div>
     )
 }

@@ -1,4 +1,6 @@
 # NOW
+- Can't delete
+- REMOVE PROTECTION DELETE QUESTION
 - ADM views
 - FIX / uncomment: 
   - test connection
