@@ -31,10 +31,11 @@ export default function AdmPage() {
 
     useEffect(() => {
         document.getElementsByTagName("body")[0].classList.add("adm")
+        document.getElementsByTagName("html")[0].classList.add("adm")
     }, [])
 
     return (
-        <div className={"px-4 w-fit bg-green-500"}>
+        <div className={"px-2 md:px-0"}>
             {globalIsLoading && <Loading/>}
             <Header label={"ADMIN"} showBackButton showConfig/>
             <AdmChooseButtons setMode={setMode} mode={mode}/>

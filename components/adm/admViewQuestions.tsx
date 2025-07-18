@@ -134,7 +134,6 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     useEffect(() => {
         //TODO: UNCOMMENT
         // getQuestions()
-
     }, [])
 
     // DELETE
@@ -164,9 +163,8 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
 
 
     return (
-        <div className={"max-w-max_w mx-auto  lg:px-24 bg-red-700"}>
-            <div className={"space-y-4 w-fit "}>
-
+        <div className={"max-w-max_w mx-auto flex flex-col justify-center lg:px-24 overflow-visible"}>
+            <div className={"space-y-4 overflow-visible"}>
                 {questions.map(q => (
                     <AdmViewItem
                         id={q.id}

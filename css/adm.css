@@ -1,4 +1,14 @@
-body.adm {
-    overflow: scroll;
-    min-width: 100dvw;
+@media screen and (max-width: 500px) {
+    html.adm {
+        overflow-x: scroll;
+        min-width: 100dvw;
+        width: fit-content;
+        height: 100dvh;
+    }
+
+    body.adm {
+        overflow-x: scroll;
+        min-width: 100dvw;
+        width: fit-content;
+    }
 }

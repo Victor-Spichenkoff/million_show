@@ -29,7 +29,7 @@ export const AdmViewItem = ({
     }
 
     return (
-        <div className={"flex justify-around item-center border-2 border-sky-800 px-2 py-1 w-full min-w-[300px] text-sm lg:text-lg"}>
+        <div className={"flex justify-around item-center border-2 border-sky-800 px-2 py-1 w-full min-w-[500px] text-sm lg:text-lg"}>
             <div className={"min-w-5"}>
                 {id}
             </div>
