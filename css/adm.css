@@ -7,8 +7,8 @@
     }
 
     body.adm {
-        overflow-x: scroll;
-        min-width: 100dvw;
-        width: fit-content;
+        /*overflow-x: scroll;*/
+        /*min-width: 100dvw;*/
+        /*width: fit-content;*/
     }
 }

@@ -17,13 +17,15 @@ import {HistoricItems} from "@/components/template/homeHistoric";
 import {AnimatePresence, motion} from "framer-motion";
 import {QuestionSkeleton} from "@/components/match/questionSkeleton";
 import {Answers} from "@/components/match/answers";
+import {CacheIds} from "@/util/cache";
 
 export default function Home() {
     const router = useRouter()
 
     const [homeInfo, setHomeInfo] = useState<HomeInfos | null>(null)
     const getHomeData = useProtectedApiCall<HomeInfos>({
-        endpoint: "/historic/home"
+        endpoint: "/historic/home",
+        cacheId: CacheIds.homeDashboard
     })
 
 

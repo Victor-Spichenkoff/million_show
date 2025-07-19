@@ -35,7 +35,7 @@ export default function AdmPage() {
     }, [])
 
     return (
-        <div className={"px-2 md:px-0"}>
+        <div className={"px-2 md:px-0 pb-12"}>
             {globalIsLoading && <Loading/>}
             <Header label={"ADMIN"} showBackButton showConfig/>
             <AdmChooseButtons setMode={setMode} mode={mode}/>

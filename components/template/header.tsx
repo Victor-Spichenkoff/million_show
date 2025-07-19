@@ -16,9 +16,17 @@ interface IHeader {
     showLoginButton?: boolean
     showLogo?: boolean
     showBackButton?: boolean
+    isBackButtonUseReturn?: boolean
 }
 
-export const Header = ({label, showConfig, showLoginButton, showLogo, showBackButton}: IHeader) => {
+export const Header = ({
+                           label,
+                           showConfig,
+                           showLoginButton,
+                           showLogo,
+                           showBackButton,
+                           isBackButtonUseReturn
+                       }: IHeader) => {
     const router = useRouter()
     const isLogged = useIsLogged()
 
@@ -29,7 +37,12 @@ export const Header = ({label, showConfig, showLoginButton, showLogo, showBackBu
         router.push("/home")
     }
 
-    const handleBackClick = () => router.back()
+    const handleBackClick = () => {
+        if (isBackButtonUseReturn)
+            router.back()
+
+        router.push("/home")
+    }
 
     return (
         // <header className={"relative border-text border-b-2 w-screen text-center py-3 text-3xl " +

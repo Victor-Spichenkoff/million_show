@@ -1,5 +1,6 @@
 # NOW
-- Can't delete
+- cutting id 14 on some screen sizes
+- cache not working at recovery questions
 - REMOVE PROTECTION DELETE QUESTION
 - ADM views
 - FIX / uncomment: 

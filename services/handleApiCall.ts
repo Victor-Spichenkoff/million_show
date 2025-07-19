@@ -63,7 +63,6 @@ export const handleApiCall = async <TReturn, TBody = any>
             config.headers = {}
 
         config.headers.Authorization = `Bearer ${token}`
-        console.log(config?.headers)
     }
 
     //simula uma request usando essas infos
@@ -131,4 +130,5 @@ export type IHandleApiCall<TBody = any> = {
     body?: TBody,// para poder ter auto complete nele se quiser
     config?: AxiosRequestConfig
     token?: string
+    cacheId?: string
 }
