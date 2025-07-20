@@ -1,8 +1,8 @@
 # NOW
-- cutting id 14 on some screen sizes
-- cache not working at recovery questions
+- cutting id 14 on some screen sizes, still. Maybe padding/margin at the container
+  - of the label/answer
 - REMOVE PROTECTION DELETE QUESTION
-- ADM views
+  - ADM views
 - FIX / uncomment: 
   - test connection
 

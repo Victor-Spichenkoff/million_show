@@ -11,6 +11,7 @@ import {pageSize} from "@/global";
 import {handleApiCall} from "@/services/handleApiCall";
 import {getAccessToken} from "@/storage/cookie/auth";
 import {loadQuestionCachedQuestions} from "@/services/questions";
+import {GetConfigStorage} from "@/storage/localStorage/config";
 
 interface IAdmChooseButtons {
     setMode: Dispatch<SetStateAction<AdmModes>>
@@ -24,10 +25,11 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [isAll, setIsAll] = useState(false)
+    const config = GetConfigStorage()
 
     const getQuestionsCall = useProtectedApiCall<Question[]>({
-        endpoint: `/question?page=${page}`,
-        cacheId: `question_page_${page}`
+        endpoint: `/question?page=${page}&isEn=${config?.isPortuguese ? "false":"true"}`,
+        cacheId: `question_page_${page}_${config?.isPortuguese ? "pt" : "en"}`
     })
 
     // TODO
@@ -64,9 +66,7 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     useEffect(() => {
         const { questions: cachedQuestions, page: cachedPage }= loadQuestionCachedQuestions()
         if(cachedPage > 0 && questions.length == 0) {
-            console.log("MUDANDO")
-            console.log(cachedQuestions[0]?.id)
-            setPage(cachedPage + 1)
+            setPage(cachedPage)
             setQuestions([...cachedQuestions])
             return
         }
@@ -78,9 +78,6 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
         })()
     }, [])
 
-    useEffect(() => {
-        console.log(questions)
-    }, [questions]);
 
     // DELETE
     useEffect(() => {
@@ -120,7 +117,7 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
                 {questions.map(q => (
                     <AdmViewItem
                         id={q.id}
-                        // key={q.id}
+                        key={q.id}
                         label={q.label}
                         extra={q[`option${q.answerIndex ?? 1}`]}
                         setAdmModeAction={() => setMode("editQuestions")}
