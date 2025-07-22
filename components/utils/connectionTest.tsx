@@ -81,6 +81,8 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
 
     useEffect(() => {
         if (process.env.NODE_ENV == "development") {
+            if (setLockActions)
+                setLockActions(false)
             return
         }
 

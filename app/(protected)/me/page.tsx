@@ -13,7 +13,7 @@ import {User} from "@/types/user";
 export default function Home() {
     const [name, setName] = useState("")
     const getMe = useProtectedApiCall<User>({
-        endpoint:"/user/me"
+        endpoint:"/user.ts/me"
     })
 
 

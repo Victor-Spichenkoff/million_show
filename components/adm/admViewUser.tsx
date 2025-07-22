@@ -1,6 +1,5 @@
 import {AdmModes} from "@/app/(protected)/adm/page";
-import {Dispatch, SetStateAction, useCallback, useEffect, useState, useTransition} from "react";
-import {Question} from "@/types/responses/question";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {AdmViewItem} from "@/components/adm/admViewItem";
 import {toast} from "sonner";
@@ -8,39 +7,34 @@ import {Loading} from "@/components/template/loading";
 import {Button} from "@/components/ui/button";
 import {User} from "@/types/user";
 import {pageSize} from "@/global";
+import {loadCachedUser} from "@/services/user";
 
-import {loadQuestionCachedQuestions} from "@/services/questions";
-
-import {useAdmIsPortuguese} from "@/hooks/useAdmIsEnglish";
-
-interface IAdmChooseButtons {
+interface IAdmViewUser {
     setMode: Dispatch<SetStateAction<AdmModes>>
-    setEditionEntity: (n: null | Question | User) => void
+    setEditionEntity: (n: null | User) => void
     setGlobalIsLoading: (n: boolean) => void
 }
 
-export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}: IAdmChooseButtons) => {
-    const [questions, setQuestions] = useState<Question[]>([])
+export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAdmViewUser) => {
+    const [user, setQuestions] = useState<User[]>([])
     const [deleteId, setDeleteId] = useState<number | null>(null)
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [isAll, setIsAll] = useState(false)
-    const { IsAdmComponent, isPortuguese } = useAdmIsPortuguese()
 
-    const getQuestionsCall = useProtectedApiCall<Question[]>({
-        endpoint: `/question?page=${page}&isEn=${isPortuguese ? "false" : "true"}`,
-        cacheId: `question_page_${page}_${isPortuguese ? "pt" : "en"}`
+    const getUsersCall = useProtectedApiCall<User[]>({
+        endpoint: `/user/paged?page=${page}`,
+        cacheId: `user_page_${page}}`
     })
 
-
     const deleteQuestionCall = useProtectedApiCall<string>({
-        endpoint: `/question/${deleteId}`,
+        endpoint: `/user/${deleteId}`,
         method: "delete"
     })
 
 
     const getQuestions = async () => {
-        const res = await getQuestionsCall()
+        const res = await getUsersCall()
 
         if (res.isError) {
             toast.error(res.errorMessage)
@@ -49,14 +43,14 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
         if (res.response.length < pageSize)
             setIsAll(true)
 
-        setQuestions([...questions, ...res.response])
+        setQuestions([...user, ...res.response])
         setPage(p => p + 1)
     }
 
 
     useEffect(() => {
-        const { questions: cachedQuestions, page: cachedPage }= loadQuestionCachedQuestions()
-        if(cachedPage > 0 && questions.length == 0) {
+        const { user: cachedQuestions, page: cachedPage }= loadCachedUser()
+        if(cachedPage > 0 && user?.length == 0) {
             setPage(cachedPage)
             setQuestions([...cachedQuestions])
             return
@@ -105,16 +99,15 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     return (
         <div className={"max-w-max_w mx-auto flex flex-col justify-center lg:px-24 overflow-visible"}>
             <div className={"space-y-4 overflow-visible"}>
-                <IsAdmComponent />
-                {questions.map(q => (
+                {user.map(u => (
                     <AdmViewItem
-                        id={q.id}
-                        key={q.id}
-                        label={q.label}
-                        extra={q[`option${q.answerIndex ?? 1}`]}
+                        id={u.id}
+                        key={u.id}
+                        label={u.userName}
+                        extra={u.role=="adm" ? "ADM" : "USER"}
                         setAdmModeAction={() => setMode("editQuestions")}
-                        setEditionEntityAction={() => setEditionEntity(q)}
-                        handleDeleteAction={() => handleDelete(q.id)}
+                        setEditionEntityAction={() => setEditionEntity(u)}
+                        handleDeleteAction={() => handleDelete(u.id)}
                     />
                 ))}
             </div>

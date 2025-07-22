@@ -22,7 +22,10 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         form: "",
         discreet: "",
+        success: "bg-success hover:bg-success/90 text-white",
         gold: "bg-gold hover:bg-gold/90 dark:text-gray-900",
+        error: "bg-error hover:bg-error/90 text-white",
+        highlight: "bg-highlight hover:bg-highlight/90 text-white",
         "outline-success": "border-2 border-success bg-transparent hover:bg-success",
         "outline-highlight": "border-2 border-highlight bg-transparent hover:bg-highlight"
       },

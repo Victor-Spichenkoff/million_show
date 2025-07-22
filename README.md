@@ -1,6 +1,6 @@
 # NOW
-- cutting id 14 on some screen sizes, still. Maybe padding/margin at the container
-  - of the label/answer
+- CAn't get paged user /user/paged
+- remember not let user remove himself
 - REMOVE PROTECTION DELETE QUESTION
   - ADM views
 - FIX / uncomment: 

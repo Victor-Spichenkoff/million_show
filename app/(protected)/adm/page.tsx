@@ -9,6 +9,7 @@ import {AdmViewUsers} from "@/components/adm/admViewUsers";
 import {AdmViewQuestions} from "@/components/adm/admViewQuestions";
 import {Question} from "@/types/responses/question";
 import {User} from "@/types/user";
+import {AdmViewUser} from "@/components/adm/admViewUser";
 
 
 export type AdmModes =
@@ -49,7 +50,13 @@ export default function AdmPage() {
                 {/*{mode === 'editUsers' && <EditUsers/>}*/}
             </div>
 
-            <AdmViewQuestions
+            {/*<AdmViewQuestions*/}
+            {/*    setMode={setMode}*/}
+            {/*    setEditionEntity={setEditionEntity}*/}
+            {/*    setGlobalIsLoading={setGlobalIsLoading}*/}
+            {/*/>            */}
+
+            <AdmViewUser
                 setMode={setMode}
                 setEditionEntity={setEditionEntity}
                 setGlobalIsLoading={setGlobalIsLoading}

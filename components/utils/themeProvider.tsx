@@ -1,4 +1,4 @@
-"user client"
+"user.ts client"
 
 import {
     ThemeProvider as NextThemesProvider,
