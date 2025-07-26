@@ -5,11 +5,11 @@ import {Loading} from "@/components/template/loading";
 import {Header} from "@/components/template/header";
 import {useEffect, useState} from "react";
 import {AdmChooseButtons} from "@/components/adm/AdmButtons";
-import {AdmViewUsers} from "@/components/adm/admViewUsers";
 import {AdmViewQuestions} from "@/components/adm/admViewQuestions";
 import {Question} from "@/types/responses/question";
 import {User} from "@/types/user";
 import {AdmViewUser} from "@/components/adm/admViewUser";
+import {AdmEditUser} from "@/components/adm/admEditUser";
 
 
 export type AdmModes =
@@ -40,21 +40,23 @@ export default function AdmPage() {
             {globalIsLoading && <Loading/>}
             <Header label={"ADMIN"} showBackButton showConfig/>
             <AdmChooseButtons setMode={setMode} mode={mode}/>
-            {mode == "viewUsers" && <AdmViewUsers setMode={setMode}/>}
             <div key={mode}>
                 {mode === 'viewQuestions' && <AdmViewQuestions
                     setMode={setMode}
                     setEditionEntity={setEditionEntity}
                     setGlobalIsLoading={setGlobalIsLoading}
                 />}
-                {/*{mode === 'editUsers' && <EditUsers/>}*/}
+                {mode === 'viewUsers' && <AdmViewUser
+                    setMode={setMode}
+                    setEditionEntity={setEditionEntity}
+                    setGlobalIsLoading={setGlobalIsLoading}
+                />}
+                {mode === 'editUsers' && <AdmEditUser
+                    setMode={setMode}
+                    setEditionEntity={setEditionEntity}
+                    user={editionEntity as any}
+                />}
             </div>
-
-            {/*<AdmViewQuestions*/}
-            {/*    setMode={setMode}*/}
-            {/*    setEditionEntity={setEditionEntity}*/}
-            {/*    setGlobalIsLoading={setGlobalIsLoading}*/}
-            {/*/>            */}
 
             <AdmViewUser
                 setMode={setMode}

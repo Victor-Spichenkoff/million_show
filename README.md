@@ -1,8 +1,8 @@
 # NOW
-- CAn't get paged user /user/paged
+- it's changing the question label when click the edit questions
 - remember not let user remove himself
 - REMOVE PROTECTION DELETE QUESTION
-  - ADM views
+  - **ADM views**
 - FIX / uncomment: 
   - test connection
 

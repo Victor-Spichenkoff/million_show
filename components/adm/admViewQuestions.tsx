@@ -70,6 +70,14 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     }, [])
 
 
+    // EDIT
+    const handleEditClick = (q: Question) => {
+        setEditionEntity(q)
+        setMode("editQuestions")
+    }
+
+
+
     // DELETE
     useEffect(() => {
         if (!deleteId)
@@ -113,7 +121,7 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
                         label={q.label}
                         extra={q[`option${q.answerIndex ?? 1}`]}
                         setAdmModeAction={() => setMode("editQuestions")}
-                        setEditionEntityAction={() => setEditionEntity(q)}
+                        setEditionEntityAction={() => handleEditClick(q)}
                         handleDeleteAction={() => handleDelete(q.id)}
                     />
                 ))}
@@ -123,7 +131,7 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
                 <Loading isDisplayBlock size={35}/>
             )}
             {isAll && !isLoading && (
-                <div>that all</div>
+                <div className={"no-more-label"}>That's All</div>
             )}
 
             {!isAll && !isLoading && (

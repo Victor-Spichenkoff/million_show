@@ -8,6 +8,7 @@ import {Button} from "@/components/ui/button";
 import {User} from "@/types/user";
 import {pageSize} from "@/global";
 import {loadCachedUser} from "@/services/user";
+import {GetUserStorage} from "@/storage/localStorage/user";
 
 interface IAdmViewUser {
     setMode: Dispatch<SetStateAction<AdmModes>>
@@ -27,13 +28,13 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
         cacheId: `user_page_${page}}`
     })
 
-    const deleteQuestionCall = useProtectedApiCall<string>({
+    const deleteUserCall = useProtectedApiCall<string>({
         endpoint: `/user/${deleteId}`,
         method: "delete"
     })
 
 
-    const getQuestions = async () => {
+    const getUsers = async () => {
         const res = await getUsersCall()
 
         if (res.isError) {
@@ -58,10 +59,18 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
 
         (async () => {
             setGlobalIsLoading(true)
-            await getQuestions()
+            await getUsers()
             setGlobalIsLoading(false)
         })()
     }, [])
+
+
+    // EDIT
+    const handleEditClick = (user: User) => {
+        setEditionEntity(user)
+        setMode("editUsers")
+        console.log("DONE")
+    }
 
 
     // DELETE
@@ -71,7 +80,7 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
 
         (async () => {
             setGlobalIsLoading(true)
-            const res = await deleteQuestionCall()
+            const res = await deleteUserCall()
 
             if (res.isError) {
                 toast.error(res.errorMessage)
@@ -85,13 +94,17 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
     }, [deleteId])
 
 
-    const handleDelete = async (questionId: number) => {
-        setDeleteId(_ => questionId)
+    const handleDelete = async (userId: number) => {
+        const user = GetUserStorage()
+        if(userId == user?.id)
+            return toast.error("You can't remove yourself")
+
+        setDeleteId(_ => userId)
     }
 
     const handleGetMore = async () => {
         setIsLoading(true)
-        await getQuestions()
+        await getUsers()
         setIsLoading(false)
     }
 
@@ -106,7 +119,7 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
                         label={u.userName}
                         extra={u.role=="adm" ? "ADM" : "USER"}
                         setAdmModeAction={() => setMode("editQuestions")}
-                        setEditionEntityAction={() => setEditionEntity(u)}
+                        setEditionEntityAction={() => handleEditClick(u)}
                         handleDeleteAction={() => handleDelete(u.id)}
                     />
                 ))}
@@ -116,7 +129,7 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
                 <Loading isDisplayBlock size={35}/>
             )}
             {isAll && !isLoading && (
-                <div>that all</div>
+                <div className={"no-more-label"}>That's All</div>
             )}
 
             {!isAll && !isLoading && (

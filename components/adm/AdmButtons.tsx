@@ -39,6 +39,18 @@ export const AdmChooseButtons = ({setMode, mode}: IAdmChooseButtons) => {
             return "none"
         })
     }
+    let userButtonLabel = "View Users"
+    let questionButtonLabel = "View Questions"
+    switch (mode) {
+        case "editUsers":
+            userButtonLabel = "Edit User";
+            break;
+        case "editQuestions":
+            questionButtonLabel = "Edit Questions";
+            break;
+        default:
+            break;
+    }
 
     return (
         <div className={"flex justify-between max-w-max_w_question mx-auto"}>
@@ -46,8 +58,8 @@ export const AdmChooseButtons = ({setMode, mode}: IAdmChooseButtons) => {
                 <Button
                     onClick={handleEditUserClick}
                     variant={"outline-success"}
-                    className={`${mode == "editUsers" || mode == "viewUsers" && "bg-success"} `}
-                >Edit Users</Button>
+                    className={`${mode == "editUsers" || mode == "viewUsers" && "bg-success"}`}
+                > {userButtonLabel}</Button>
                 <Button
                     onClick={handleAddUserClick}
                     variant={"outline-highlight"}
@@ -60,7 +72,7 @@ export const AdmChooseButtons = ({setMode, mode}: IAdmChooseButtons) => {
                     onClick={handleEditQuestionClick}
                     variant={"outline-success"}
                     className={`${mode == "editQuestions" || mode == "viewQuestions" && "bg-success"} `}
-                >Edit Questions</Button>
+                >{questionButtonLabel}</Button>
                 <Button
                     onClick={handleAddQuestionClick}
                     variant={"outline-highlight"}

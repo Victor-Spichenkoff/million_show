@@ -12,6 +12,15 @@
 }
 
 
+.no-more-label {
+    margin: 24px auto;
+    border-radius: 12px;
+    text-transform: full-width;
+    border: 4px solid var(--primary);
+    font-size: var(--text-xl);
+    padding: calc(var(--spacing)) calc(var(--spacing) * 4);
+}
+
 
 
 @media screen and (max-width: 500px) {
