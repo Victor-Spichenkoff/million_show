@@ -1,17 +1,118 @@
 import {Dispatch, SetStateAction} from "react";
 import {AdmModes} from "@/app/(protected)/adm/page";
 import {User} from "@/types/user";
+import {FormProvider, useForm} from "react-hook-form";
+import * as z from "zod";
+import {CreateSchema} from "@/lib/schema/create";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {toast} from "sonner";
+import {createService} from "@/services/auth";
+import {getAccessToken, saveAccessToken, saveExpiresAt} from "@/storage/cookie/auth";
+import {UpdateUserStorage} from "@/storage/localStorage/user";
+import {EditUserSchema} from "@/lib/schema/edit";
+import {FormInput} from "@/components/auth/input";
+import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
+import {clearCacheForPrefix} from "@/util/cache";
+import {handleApiCall} from "@/services/handleApiCall";
+import {Button} from "@/components/ui/button";
 
 interface IdmViewUser {
     setMode: Dispatch<SetStateAction<AdmModes>>
     setEditionEntity: (n: null | User) => void
     user: User
+    setGlobalIsLoading: Dispatch<SetStateAction<boolean>>
 }
 
-export const AdmEditUser = ({ setMode, setEditionEntity, user }:IdmViewUser) => {
+export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading}: IdmViewUser) => {
+    if (!user)
+        return null
+
+    const updateUserAction = async (updateUser: z.infer<typeof EditUserSchema>) => {
+        const token = await getAccessToken()
+
+        return await handleApiCall({
+            endpoint: `/user/${user.id}`,
+            method: "patch",
+            token: token?.value,
+            body: {...updateUser}
+        })
+    }
+
+
+    const form = useForm<z.infer<typeof EditUserSchema>>({
+        resolver: zodResolver(EditUserSchema),
+        defaultValues: {
+            userName: user.userName,
+            role: user.role,
+            currentPassword:undefined,
+            newPassword:undefined
+        },
+    })
+
+    const onSubmit = async (values: z.infer<typeof EditUserSchema>) => {
+        if (!values.currentPassword && values.newPassword)
+            return toast.error("Inform your current password!")
+
+        if (values.newPassword !== "" && values.currentPassword == values.currentPassword)
+            return toast.error("Current and new password can't be equal!")
+
+        setGlobalIsLoading(true)
+
+        //send here
+        const res = await updateUserAction(values)
+
+        if (res.isError) {
+            toast.error(res.errorMessage)
+        } else {
+            clearCacheForPrefix("user_page_")
+            toast.info(res.response as any)
+            setEditionEntity(null)
+        }
+        setGlobalIsLoading(false)
+
+    }
+
+
+    const handleCancel = () => {
+        setEditionEntity(null)
+        setMode("viewUsers")
+    }
+
+
     return (
-        <div>
-            {user.userName}
+        <div className={"mx-auto w-full mt-10 flex flex-col item-center"}>
+            <h2 className={"text-xl text-center mb-5"}>Editing user <span
+                className={"text-gold text-2xl"}>{user.id}</span></h2>
+
+            <FormProvider {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7  mx-auto">
+                    <FormInput form={form}
+                               name={"userName"}
+                               label="Username"
+                               placeholder="username"
+                               onEnter={form.handleSubmit(onSubmit)}
+                    />
+                    <FormInput form={form}
+                               name={"currentPassword"}
+                               label="Current Password"
+                               placeholder="****"
+                               onEnter={form.handleSubmit(onSubmit)}
+                    />
+                    <FormInput form={form}
+                               name={"newPassword"}
+                               label="New Password"
+                               placeholder="****"
+                               onEnter={form.handleSubmit(onSubmit)}
+                    />
+
+                    <div className={"flex justify-between"}>
+
+                    <Button onClick={handleCancel} variant={"error"}>Cancel</Button>
+                    <Button type={"submit"} variant={"success"}>Update</Button>
+                    </div>
+
+                </form>
+            </FormProvider>
         </div>
     )
 }

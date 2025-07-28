@@ -55,14 +55,17 @@ export default function AdmPage() {
                     setMode={setMode}
                     setEditionEntity={setEditionEntity}
                     user={editionEntity as any}
+                    setGlobalIsLoading={setGlobalIsLoading}
+                />}
+
+                {mode == "none" && <AdmViewUser
+                    setMode={setMode}
+                    setEditionEntity={setEditionEntity}
+                    setGlobalIsLoading={setGlobalIsLoading}
                 />}
             </div>
 
-            <AdmViewUser
-                setMode={setMode}
-                setEditionEntity={setEditionEntity}
-                setGlobalIsLoading={setGlobalIsLoading}
-            />
+
         </div>
     )
 }

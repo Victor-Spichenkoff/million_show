@@ -118,8 +118,8 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
                         key={u.id}
                         label={u.userName}
                         extra={u.role=="adm" ? "ADM" : "USER"}
-                        setAdmModeAction={() => setMode("editQuestions")}
-                        setEditionEntityAction={() => handleEditClick(u)}
+                        setAdmModeAction={() => setMode("editUsers")}
+                        setEditionEntityAction={() => setEditionEntity(u)}
                         handleDeleteAction={() => handleDelete(u.id)}
                     />
                 ))}

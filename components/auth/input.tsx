@@ -50,6 +50,17 @@ export const FormInput =
                                         "
                                 />
 
+                            </FormControl>
+                            <FormDescription>
+                                {desc}
+                            </FormDescription>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+            </div>
+        )
+    }
 
                                 {/*<Input*/}
                                 {/*    autoComplete={type=="password" ? "password" :  undefined}*/}
@@ -62,14 +73,3 @@ export const FormInput =
                                 {/*        " min-w-[300px] w-full text-2xl text-white px-3 py-5 md:py-2 text-2xl md:text-2xl " +*/}
                                 {/*        " border-0 bg-transparent border-b-2  border-form-btn focus:border-b-3"}*/}
                                 {/*/>*/}
-                            </FormControl>
-                            <FormDescription>
-                                {desc}
-                            </FormDescription>
-                            <FormMessage/>
-                        </FormItem>
-                    )}
-                />
-            </div>
-        )
-    }
