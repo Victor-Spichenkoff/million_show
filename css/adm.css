@@ -21,6 +21,20 @@
     padding: calc(var(--spacing)) calc(var(--spacing) * 4);
 }
 
+textarea.no-resize {
+    resize: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    &:focus, &:focus-visible {
+        outline: none;
+    }
+    &:hover, &:focus {
+        background-color: rgba(255, 255, 255, 0.19);
+
+    }
+}
 
 
 @media screen and (max-width: 500px) {

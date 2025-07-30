@@ -11,6 +11,7 @@ import {User} from "@/types/user";
 import {AdmViewUser} from "@/components/adm/admViewUser";
 import {AdmEditUser} from "@/components/adm/admEditUser";
 import {useAdminOnly} from "@/hooks/useAdminOnly";
+import {AdmEditQuestion} from "@/components/adm/admEditQuestion";
 
 
 export type AdmModes =
@@ -53,6 +54,12 @@ export default function AdmPage() {
                     setEditionEntity={setEditionEntity}
                     setGlobalIsLoading={setGlobalIsLoading}
                 />}
+                {mode === 'editQuestions' && <AdmEditQuestion
+                    setMode={setMode}
+                    setEditionEntity={setEditionEntity}
+                    question={editionEntity as any}
+                    setGlobalIsLoading={setGlobalIsLoading}
+                />}
                 {mode === 'viewUsers' && <AdmViewUser
                     setMode={setMode}
                     setEditionEntity={setEditionEntity}
@@ -64,7 +71,7 @@ export default function AdmPage() {
                     user={editionEntity as any}
                     setGlobalIsLoading={setGlobalIsLoading}
                 />}
-                {mode === "none" && <AdmViewUser
+                {mode === "none" && <AdmViewQuestions
                     setMode={setMode}
                     setEditionEntity={setEditionEntity}
                     setGlobalIsLoading={setGlobalIsLoading}
