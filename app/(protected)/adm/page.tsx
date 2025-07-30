@@ -35,15 +35,18 @@ export default function AdmPage() {
         document.getElementsByTagName("html")[0].classList.add("adm")
     }, [])
 
-    if(!isUnlocked)
-        return <Loading />
+    if (!isUnlocked)
+        return <Loading/>
 
 
     return (
         <div className={"px-2 md:px-0 pb-12"}>
             {globalIsLoading && <Loading/>}
             <Header label={"ADMIN"} showBackButton showConfig/>
-            <AdmChooseButtons setMode={setMode} mode={mode}/>
+            <div className={"mb-8"}>
+
+                <AdmChooseButtons setMode={setMode} mode={mode}/>
+            </div>
             <div key={mode}>
                 {mode === 'viewQuestions' && <AdmViewQuestions
                     setMode={setMode}

@@ -53,10 +53,13 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
 
 
     useEffect(() => {
-        const {user: cachedQuestions, page: cachedPage} = loadCachedUser()
+        const {user: cachedUsers, page: cachedPage} = loadCachedUser()
         if (cachedPage > 0 && user?.length == 0) {
+            if(cachedUsers.length % pageSize != 0)
+                setIsAll(true)
+
             setPage(cachedPage)
-            setQuestions([...cachedQuestions])
+            setQuestions([...cachedUsers])
             return
         }
 
@@ -131,10 +134,10 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
             )}
 
             {!isAll && !isLoading && (
-                <Button onClick={handleGetMore}>More</Button>
+                <Button
+                    onClick={handleGetMore}
+                    className={"mt-8 max-w-[150px] mx-auto"}>Load More</Button>
             )}
-
-
         </div>
     )
 }

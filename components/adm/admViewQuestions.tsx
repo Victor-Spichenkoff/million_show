@@ -57,6 +57,8 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     useEffect(() => {
         const { questions: cachedQuestions, page: cachedPage }= loadQuestionCachedQuestions()
         if(cachedPage > 0 && questions.length == 0) {
+            if(cachedQuestions.length % pageSize != 0)
+                setIsAll(true)
             setPage(cachedPage)
             setQuestions([...cachedQuestions])
             return
@@ -126,10 +128,10 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
             )}
 
             {!isAll && !isLoading && (
-                <Button onClick={handleGetMore}>More</Button>
+                <Button
+                    onClick={handleGetMore}
+                    className={"mt-8 max-w-[150px] mx-auto"}>Load More</Button>
             )}
-
-
         </div>
     )
 }

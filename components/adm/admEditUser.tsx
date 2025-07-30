@@ -18,7 +18,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
+import {Label} from "@/components/ui/label";
 import {FormLabel} from "@/components/ui/form";
 
 
@@ -91,23 +91,29 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
 
             <FormProvider {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7  mx-auto">
-                    <FormInput form={form}
-                               name={"userName"}
-                               label="Username"
-                               placeholder="username"
-                               onEnter={form.handleSubmit(onSubmit)}
+                    <FormInput
+                        useDarkMode
+                        form={form}
+                        name={"userName"}
+                        label="Username"
+                        placeholder="username"
+                        onEnter={form.handleSubmit(onSubmit)}
                     />
-                    <FormInput form={form}
-                               name={"currentPassword"}
-                               label="Current Password"
-                               placeholder="****"
-                               onEnter={form.handleSubmit(onSubmit)}
+                    <FormInput
+                        useDarkMode
+                        form={form}
+                        name={"currentPassword"}
+                        label="Current Password"
+                        placeholder="****"
+                        onEnter={form.handleSubmit(onSubmit)}
                     />
-                    <FormInput form={form}
-                               name={"newPassword"}
-                               label="New Password"
-                               placeholder="****"
-                               onEnter={form.handleSubmit(onSubmit)}
+                    <FormInput
+                        useDarkMode
+                        form={form}
+                        name={"newPassword"}
+                        label="New Password"
+                        placeholder="****"
+                        onEnter={form.handleSubmit(onSubmit)}
                     />
 
                     {/* SELECT */}
@@ -118,10 +124,10 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
                             name="role"
                             render={({field}) => (
                                 <Select value={field.value} onValueChange={field.onChange}>
-                                    <SelectTrigger className="w-[180px]">
+                                    <SelectTrigger className="w-[180px] text-text border-text/20 placeholder:text-text/60">
                                         <SelectValue placeholder="Selecione um tipo"/>
                                     </SelectTrigger>
-                                    <SelectContent >
+                                    <SelectContent>
                                         {roles.map((r) => (
                                             <SelectItem key={r} value={r}>
                                                 {r === "adm" ? "Administrator" : "User"}
