@@ -58,7 +58,7 @@ export const AdmChooseButtons = ({setMode, mode}: IAdmChooseButtons) => {
                 <Button
                     onClick={handleEditUserClick}
                     variant={"outline-success"}
-                    className={`${mode == "editUsers" || mode == "viewUsers" && "bg-success"}`}
+                    className={`${(mode == "editUsers" || mode == "viewUsers") && "bg-success"}`}
                 > {userButtonLabel}</Button>
                 <Button
                     onClick={handleAddUserClick}
@@ -71,7 +71,7 @@ export const AdmChooseButtons = ({setMode, mode}: IAdmChooseButtons) => {
                 <Button
                     onClick={handleEditQuestionClick}
                     variant={"outline-success"}
-                    className={`${mode == "editQuestions" || mode == "viewQuestions" && "bg-success"} `}
+                    className={`${(mode == "editQuestions" || mode == "viewQuestions") && "bg-success"} `}
                 >{questionButtonLabel}</Button>
                 <Button
                     onClick={handleAddQuestionClick}

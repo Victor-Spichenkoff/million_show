@@ -26,16 +26,18 @@ export default function AdmPage() {
     const [mode, setMode] = useState<AdmModes>("none")
     const [editionEntity, setEditionEntity] = useState<null | User | Question>(null)
     const [globalIsLoading, setGlobalIsLoading] = useState(false)
-
     //TODO: UNCOMMENT
     // const { isUnlocked } = useAdminOnly()
-    // if(!isUnlocked)
-    //     return <Loading />
+    const isUnlocked = true
 
     useEffect(() => {
         document.getElementsByTagName("body")[0].classList.add("adm")
         document.getElementsByTagName("html")[0].classList.add("adm")
     }, [])
+
+    if(!isUnlocked)
+        return <Loading />
+
 
     return (
         <div className={"px-2 md:px-0 pb-12"}>

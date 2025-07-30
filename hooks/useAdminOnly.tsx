@@ -1,3 +1,5 @@
+"use client"
+
 import {useRouter} from "next/navigation";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {useEffect, useState} from "react";

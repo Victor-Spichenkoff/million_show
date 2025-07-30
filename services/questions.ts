@@ -15,7 +15,7 @@ export const loadQuestionCachedQuestions = () => {
             const cachedQuestions: Question[] = globalCache.get(cacheKeyPt)
             cachedQuestions.forEach(q => questions.push(q))
         } else if(globalCache.has(cacheKeyEn)) {
-            const cachedQuestions: Question[] = globalCache.get(cacheKeyPt)
+            const cachedQuestions: Question[] = globalCache.get(cacheKeyEn)
             cachedQuestions.forEach(q => questions.push(q))
         } else {
             break

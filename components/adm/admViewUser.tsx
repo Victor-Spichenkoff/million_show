@@ -27,7 +27,7 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
     const getUsersCall = useProtectedApiCall<User[]>({
         endpoint: `/user/paged?page=${page}`,
         cacheId: `user_page_${page}`,
-        // noAxiosCache: true,
+        noAxiosCache: true,
     })
 
 
