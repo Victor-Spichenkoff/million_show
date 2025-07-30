@@ -3,15 +3,11 @@ import {AdmModes} from "@/app/(protected)/adm/page";
 import {User} from "@/types/user";
 import {FormProvider, useForm} from "react-hook-form";
 import * as z from "zod";
-import {CreateSchema} from "@/lib/schema/create";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {toast} from "sonner";
-import {createService} from "@/services/auth";
-import {getAccessToken, saveAccessToken, saveExpiresAt} from "@/storage/cookie/auth";
-import {UpdateUserStorage} from "@/storage/localStorage/user";
+import {getAccessToken,} from "@/storage/cookie/auth";
 import {EditUserSchema} from "@/lib/schema/edit";
 import {FormInput} from "@/components/auth/input";
-import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {clearCacheForPrefix} from "@/util/cache";
 import {handleApiCall} from "@/services/handleApiCall";
 import {Button} from "@/components/ui/button";
@@ -21,9 +17,10 @@ interface IdmViewUser {
     setEditionEntity: (n: null | User) => void
     user: User
     setGlobalIsLoading: Dispatch<SetStateAction<boolean>>
+    forceRemount: () => void
 }
 
-export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading}: IdmViewUser) => {
+export const AdmEditUser = ({forceRemount, setMode, setEditionEntity, user, setGlobalIsLoading}: IdmViewUser) => {
     if (!user)
         return null
 
@@ -34,7 +31,7 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
             endpoint: `/user/${user.id}`,
             method: "patch",
             token: token?.value,
-            body: {...updateUser}
+            body: {...updateUser},
         })
     }
 
@@ -44,8 +41,8 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
         defaultValues: {
             userName: user.userName,
             role: user.role,
-            currentPassword:undefined,
-            newPassword:undefined
+            currentPassword: undefined,
+            newPassword: undefined
         },
     })
 
@@ -53,7 +50,7 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
         if (!values.currentPassword && values.newPassword)
             return toast.error("Inform your current password!")
 
-        if (values.newPassword !== "" && values.currentPassword == values.currentPassword)
+        if (values.newPassword && values.currentPassword == values.newPassword)
             return toast.error("Current and new password can't be equal!")
 
         setGlobalIsLoading(true)
@@ -65,11 +62,12 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
             toast.error(res.errorMessage)
         } else {
             clearCacheForPrefix("user_page_")
-            toast.info(res.response as any)
+            toast.success("Updated!")
             setEditionEntity(null)
+            setMode("viewUsers")
+            // forceRemount()
         }
         setGlobalIsLoading(false)
-
     }
 
 
@@ -107,8 +105,8 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
 
                     <div className={"flex justify-between"}>
 
-                    <Button onClick={handleCancel} variant={"error"}>Cancel</Button>
-                    <Button type={"submit"} variant={"success"}>Update</Button>
+                        <Button onClick={handleCancel} variant={"error"}>Cancel</Button>
+                        <Button type={"submit"} variant={"success"}>Update</Button>
                     </div>
 
                 </form>

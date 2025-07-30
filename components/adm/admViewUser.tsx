@@ -16,6 +16,7 @@ interface IAdmViewUser {
     setGlobalIsLoading: (n: boolean) => void
 }
 
+
 export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAdmViewUser) => {
     const [user, setQuestions] = useState<User[]>([])
     const [deleteId, setDeleteId] = useState<number | null>(null)
@@ -25,8 +26,10 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
 
     const getUsersCall = useProtectedApiCall<User[]>({
         endpoint: `/user/paged?page=${page}`,
-        cacheId: `user_page_${page}}`
+        cacheId: `user_page_${page}`,
+        noAxiosCache: true,
     })
+
 
     const deleteUserCall = useProtectedApiCall<string>({
         endpoint: `/user/${deleteId}`,
@@ -36,6 +39,7 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
 
     const getUsers = async () => {
         const res = await getUsersCall()
+        console.log(res)
 
         if (res.isError) {
             toast.error(res.errorMessage)
@@ -50,12 +54,14 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
 
 
     useEffect(() => {
-        const { user: cachedQuestions, page: cachedPage }= loadCachedUser()
-        if(cachedPage > 0 && user?.length == 0) {
+        const {user: cachedQuestions, page: cachedPage} = loadCachedUser()
+        if (cachedPage > 0 && user?.length == 0) {
             setPage(cachedPage)
             setQuestions([...cachedQuestions])
             return
         }
+
+        console.log("GET page " + page);
 
         (async () => {
             setGlobalIsLoading(true)
@@ -90,13 +96,15 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
             }
 
             setGlobalIsLoading(false)
+
         })()
+
     }, [deleteId])
 
 
     const handleDelete = async (userId: number) => {
         const user = GetUserStorage()
-        if(userId == user?.id)
+        if (userId == user?.id)
             return toast.error("You can't remove yourself")
 
         setDeleteId(_ => userId)
@@ -117,7 +125,7 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
                         id={u.id}
                         key={u.id}
                         label={u.userName}
-                        extra={u.role=="adm" ? "ADM" : "USER"}
+                        extra={u.role == "adm" ? "ADM" : "USER"}
                         setAdmModeAction={() => setMode("editUsers")}
                         setEditionEntityAction={() => setEditionEntity(u)}
                         handleDeleteAction={() => handleDelete(u.id)}

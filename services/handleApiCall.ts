@@ -3,7 +3,7 @@ import axios, {AxiosError, AxiosRequestConfig, AxiosResponse, isAxiosError} from
 import {toast} from "sonner"
 
 
-const handleApiCallWithCallBack = async <TReturn>
+export const handleApiCallWithCallBack = async <TReturn>
 (apiCall: () => Promise<AxiosResponse<TReturn>>): Promise<GenericApiResponse<TReturn>> => {
 
     try {
@@ -17,7 +17,7 @@ const handleApiCallWithCallBack = async <TReturn>
         console.log(e.status)
         if (isAxiosError(e) && (e.status == 401)) {
             //TODO: IS STILL WORKING without this?
-        // if (isAxiosError(e) && (e.status == 401 || e.code == "UNAUTHORIZED")) {
+            // if (isAxiosError(e) && (e.status == 401 || e.code == "UNAUTHORIZED")) {
             return {
                 isError: true,
                 errorMessage: `Please, log in to access it`
@@ -55,19 +55,24 @@ export const handleApiCall = async <TReturn, TBody = any>
      body,
      fullUrl,
      config = {},
-     token
+     token,
+     noAxiosCache = false
  }: IHandleApiCall<TBody>): Promise<GenericApiResponse<TReturn>> => {
 
-    if (token) {
+    if (token || noAxiosCache) {
         if (!config?.headers)
             config.headers = {}
 
-        config.headers.Authorization = `Bearer ${token}`
+        if (token)
+            config.headers.Authorization = `Bearer ${token}`
+        if (noAxiosCache)
+            config.headers['Cache-Control'] = 'no-cache'
     }
+
 
     //simula uma request usando essas infos
     const query = async () => {
-        if (method == "get" || (method=="delete" && !body)) {// he doesn't use body
+        if (method == "get" || (method == "delete" && !body)) {// he doesn't use body
             if (fullUrl)
                 return await axios[method](fullUrl, config)
             else {
@@ -130,5 +135,6 @@ export type IHandleApiCall<TBody = any> = {
     body?: TBody,// para poder ter auto complete nele se quiser
     config?: AxiosRequestConfig
     token?: string
-    cacheId?: string
+    cacheId?: string,
+    noAxiosCache?: boolean
 }

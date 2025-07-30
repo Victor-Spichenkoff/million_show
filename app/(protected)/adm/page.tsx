@@ -25,6 +25,9 @@ export default function AdmPage() {
     const [mode, setMode] = useState<AdmModes>("none")
     const [editionEntity, setEditionEntity] = useState<null | User | Question>(null)
     const [globalIsLoading, setGlobalIsLoading] = useState(false)
+    const [renderKey, setRenderKey] = useState(0);
+
+    const forceRemount = () => setRenderKey(prev => prev + 1);
     //TODO: UNCOMMENT
     // const { isUnlocked } = useAdminOnly()
     // if(!isUnlocked)
@@ -42,28 +45,58 @@ export default function AdmPage() {
             <AdmChooseButtons setMode={setMode} mode={mode}/>
             <div key={mode}>
                 {mode === 'viewQuestions' && <AdmViewQuestions
+                    key={'viewQuestions'+mode}
                     setMode={setMode}
                     setEditionEntity={setEditionEntity}
                     setGlobalIsLoading={setGlobalIsLoading}
                 />}
                 {mode === 'viewUsers' && <AdmViewUser
+                    key={`viewUsers-${renderKey}`}
                     setMode={setMode}
                     setEditionEntity={setEditionEntity}
                     setGlobalIsLoading={setGlobalIsLoading}
                 />}
                 {mode === 'editUsers' && <AdmEditUser
+                    key={'editUsers'+mode}
                     setMode={setMode}
                     setEditionEntity={setEditionEntity}
                     user={editionEntity as any}
                     setGlobalIsLoading={setGlobalIsLoading}
+                    forceRemount={forceRemount}
                 />}
-
-                {mode == "none" && <AdmViewUser
-                    setMode={setMode}
-                    setEditionEntity={setEditionEntity}
-                    setGlobalIsLoading={setGlobalIsLoading}
-                />}
+                {mode === "none" && "<A"}
+                {/*{mode === "none" && <AdmViewUser*/}
+                {/*    key={"none"+mode}*/}
+                {/*    setMode={setMode}*/}
+                {/*    setEditionEntity={setEditionEntity}*/}
+                {/*    setGlobalIsLoading={setGlobalIsLoading}*/}
+                {/*/>}*/}
             </div>
+            {/*<div key={mode}>*/}
+            {/*    {mode === 'viewQuestions' && <AdmViewQuestions*/}
+            {/*        setMode={setMode}*/}
+            {/*        setEditionEntity={setEditionEntity}*/}
+            {/*        setGlobalIsLoading={setGlobalIsLoading}*/}
+            {/*    />}*/}
+            {/*    {mode === 'viewUsers' && <AdmViewUser*/}
+            {/*        key="viewUsers"*/}
+            {/*        setMode={setMode}*/}
+            {/*        setEditionEntity={setEditionEntity}*/}
+            {/*        setGlobalIsLoading={setGlobalIsLoading}*/}
+            {/*    />}*/}
+            {/*    {mode === 'editUsers' && <AdmEditUser*/}
+            {/*        setMode={setMode}*/}
+            {/*        setEditionEntity={setEditionEntity}*/}
+            {/*        user={editionEntity as any}*/}
+            {/*        setGlobalIsLoading={setGlobalIsLoading}*/}
+            {/*    />}*/}
+
+            {/*    {mode == "none" && <AdmViewUser*/}
+            {/*        setMode={setMode}*/}
+            {/*        setEditionEntity={setEditionEntity}*/}
+            {/*        setGlobalIsLoading={setGlobalIsLoading}*/}
+            {/*    />}*/}
+            {/*</div>*/}
 
 
         </div>

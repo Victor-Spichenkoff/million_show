@@ -16,6 +16,7 @@ export const useProtectedApiCall = <TReturn = any, TBody = any>(config: IHandleA
     return async () => {
         const cacheKey = config.cacheId
         if (cacheKey && globalCache.has(cacheKey)) {
+            console.log(globalCache.has(cacheKey))
             return { isError: false, response: globalCache.get(cacheKey), errorMessage: null }
         }
 
