@@ -1,26 +1,35 @@
 import {Dispatch, SetStateAction} from "react";
 import {AdmModes} from "@/app/(protected)/adm/page";
 import {User} from "@/types/user";
-import {FormProvider, useForm} from "react-hook-form";
+import {Controller, FormProvider, useForm} from "react-hook-form";
 import * as z from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {toast} from "sonner";
 import {getAccessToken,} from "@/storage/cookie/auth";
-import {EditUserSchema} from "@/lib/schema/edit";
+import {EditUserSchema, roles} from "@/lib/schema/edit";
 import {FormInput} from "@/components/auth/input";
 import {clearCacheForPrefix} from "@/util/cache";
 import {handleApiCall} from "@/services/handleApiCall";
 import {Button} from "@/components/ui/button";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import {FormLabel} from "@/components/ui/form";
+
 
 interface IdmViewUser {
     setMode: Dispatch<SetStateAction<AdmModes>>
     setEditionEntity: (n: null | User) => void
     user: User
     setGlobalIsLoading: Dispatch<SetStateAction<boolean>>
-    forceRemount: () => void
 }
 
-export const AdmEditUser = ({forceRemount, setMode, setEditionEntity, user, setGlobalIsLoading}: IdmViewUser) => {
+export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading}: IdmViewUser) => {
     if (!user)
         return null
 
@@ -41,8 +50,8 @@ export const AdmEditUser = ({forceRemount, setMode, setEditionEntity, user, setG
         defaultValues: {
             userName: user.userName,
             role: user.role,
-            currentPassword: undefined,
-            newPassword: undefined
+            currentPassword: "",
+            newPassword: ""
         },
     })
 
@@ -55,7 +64,6 @@ export const AdmEditUser = ({forceRemount, setMode, setEditionEntity, user, setG
 
         setGlobalIsLoading(true)
 
-        //send here
         const res = await updateUserAction(values)
 
         if (res.isError) {
@@ -65,7 +73,6 @@ export const AdmEditUser = ({forceRemount, setMode, setEditionEntity, user, setG
             toast.success("Updated!")
             setEditionEntity(null)
             setMode("viewUsers")
-            // forceRemount()
         }
         setGlobalIsLoading(false)
     }
@@ -102,6 +109,33 @@ export const AdmEditUser = ({forceRemount, setMode, setEditionEntity, user, setG
                                placeholder="****"
                                onEnter={form.handleSubmit(onSubmit)}
                     />
+
+                    {/* SELECT */}
+                    <div className="flex flex-col gap-2">
+                        <FormLabel htmlFor="role">User Type</FormLabel>
+                        <Controller
+                            control={form.control}
+                            name="role"
+                            render={({field}) => (
+                                <Select value={field.value} onValueChange={field.onChange}>
+                                    <SelectTrigger className="w-[180px]">
+                                        <SelectValue placeholder="Selecione um tipo"/>
+                                    </SelectTrigger>
+                                    <SelectContent >
+                                        {roles.map((r) => (
+                                            <SelectItem key={r} value={r}>
+                                                {r === "adm" ? "Administrator" : "User"}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            )}
+                        />
+                        {form.formState.errors.role && (
+                            <p className="text-sm text-red-500">{form.formState.errors.role.message}</p>
+                        )}
+                    </div>
+
 
                     <div className={"flex justify-between"}>
 

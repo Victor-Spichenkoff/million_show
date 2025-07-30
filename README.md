@@ -1,5 +1,5 @@
 # NOW
-- Don't reload viewUser, get the old value
+- Fix color on light theme adm form
 - Clicking twice at the 
 - it's changing the question label when click the edit questions
 - remember not let user remove himself

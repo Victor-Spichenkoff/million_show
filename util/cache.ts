@@ -11,11 +11,9 @@ export const clearCacheForPrefix = (prefix: string) => {
     let c = 0
     while (true) {
         const id = `${prefix}${c}`
-        console.log("check"+ id)//user_page_0
-        if(globalCache.has(id)) {
+        if(globalCache.has(id))
             globalCache.delete(id)
-            console.log("Clear cache for " + id)
-        }
+
         else
             break
     }

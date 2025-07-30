@@ -77,7 +77,7 @@ export default function Home() {
                                         </div>
                                         <div className={"flex-1"}>
                                             <p className={"home-box-title"}>Leaderboard</p>
-                                            <p className={"home-box-value"}># {homeInfo.leaderBoardPosition}</p>
+                                            <p className={"home-box-value"}>{homeInfo.leaderBoardPosition ? `# ${homeInfo.leaderBoardPosition}` : "Let's play?"}</p>
                                         </div>
                                     </div>
                                 </Link>

@@ -27,7 +27,7 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
     const getUsersCall = useProtectedApiCall<User[]>({
         endpoint: `/user/paged?page=${page}`,
         cacheId: `user_page_${page}`,
-        noAxiosCache: true,
+        // noAxiosCache: true,
     })
 
 
@@ -39,7 +39,6 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
 
     const getUsers = async () => {
         const res = await getUsersCall()
-        console.log(res)
 
         if (res.isError) {
             toast.error(res.errorMessage)
@@ -61,7 +60,6 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
             return
         }
 
-        console.log("GET page " + page);
 
         (async () => {
             setGlobalIsLoading(true)
@@ -69,14 +67,6 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
             setGlobalIsLoading(false)
         })()
     }, [])
-
-
-    // EDIT
-    const handleEditClick = (user: User) => {
-        setEditionEntity(user)
-        setMode("editUsers")
-        console.log("DONE")
-    }
 
 
     // DELETE

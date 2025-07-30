@@ -14,7 +14,7 @@ export const HomeStatisticsArea = ({homeInfos}: IHomeStatisticsArea) => {
                 </div>
                 <div className={"home-card"}>
                     <p className={"home-box-title"}>Accumulated Prize</p>
-                    <p className={"home-box-value"}>$ {homeInfos.accumulatedPrizes}</p>
+                    <p className={"home-box-value"}>{homeInfos.accumulatedPrizes ? `$ ${homeInfos.accumulatedPrizes}` : "None"}</p>
                 </div>
             </div>
 
