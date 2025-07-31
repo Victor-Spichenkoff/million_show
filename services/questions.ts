@@ -3,24 +3,28 @@ import {globalCache} from "@/util/cache";
 import {GetConfigStorage} from "@/storage/localStorage/config";
 
 export const loadQuestionCachedQuestions = () => {
-    const config = GetConfigStorage()
     let questions: Question[] = []
-    let page = 0
+    let page = -1
+    let isError = false
 
-    while (true) {
+    while (!isError) {
+        page+=1
+        isError = true
+
         const cacheKeyPt = `question_page_${page}_pt`
         const cacheKeyEn = `question_page_${page}_en`
 
+        console.log(cacheKeyPt)
         if(globalCache.has(cacheKeyPt)) {
             const cachedQuestions: Question[] = globalCache.get(cacheKeyPt)
             cachedQuestions.forEach(q => questions.push(q))
-        } else if(globalCache.has(cacheKeyEn)) {
+            isError = false
+        }
+        if(globalCache.has(cacheKeyEn)) {
             const cachedQuestions: Question[] = globalCache.get(cacheKeyEn)
             cachedQuestions.forEach(q => questions.push(q))
-        } else {
-            break
+            isError = false
         }
-        page+=1
     }
 
     return { questions, page }

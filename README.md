@@ -1,5 +1,5 @@
 # NOW
-- Dont't create with adm user direct
+- search and reset page at 
 - Clicking twice at the 
 - it's changing the question label when click the edit questions
 - remember not let user remove himself
