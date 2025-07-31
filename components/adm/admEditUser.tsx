@@ -18,7 +18,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import {Label} from "@/components/ui/label";
 import {FormLabel} from "@/components/ui/form";
 import {LoginResponse} from "@/types/responses/auth";
 

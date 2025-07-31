@@ -1,92 +1,84 @@
 import {ChangeEvent, Dispatch, SetStateAction} from "react";
 import {Question} from "@/types/responses/question";
 
-interface IAdmQuestionAnswerInput {
-    questData: Question
-    setQuestData: Dispatch<SetStateAction<Question>>
-    index: 1 | 2 | 3 | 4
+import {Controller, UseFormRegister, Control, useFormContext} from "react-hook-form";
+import {answerIndexArray} from "@/lib/schema/edit";
+
+interface QuestionForm {
+    option1: string;
+    option2: string;
+    option3: string;
+    option4: string;
+    answerIndex: number;
 }
 
-export const AdmQuestionAnswerInput = ({setQuestData, questData, index}: IAdmQuestionAnswerInput) => {
-    let label
-    switch (index) {
-        case 2:
-            label = "B"
-            break
-        case 3:
-            label = "C"
-            break
-        case 4:
-            label = "D"
-            break
-        default:
-            label = "A"
-            break
+interface IAdmQuestionAnswerInput {
+    index: 1 | 2 | 3 | 4;
+    control: Control<QuestionForm>;
+    register: UseFormRegister<QuestionForm>;
+    setValue: (name: keyof QuestionForm, value: any) => void;
+    getValues: () => QuestionForm;
+}
+
+export const AdmQuestionAnswerInput = ({
+                                           index,
+                                           control,
+                                           register,
+                                           setValue,
+                                           getValues
+                                       }: IAdmQuestionAnswerInput) => {
+    const label = String.fromCharCode(64 + index) // 65 = 'A'
+
+    const handleLetterClick = () => {
+        setValue("answerIndex", answerIndexArray[index-1])
     }
 
-    const handleEdit = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setQuestData(prev => {
-            prev[`option${index}`] = e.target.value
-            return {...prev}
-        })
-    }
+    // const isSelected = answerIndexArray.indexOf(getValues().answerIndex as any) + 1 === index;
 
-  const handleLetterClick = () => {
-        console.log("Letter clicked")
-        setQuestData(prev => {
-            prev.answerIndex=index
-            return {...prev }
-        })
-    }
+    const { watch } = useFormContext()
+    const currentIndex = watch("answerIndex");
+    const isSelected = answerIndexArray.indexOf(currentIndex) + 1 === index;
 
     return (
-        <div className={`answer 
-            ${questData.answerIndex == index && " font-bold border-highlight"}`}>
+        <div
+            className={`answer ${
+                isSelected ? "font-bold border-highlight" : ""
+            }`}
+        >
+            <div className="flex">
+                <button
+                    className="flex items-center"
+                    type="button"
+                    onClick={handleLetterClick}
+                >
+                    <div
+                        className={`answer-letter mr-2 ${
+                            isSelected ? "answer-letter-selected" : ""
+                        }`}
+                    >
+                        {label}
+                    </div>
+                </button>
 
-            <div className={"flex"}>
-
-            <button className={"flex items-center"} type={"button"} onClick={handleLetterClick}>
-                <div className={`answer-letter mr-2 ${questData.answerIndex == index && "answer-letter-selected"}`}>{label}</div>
-            </button>
-
-            <div className="flex-1 flex items-center">
-                <textarea
-                    onInput={(e) => {
-                        e.currentTarget.style.height = "auto";
-                        e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
-                    }}
-                    className="no-resize w-full bg-transparent resize-none overflow-hidden rounded-md"
-                    name={`option${index}`}
-                    id={`answer${index}`}
-                    rows={1}
-                    value={questData[`option${index}`]}
-                    onChange={handleEdit}
-                />
-            </div>
+                <div className="flex-1 flex items-center">
+                    <Controller
+                        name={`option${index}` as `option1` | `option2` | `option3` | `option4`}
+                        control={control}
+                        render={({ field }) => (
+                            <textarea
+                                placeholder={`Option ${index}`}
+                                {...field}
+                                onInput={(e) => {
+                                    e.currentTarget.style.height = "auto";
+                                    e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+                                }}
+                                className="no-resize w-full bg-transparent resize-none overflow-hidden rounded-md"
+                                rows={1}
+                            />
+                        )}
+                    />
+                </div>
             </div>
         </div>
-        // <div className={`answer flex items-center gap-4
-        //     ${questData.answerIndex == index && " font-bold border-highlight"}`}>
-        //     <div className={"bg-red-500 inline-block h-full flex items-center"}>
-        //         <span className={`answer-letter ${questData.answerIndex == index && "answer-letter-selected"}`}>{label}</span>
-        //     </div>
-        //     <div className={"flex-1 inline-block flex items-center bg-green-500 h-full"}>
-        //         <textarea
-        //             onInput={(e) => {
-        //                 e.currentTarget.style.height = "auto";
-        //                 e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
-        //             }}
-        //             className={`no-resize h-auto w-fit bg-transparent bg-red-800`}
-        //             name="option{}"
-        //             id={"answer" + index}
-        //             rows={1}
-        //             value={questData[`option${index}`]}
-        //             onChange={handleEdit}>
-        //
-        //         </textarea>
-        //
-        //     </div>
-        // </div>
-
-    )
-}
+    );
+};
