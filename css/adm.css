@@ -22,6 +22,7 @@
 }
 
 textarea.no-resize {
+    justify-self: center;
     resize: none;
     border: none;
     outline: none;

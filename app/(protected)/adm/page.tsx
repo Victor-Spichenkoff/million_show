@@ -71,6 +71,13 @@ export default function AdmPage() {
                     user={editionEntity as any}
                     setGlobalIsLoading={setGlobalIsLoading}
                 />}
+                {mode == "addUser" && <AdmEditUser
+                    setMode={setMode}
+                    setEditionEntity={setEditionEntity}
+                    user={editionEntity as any}
+                    setGlobalIsLoading={setGlobalIsLoading}
+                />}
+
                 {mode === "none" && <AdmViewQuestions
                     setMode={setMode}
                     setEditionEntity={setEditionEntity}
