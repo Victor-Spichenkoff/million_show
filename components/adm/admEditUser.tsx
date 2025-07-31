@@ -1,12 +1,12 @@
 import {Dispatch, SetStateAction} from "react";
 import {AdmModes} from "@/app/(protected)/adm/page";
-import {User} from "@/types/user";
+import {User, UserRoles} from "@/types/user";
 import {Controller, FormProvider, useForm} from "react-hook-form";
 import * as z from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {toast} from "sonner";
 import {getAccessToken,} from "@/storage/cookie/auth";
-import {EditUserSchema, roles} from "@/lib/schema/edit";
+import {EditOrCreateUserSchema, roles} from "@/lib/schema/edit";
 import {FormInput} from "@/components/auth/input";
 import {clearCacheForPrefix} from "@/util/cache";
 import {handleApiCall} from "@/services/handleApiCall";
@@ -20,6 +20,14 @@ import {
 } from "@/components/ui/select";
 import {Label} from "@/components/ui/label";
 import {FormLabel} from "@/components/ui/form";
+import {LoginResponse} from "@/types/responses/auth";
+
+/*
+* modificatios:
+* + add
+* + action
+*
+* */
 
 
 interface IdmViewUser {
@@ -27,13 +35,14 @@ interface IdmViewUser {
     setEditionEntity: (n: null | User) => void
     user: User
     setGlobalIsLoading: Dispatch<SetStateAction<boolean>>
+    isAdd?: boolean
 }
 
-export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading}: IdmViewUser) => {
+export const AdmEditUser = ({isAdd, setMode, setEditionEntity, user, setGlobalIsLoading}: IdmViewUser) => {
     if (!user)
         return null
 
-    const updateUserAction = async (updateUser: z.infer<typeof EditUserSchema>) => {
+    const updateUserAction = async (updateUser: z.infer<typeof EditOrCreateUserSchema>) => {
         const token = await getAccessToken()
 
         return await handleApiCall({
@@ -44,33 +53,55 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
         })
     }
 
+    const createUserAction = async (userName: string, password: string, role: UserRoles) => {
+        return await handleApiCall<LoginResponse>({
+            endpoint: "/auth/signup",
+            body: {userName, password, role},
+            method: "post"
+        })
+    }
 
-    const form = useForm<z.infer<typeof EditUserSchema>>({
-        resolver: zodResolver(EditUserSchema),
+
+    const form = useForm<z.infer<typeof EditOrCreateUserSchema>>({
+        resolver: zodResolver(EditOrCreateUserSchema),
         defaultValues: {
             userName: user.userName,
             role: user.role,
             currentPassword: "",
-            newPassword: ""
+            newPassword: "",
+            password: "",
+            confirmPassword: ""
         },
     })
 
-    const onSubmit = async (values: z.infer<typeof EditUserSchema>) => {
-        if (!values.currentPassword && values.newPassword)
-            return toast.error("Inform your current password!")
-
-        if (values.newPassword && values.currentPassword == values.newPassword)
-            return toast.error("Current and new password can't be equal!")
+    const onSubmit = async (values: z.infer<typeof EditOrCreateUserSchema>) => {
 
         setGlobalIsLoading(true)
 
-        const res = await updateUserAction(values)
+        let res
+        if (isAdd) {
+            if (!values.password || !values.userName)
+                return toast.error("Complete all fields!")
+            if (values.password != values.confirmPassword)
+                return toast.error("Passwords do not match!")
+
+            res = await createUserAction(values.userName, values.password, values.role ?? "normal")
+        } else {
+            if (!values.currentPassword && values.newPassword)
+                return toast.error("Inform your current password!")
+
+            if (values.newPassword && values.currentPassword == values.newPassword)
+                return toast.error("Current and new password can't be equal!")
+
+            res = await updateUserAction(values)
+        }
+
 
         if (res.isError) {
             toast.error(res.errorMessage)
         } else {
             clearCacheForPrefix("user_page_")
-            toast.success("Updated!")
+            toast.success(isAdd ? `Created user ${(res.response as any)?.id}` : "Updated!")
             setEditionEntity(null)
             setMode("viewUsers")
         }
@@ -86,8 +117,12 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
 
     return (
         <div className={"mx-auto w-full mt-10 flex flex-col item-center"}>
-            <h2 className={"text-xl text-center mb-5"}>Editing user <span
-                className={"text-gold text-2xl"}>{user.id}</span></h2>
+            {isAdd ? (
+                <h2 className={"text-xl text-center mb-5"}>Creating user</h2>
+            ) : (
+                <h2 className={"text-xl text-center mb-5"}>Editing user"<span
+                    className={"text-gold text-2xl"}>{user.id}</span></h2>
+            )}
 
             <FormProvider {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7  mx-auto">
@@ -99,22 +134,47 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
                         placeholder="username"
                         onEnter={form.handleSubmit(onSubmit)}
                     />
-                    <FormInput
-                        useDarkMode
-                        form={form}
-                        name={"currentPassword"}
-                        label="Current Password"
-                        placeholder="****"
-                        onEnter={form.handleSubmit(onSubmit)}
-                    />
-                    <FormInput
-                        useDarkMode
-                        form={form}
-                        name={"newPassword"}
-                        label="New Password"
-                        placeholder="****"
-                        onEnter={form.handleSubmit(onSubmit)}
-                    />
+
+                    {isAdd ? (
+                        <>
+                            <FormInput
+                                useDarkMode
+                                form={form}
+                                name={"password"}
+                                label="Password"
+                                placeholder="****"
+                                onEnter={form.handleSubmit(onSubmit)}
+                            />
+                            <FormInput
+                                useDarkMode
+                                form={form}
+                                name={"confirmPassword"}
+                                label="Confirm Password"
+                                placeholder="****"
+                                onEnter={form.handleSubmit(onSubmit)}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <FormInput
+                                useDarkMode
+                                form={form}
+                                name={"currentPassword"}
+                                label="Current Password"
+                                placeholder="****"
+                                onEnter={form.handleSubmit(onSubmit)}
+                            />
+                            <FormInput
+                                useDarkMode
+                                form={form}
+                                name={"newPassword"}
+                                label="New Password"
+                                placeholder="****"
+                                onEnter={form.handleSubmit(onSubmit)}
+                            />
+                        </>
+
+                    )}
 
                     {/* SELECT */}
                     <div className="flex flex-col gap-2">
@@ -124,7 +184,8 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
                             name="role"
                             render={({field}) => (
                                 <Select value={field.value} onValueChange={field.onChange}>
-                                    <SelectTrigger className="w-[180px] text-text border-text/20 placeholder:text-text/60">
+                                    <SelectTrigger
+                                        className="w-[180px] text-text border-text/20 placeholder:text-text/60">
                                         <SelectValue placeholder="Selecione um tipo"/>
                                     </SelectTrigger>
                                     <SelectContent>
@@ -146,7 +207,7 @@ export const AdmEditUser = ({setMode, setEditionEntity, user, setGlobalIsLoading
                     <div className={"flex justify-between"}>
 
                         <Button onClick={handleCancel} variant={"error"}>Cancel</Button>
-                        <Button type={"submit"} variant={"success"}>Update</Button>
+                        <Button type={"submit"} variant={"success"}>{ isAdd ? "Create" : "Update"}</Button>
                     </div>
 
                 </form>

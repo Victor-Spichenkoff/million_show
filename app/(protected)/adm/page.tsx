@@ -12,6 +12,7 @@ import {AdmViewUser} from "@/components/adm/admViewUser";
 import {AdmEditUser} from "@/components/adm/admEditUser";
 import {useAdminOnly} from "@/hooks/useAdminOnly";
 import {AdmEditQuestion} from "@/components/adm/admEditQuestion";
+import {baseAdmCreateUser} from "@/util/addDefaultData";
 
 
 export type AdmModes =
@@ -74,8 +75,9 @@ export default function AdmPage() {
                 {mode == "addUser" && <AdmEditUser
                     setMode={setMode}
                     setEditionEntity={setEditionEntity}
-                    user={editionEntity as any}
+                    user={baseAdmCreateUser}
                     setGlobalIsLoading={setGlobalIsLoading}
+                    isAdd
                 />}
 
                 {mode === "none" && <AdmViewQuestions
