@@ -12,7 +12,7 @@ interface IAdmViewItem {
     setEditionEntityAction: () => void
     handleDeleteAction: () => void
     setAdmModeAction: () => void
-    query: string
+    query?: string
 }
 
 export const AdmViewItem = ({
@@ -37,7 +37,7 @@ export const AdmViewItem = ({
             <div className="flex items-center justify-center px-2 py-2 bg-sky-800 text-white font-semibold">
                 <HighLightOnQuery
                     text={id.toString()}
-                    searchQuery={query}
+                    searchQuery={query ?? ""}
                 />
                 {/*{id}*/}
             </div>
@@ -46,7 +46,7 @@ export const AdmViewItem = ({
                 <div className="adm-view_label w-[48%] min-w-0 overflow-hidden line-clamp-2 pr-4">
                     <HighLightOnQuery
                         text={label}
-                        searchQuery={query}
+                        searchQuery={query ?? ""}
                     />
                     {/*{label}*/}
                 </div>

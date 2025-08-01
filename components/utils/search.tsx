@@ -34,7 +34,8 @@ export const Search = ({placeholder, onEnterPress, handleQueryChange}: ISearch) 
                 onKeyDown={handleKeyDown}
                 placeholder={placeholder}
                 onChange={handleChange}
-                className={"pr-10 overflow-hidden selection:bg-highlight/90"}
+                className={"pr-10 overflow-hidden selection:bg-highlight/90 " +
+                    "text-text border-text/20 placeholder:text-text/60"}
             />
             <button
                 onClick={() => onEnterPress && onEnterPress(query)}
