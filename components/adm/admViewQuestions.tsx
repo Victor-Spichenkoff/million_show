@@ -25,7 +25,7 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [isAll, setIsAll] = useState(false)
-    const { IsAdmComponent, isPortuguese } = useAdmIsPortuguese()
+    const { IsAdmComponent, isPortuguese, lastPageForIdiom, setLastPageForIdiom } = useAdmIsPortuguese({ currentPage: page })
 
     const getQuestionsCall = useProtectedApiCall<Question[]>({
         endpoint: `/question?page=${page}&isEn=${isPortuguese ? "false" : "true"}`,
@@ -53,13 +53,20 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
         setPage(p => p + 1)
     }
 
+    useEffect(() => {
+        setPage(lastPageForIdiom[isPortuguese ? "pageForPt" : "pageForEn"])
+        console.log("page " + lastPageForIdiom[isPortuguese ? "pageForPt" : "pageForEn"] )
+    }, [lastPageForIdiom])
+
 
     useEffect(() => {
-        const { questions: cachedQuestions, page: cachedPage }= loadQuestionCachedQuestions()
-        if(cachedPage > 0 && questions.length == 0) {
+        const { questions: cachedQuestions, ptPage, enPage }= loadQuestionCachedQuestions()
+        if((ptPage > 0 || enPage > 0) && questions.length == 0) {
             if(cachedQuestions.length % pageSize != 0)
                 setIsAll(true)
-            setPage(cachedPage)
+
+            setLastPageForIdiom({ pageForPt: ptPage, pageForEn: enPage })
+            // setPage(cachedPage)
             setQuestions([...cachedQuestions])
             return
         }

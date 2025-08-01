@@ -42,4 +42,10 @@
 
 ## TODO -> Continue match
 - Apenas pega
-- New -> avisa, ignora o pegar e já dar um next direto
+- New → avisa, ignora o pegar e já dar um next direto
+
+
+# Biggest Challenges
+## Handle multi-lingual pagination
+- User has the possibility of change the language, so 
+- it was necessary to build a sophisticated system to cache and update properly and individually each page number
