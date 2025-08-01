@@ -3,6 +3,7 @@ import {AdmModes} from "@/app/(protected)/adm/page";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPen, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {Button} from "@/components/ui/button";
+import {HighLightOnQuery} from "@/components/utils/highLightOnQuery";
 
 interface IAdmViewItem {
     id: number
@@ -11,6 +12,7 @@ interface IAdmViewItem {
     setEditionEntityAction: () => void
     handleDeleteAction: () => void
     setAdmModeAction: () => void
+    query: string
 }
 
 export const AdmViewItem = ({
@@ -19,7 +21,8 @@ export const AdmViewItem = ({
                                 setEditionEntityAction,
                                 id,
                                 extra,
-                                label
+                                label,
+                                query
                             }: IAdmViewItem) => {
 
     const handleEditClick = () => {
@@ -32,12 +35,20 @@ export const AdmViewItem = ({
             className={"grid grid-cols-[30px_1fr_auto] border border-sky-800 rounded-md w-full min-w-[500px] text-sm " +
                 "text-text font-bold text-base darK:bg- overflow-hidden"}>
             <div className="flex items-center justify-center px-2 py-2 bg-sky-800 text-white font-semibold">
-                {id}
+                <HighLightOnQuery
+                    text={id.toString()}
+                    searchQuery={query}
+                />
+                {/*{id}*/}
             </div>
 
             <div className="flex justify-between items-center relative px-4 py-2 bg-hint/80">
                 <div className="adm-view_label w-[48%] min-w-0 overflow-hidden line-clamp-2 pr-4">
-                    {label}
+                    <HighLightOnQuery
+                        text={label}
+                        searchQuery={query}
+                    />
+                    {/*{label}*/}
                 </div>
                 <div className="w-[48%] min-w-0 overflow-hidden line-clamp-2 pl-4">
                     {extra}

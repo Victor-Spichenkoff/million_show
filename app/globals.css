@@ -25,6 +25,13 @@ body {
   padding: 0;
 }
 
+
+mark {
+  background-color: gold;
+  font-weight: bold;
+  padding: 0 2px;
+}
+
 /*
 - Mudar a borda
 */

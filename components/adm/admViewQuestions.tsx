@@ -12,6 +12,9 @@ import {pageSize} from "@/global";
 import {loadQuestionCachedQuestions} from "@/services/questions";
 
 import {useAdmIsPortuguese} from "@/hooks/useAdmIsEnglish";
+import {Search} from "@/components/utils/search";
+import {clearCacheForSpecialSuffix} from "@/util/cache";
+import {clearQuestionSearchQuery, getQuestionSearchQuery, saveQuestionSearchQuery} from "@/services/adm";
 
 interface IAdmChooseButtons {
     setMode: Dispatch<SetStateAction<AdmModes>>
@@ -25,10 +28,17 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [isAll, setIsAll] = useState(false)
-    const { IsAdmComponent, isPortuguese, lastPageForIdiom, setLastPageForIdiom } = useAdmIsPortuguese({ currentPage: page })
+    const {
+        IsAdmComponent,
+        isPortuguese,
+        lastPageForIdiom,
+        setLastPageForIdiom
+    } = useAdmIsPortuguese({currentPage: page})
+    const [query, setQuery] = useState(getQuestionSearchQuery())
+
 
     const getQuestionsCall = useProtectedApiCall<Question[]>({
-        endpoint: `/question?page=${page}&isEn=${isPortuguese ? "false" : "true"}`,
+        endpoint: `/question?page=${page}&isEn=${isPortuguese ? "false" : "true"}&q=${query}`,
         cacheId: `question_page_${page}_${isPortuguese ? "pt" : "en"}`
     })
 
@@ -55,17 +65,17 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
 
     useEffect(() => {
         setPage(lastPageForIdiom[isPortuguese ? "pageForPt" : "pageForEn"])
-        console.log("page " + lastPageForIdiom[isPortuguese ? "pageForPt" : "pageForEn"] )
     }, [lastPageForIdiom])
 
 
+    //Initial get
     useEffect(() => {
-        const { questions: cachedQuestions, ptPage, enPage }= loadQuestionCachedQuestions()
-        if((ptPage > 0 || enPage > 0) && questions.length == 0) {
-            if(cachedQuestions.length % pageSize != 0)
+        const {questions: cachedQuestions, ptPage, enPage} = loadQuestionCachedQuestions()
+        if ((ptPage > 0 || enPage > 0) && questions.length == 0) {
+            if (cachedQuestions.length % pageSize != 0)
                 setIsAll(true)
 
-            setLastPageForIdiom({ pageForPt: ptPage, pageForEn: enPage })
+            setLastPageForIdiom({pageForPt: ptPage, pageForEn: enPage})
             // setPage(cachedPage)
             setQuestions([...cachedQuestions])
             return
@@ -76,7 +86,7 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
             await getQuestions()
             setGlobalIsLoading(false)
         })()
-    }, [])
+    }, [query])
 
     // DELETE
     useEffect(() => {
@@ -110,12 +120,49 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     }
 
 
+    //enter press on search
+    const handleSearch = async (q: string) => {
+       setIsAll(false)
+        if(!q) {
+            //the first time it was cleaned
+            if(q != query) {
+                clearCacheForSpecialSuffix("question_page_", ["_pt", "_en"])
+                setQuestions([])
+                setPage(0)
+                setLastPageForIdiom({pageForEn: 0, pageForPt: 0})
+                clearQuestionSearchQuery()
+                setQuery("")
+            }
+            await handleGetMore()
+        } else if (q != query) {
+            setQuery(q)
+            setQuestions([])
+            setPage(0)
+            saveQuestionSearchQuery(q)
+            setLastPageForIdiom({pageForEn: 0, pageForPt: 0})
+            clearCacheForSpecialSuffix("question_page_", ["_pt", "_en"])
+        } else {
+            await handleGetMore()
+        }
+    }
+
+
     return (
         <div className={"max-w-max_w mx-auto flex flex-col justify-center lg:px-24 overflow-visible"}>
             <div className={"space-y-4 overflow-visible"}>
-                <IsAdmComponent />
+                <div className={"flex justify-between"}>
+                    <div className={"flex-1"}>
+                        <IsAdmComponent/>
+
+                    </div>
+                    <Search
+                        placeholder={"Search by id or question"}
+                        onEnterPress={(q) => handleSearch(q)}
+                    />
+                </div>
                 {questions.map(q => (
                     <AdmViewItem
+                        query={query}
                         id={q.id}
                         key={q.id}
                         label={q.label}

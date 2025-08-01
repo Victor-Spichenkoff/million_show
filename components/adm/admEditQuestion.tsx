@@ -129,9 +129,9 @@ export const AdmEditQuestion = ({isAdd, setMode, setEditionEntity, question, set
     return (
         <div className={"mx-auto w-full mt-10 flex flex-col item-center"}>
             {isAdd ? (
-                <h2 className={"text-xl text-center mb-5"}>Creating question</h2>
+                <h2 className={"text-2xl text-center mb-5"}>Creating question</h2>
             ) : (
-                <h2 className={"text-xl text-center mb-5"}>Editing question <span
+                <h2 className={"text-2xl text-center mb-5"}>Editing question <span
                     className={"text-gold text-2xl"}>{question.id}</span></h2>
             )}
 

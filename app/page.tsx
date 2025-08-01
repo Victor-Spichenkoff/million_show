@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { faDashboard, faBrain, faMoneyBillWaveAlt, faGlobeAmericas } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from "next/image";
-import PiramidImage from "@/assets/images/prize_piramid.png"
+import PyramidImage from "@/assets/images/prize_piramid.png"
 import { useIsLogged } from "@/hooks/useIsLogged";
 import {ConnectionTest} from "@/components/utils/connectionTest";
 
@@ -41,7 +41,7 @@ export default function Home() {
                     <Link href={"auth?create&previous=home"} className={"auth-link underline hover:text-black ml-1"}>Test it now</Link>
                 </p>
                 <div className={"w-full bg-slate-800"} id="pyramid-img">
-                    <Image src={PiramidImage} alt="Prize Route" className="w-full" id="img-shadow"
+                    <Image src={PyramidImage} alt="Prize Route" className="w-full" id="img-shadow"
                     />
                 </div>
             </LandSection>

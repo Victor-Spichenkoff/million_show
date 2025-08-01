@@ -21,13 +21,6 @@ import {
 import {FormLabel} from "@/components/ui/form";
 import {LoginResponse} from "@/types/responses/auth";
 
-/*
-* modificatios:
-* + add
-* + action
-*
-* */
-
 
 interface IdmViewUser {
     setMode: Dispatch<SetStateAction<AdmModes>>
@@ -117,9 +110,9 @@ export const AdmEditUser = ({isAdd, setMode, setEditionEntity, user, setGlobalIs
     return (
         <div className={"mx-auto w-full mt-10 flex flex-col item-center"}>
             {isAdd ? (
-                <h2 className={"text-xl text-center mb-5"}>Creating user</h2>
+                <h2 className={"text-2xl text-center mb-5"}>Creating user</h2>
             ) : (
-                <h2 className={"text-xl text-center mb-5"}>Editing user"<span
+                <h2 className={"text-2xl text-center mb-5"}>Editing user <span
                     className={"text-gold text-2xl"}>{user.id}</span></h2>
             )}
 
