@@ -23,6 +23,19 @@ export const useGetQuestion = () => {
 
 
     const getQuestionOnApi = async (getNew?: boolean) => {
+        // await new Promise((resolve) => setTimeout(resolve, 2000))
+        // return setQuestion({
+        //     "id": 133,
+        //     "isBr": false,
+        //     "label": "How many months are there in a year?",
+        //     "option1": "10",
+        //     "option2": "12",
+        //     "option3": "11",
+        //     "option4": "14",
+        //     "level": 1
+        // })
+
+        //TODO: UNCOMMENT
         // To avoid unnecessary call, but can be passed
         if (searchParams.has("isNew") || getNew) {
             const newResult = await createAndGetNewQuestion()

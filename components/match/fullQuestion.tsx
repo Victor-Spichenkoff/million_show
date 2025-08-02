@@ -15,6 +15,7 @@ import {motion, AnimatePresence} from "framer-motion"
 import {QuestionSkeleton} from "@/components/match/questionSkeleton"
 import {FLASH_ANIMATION_DURATION} from "@/global";
 import {Sleep} from "@/helpers/time";
+import {CacheIds, clearCache} from "@/util/cache";
 
 
 interface IFullQuestion {
@@ -96,16 +97,15 @@ export const FullQuestion = ({
             setCorrectAnswerIndex(selected)
             flashGreen()
             await Sleep(FLASH_ANIMATION_DURATION * 2)
-            // await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
             await getNextQuestion()
             await getAndSetMatchInfo()
             resetStatesAfterAnswer()
         } else { // wrong
             flashRed()
+            clearCache(CacheIds.homeDashboard)
             setCorrectAnswerIndex(res.response.correctAnswer)
             setPlayerWrongAnswerIndex(selected)
             await Sleep(FLASH_ANIMATION_DURATION * 2)
-            // await new Promise((resolve) => setTimeout(resolve, FLASH_ANIMATION_DURATION * 2))
             setFinalScreenData({
                 title: "Sorry",
                 subtitle: "You Lost",
@@ -134,6 +134,7 @@ export const FullQuestion = ({
                 points: res.response.points,
             })
 
+            clearCache(CacheIds.homeDashboard)
             UpdateHintStateStorage("")
             setHintState({type: "none"})
         })
@@ -142,19 +143,6 @@ export const FullQuestion = ({
     const getNextQuestion = async () => {
         setShowSkeleton(true)
         await getQuestionOnApi(true)
-
-        //TO TEST GET NEW
-        // await new Promise((resolve) => setTimeout(resolve, 2000))
-        // setQuestion({
-        //     "id": 133,
-        //     "isBr": false,
-        //     "label": "How many months are there in a year?",
-        //     "option1": "10",
-        //     "option2": "12",
-        //     "option3": "11",
-        //     "option4": "14",
-        //     "level": 1
-        // })
     }
 
 

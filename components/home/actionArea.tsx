@@ -6,6 +6,7 @@ import {useRouter} from "next/navigation";
 import {NewDialog} from "@/components/home/newDialog";
 import {Button} from "@/components/ui/button";
 import {HomeInfos} from "@/types/responses/home";
+import {CacheIds, clearCache} from "@/util/cache";
 
 interface IHomeActionArea {
     homeInfo: HomeInfos
@@ -35,6 +36,7 @@ export const HomeActionArea = ({homeInfo}:IHomeActionArea) => {
             return toast.error("Can't create match")
 
         UpdateHintStateStorage("")
+        clearCache(CacheIds.homeDashboard)
         router.push(`/match/${result.response.id}?isNew`)
     }
 
@@ -44,8 +46,8 @@ export const HomeActionArea = ({homeInfo}:IHomeActionArea) => {
     const handleContinueButton = () => {
         if (!homeInfo?.matchId)
             return toast.error("You don't have any started match")
-        console.log(homeInfo)
 
+        clearCache(CacheIds.homeDashboard)
         router.push(`/match/${homeInfo.matchId}`)
     }
 

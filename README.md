@@ -1,4 +1,5 @@
 # NOW
+- After asnwer right, it's changing with skeleton and after the new question is there it shows the loading
 - search and reset page at 
 - Clicking twice at the 
 - it's changing the question label when click the edit questions
