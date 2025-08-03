@@ -1,3 +1,5 @@
+import {User} from "@/types/user";
+
 export const globalCache = new Map<string, any>()
 
 
@@ -41,6 +43,29 @@ export const clearCacheForSpecialSuffix = (prefix: string, suffix: string[]) => 
     }
 }
 
+/*
+* id build -> [id][page]
+* */
+export const getPagedCache = <T>(id: string) => {
+    let cachedData: T[] = []
+    let page = 0
+
+    while (true) {
+        const cacheKeyPt = `${id}${page}`
+
+        if (globalCache.has(cacheKeyPt)) {
+            const cachedQuestions: T[] = globalCache.get(cacheKeyPt)
+            cachedQuestions.forEach(q => cachedData.push(q))
+
+        } else
+            break
+
+        page += 1
+    }
+
+    return {cachedData, page}
+
+}
 
 export enum CacheIds {
     homeDashboard = "1"

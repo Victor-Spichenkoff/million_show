@@ -1,19 +1,11 @@
 # NOW
-- After asnwer right, it's changing with skeleton and after the new question is there it shows the loading
-- search and reset page at 
-- Clicking twice at the 
-- it's changing the question label when click the edit questions
-- remember not let user remove himself
+- million-show/helpers/userCreation.ts -> fix userCreation
+- Improve "none" on adm
+- Improve historic screen, show points
 - REMOVE PROTECTION DELETE QUESTION
   - **ADM views**
 - FIX / uncomment: 
   - test connection
-
-- HINT: 
-  - skip
-
-
-- Arrumar login
 
 
 # FINAL REVISION
