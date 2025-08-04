@@ -1,4 +1,6 @@
 # NOW
+- Create view historic for all
+- finsih auto creation
 - million-show/helpers/userCreation.ts -> fix userCreation
 - Improve "none" on adm
 - Improve historic screen, show points

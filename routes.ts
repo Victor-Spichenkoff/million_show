@@ -4,7 +4,11 @@ export const publicRoutes = [
 
 export const protectedRoutes = [
     "/home",
-    "/me"
+    "/me",
+    "/adm",
+    "/leaderboard",
+    "/match",
+    "/history",
 ]
 
 export const authRoutes = [
