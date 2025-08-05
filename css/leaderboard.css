@@ -3,10 +3,12 @@ table {
     max-width: var(--max_w);
     margin: auto;
     border-collapse: collapse;
-    border-radius: 16px;
+    border-radius: 24px;
+    overflow: hidden;
     box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.34);
     font-family: sans-serif;
     text-align: center;
+
 }
 
 thead {
@@ -48,6 +50,17 @@ tbody tr:nth-child(n+4):nth-child(odd) {
     /*background-color: #f3f4f6; !* cinza muito claro *!*/
 }
 
+tbody tr:last-child {
+    border-bottom: 4px solid transparent;
+}
+
 tbody tr:hover {
-    background-color: #e0e7ff; /* azul claro ao passar o mouse */
+    background-color: #e0e7ff;
+}
+
+.rounded-table {
+    border-radius: 15px; /* Adjust the radius as desired */
+    overflow: hidden; /* Crucial for hiding content outside the rounded corners */
+
+    /*border-spacing: 0; !* Ensures no spacing between cells *!*/
 }

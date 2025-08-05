@@ -17,7 +17,7 @@ export const PlayersTable = () => {
 
     return (
         <div className={"px-4 rounded-lg overflow-hidden"}>
-            <table>
+            <table className={"rounded-table"}>
                 <thead>
                 <tr>
                     <th>POS</th>
@@ -32,7 +32,7 @@ export const PlayersTable = () => {
                 <tbody>
                 {playersInfo?.map((pi, i) => (
                     <LeaderboardTableItem
-                        key={pi.userId}
+                        key={i}
                         data={pi}
                         position={i + 1}
                     />

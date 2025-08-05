@@ -3,6 +3,7 @@ import {GetConfigStorage} from "@/storage/localStorage/config"
 import {Question} from "@/types/responses/question"
 import {useSearchParams} from "next/navigation"
 import {useEffect, useState} from "react"
+import {CacheIds} from "@/util/cache";
 
 // It's just to implement skeleton loading on fullQuestion and help exchange
 export type ISetFrontendQuestion = (q: FrontendQuestion) => void
@@ -14,7 +15,8 @@ export const useGetQuestion = () => {
     const isPortuguese = GetConfigStorage()?.isPortuguese
 
     const getCurrentQuestion = useProtectedApiCall({
-        endpoint: "/match/current/question"
+        endpoint: "/match/current/question",
+        cacheId: CacheIds.currentQuestion
     })
 
     const createAndGetNewQuestion = useProtectedApiCall<Question>({

@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {pageSize} from "@/global";
-import {loadCachedUser} from "@/services/user";
 import {getPagedCache} from "@/util/cache";
 
 interface IUsePagination{

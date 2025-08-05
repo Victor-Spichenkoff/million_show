@@ -12,8 +12,8 @@ export const LeaderboardTableItem = ({data, position}:ILeaderboardTableItem) => 
     const user = GetUserStorage()
 
     return (
-        <tr>
-        {/*<tr className={`${user?.userName == data.username && "border-3 border-highlight"}`}>*/}
+        // <tr>
+        <tr className={`${user?.id == data.userId -5 && "border-3 border-gold"}`}>
             <th >{position}°</th>
             <th >{data.username}</th>
             <th>{data.totalPoints}</th>

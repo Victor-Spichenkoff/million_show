@@ -15,7 +15,7 @@ import {motion, AnimatePresence} from "framer-motion"
 import {QuestionSkeleton} from "@/components/match/questionSkeleton"
 import {FLASH_ANIMATION_DURATION} from "@/global";
 import {Sleep} from "@/helpers/time";
-import {CacheIds, clearCache} from "@/util/cache";
+import { clearAllCache} from "@/util/cache";
 
 
 interface IFullQuestion {
@@ -102,7 +102,7 @@ export const FullQuestion = ({
             resetStatesAfterAnswer()
         } else { // wrong
             flashRed()
-            clearCache(CacheIds.homeDashboard)
+            clearAllCache()
             setCorrectAnswerIndex(res.response.correctAnswer)
             setPlayerWrongAnswerIndex(selected)
             await Sleep(FLASH_ANIMATION_DURATION * 2)
@@ -134,7 +134,7 @@ export const FullQuestion = ({
                 points: res.response.points,
             })
 
-            clearCache(CacheIds.homeDashboard)
+            clearAllCache()
             UpdateHintStateStorage("")
             setHintState({type: "none"})
         })
