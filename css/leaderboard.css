@@ -39,11 +39,13 @@ tbody tr:nth-child(3) {
 
 /* Listrado leve para os demais */
 tbody tr:nth-child(n+4):nth-child(even) {
-    background-color: #f9fafb; /* branco quase puro */
+    background-color: var(--question); /* branco quase puro */
+    /*background-color: #f9fafb; !* branco quase puro *!*/
 }
 
 tbody tr:nth-child(n+4):nth-child(odd) {
-    background-color: #f3f4f6; /* cinza muito claro */
+    background-color: var(--hint); /* branco quase puro */
+    /*background-color: #f3f4f6; !* cinza muito claro *!*/
 }
 
 tbody tr:hover {

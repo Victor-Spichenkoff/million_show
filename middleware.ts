@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import {authRoutes, getLoginPathnameWithPreviousUrl, protectedRoutes} from "@/routes"
+import {authRoutes, getLoginPathnameWithPreviousUrl, protectedRoutes, publicRoutes} from "@/routes"
 
 
 const PUBLIC_PATHS = ['/', '/auth/login', '/auth/register', "/public", "/auto-login"]
@@ -9,10 +9,13 @@ const PUBLIC_PATHS = ['/', '/auth/login', '/auth/register', "/public", "/auto-lo
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
     const isProtected = protectedRoutes.includes(pathname)
+    const isPublic = publicRoutes.includes(pathname)
     const isAuth = authRoutes.includes(pathname)
 
-    if(!isProtected && !isAuth)
+    if(isPublic)
          return NextResponse.next()
+    // if(!isProtected && !isAuth)
+    //      return NextResponse.next()
 
     const token = request.cookies.get('access_token')?.value
 

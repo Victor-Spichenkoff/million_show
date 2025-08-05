@@ -11,8 +11,11 @@ import Link from "next/link";
 import {LoginDialog} from "@/components/autoLogin/loginDialog";
 import {useIsLogged} from "@/hooks/useIsLogged";
 import {AutoLoginPage} from "@/app/auto-login/autoLoginPage";
+import {clearAllCache} from "@/util/cache";
 
 export default function AutoLogin() {
+    clearAllCache()
+
     return (
         <Suspense>
             <AutoLoginPage />

@@ -30,7 +30,6 @@ export default function LeaderboardPage() {
             </div>
         )}
         <div>
-
             <PlayersTable/>
         </div>
     </>)

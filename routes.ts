@@ -1,5 +1,6 @@
 export const publicRoutes = [
     "/",
+    "/auto-login"
 ]
 
 export const protectedRoutes = [
@@ -14,7 +15,8 @@ export const protectedRoutes = [
 export const authRoutes = [
     "/auth/login",
     "/auth/register",
-    "/auth"
+    "/auth",
+    "/auto-login"
 ]
 
 export const getLoginPathnameWithPreviousUrl = (previous?: string) => {

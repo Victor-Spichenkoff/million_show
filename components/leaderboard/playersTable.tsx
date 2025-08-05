@@ -16,7 +16,7 @@ export const PlayersTable = () => {
     })
 
     return (
-        <div className={"px-2"}>
+        <div className={"px-4 rounded-lg overflow-hidden"}>
             <table>
                 <thead>
                 <tr>

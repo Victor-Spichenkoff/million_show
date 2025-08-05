@@ -1,4 +1,5 @@
 # NOW
+- pagination for leaderboard is wrong
 - Create view historic for all
 - finsih auto creation
 - million-show/helpers/userCreation.ts -> fix userCreation
