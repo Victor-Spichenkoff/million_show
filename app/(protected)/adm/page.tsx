@@ -28,7 +28,7 @@ export default function AdmPage() {
     const [mode, setMode] = useState<AdmModes>("none")
     const [editionEntity, setEditionEntity] = useState<null | User | Question>(null)
     const [globalIsLoading, setGlobalIsLoading] = useState(false)
-    //To remove extra validation
+
     const { isUnlocked } = useAdminOnly()
 
     useEffect(() => {
@@ -88,12 +88,10 @@ export default function AdmPage() {
                     isAdd
                 />}
 
-
                 {mode === "none" && (
                     <div>
                         <h2>Welcome to the admin dashboard</h2>
                         <h3>Select one of categories above to start managing the game data</h3>
-
                     </div>
                 )}
             </div>

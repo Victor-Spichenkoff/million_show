@@ -1,5 +1,8 @@
 # NOW
-- pagination for leaderboard is wrong
+- auth -> gold.jpg is not exhibited
+- error at pagination hook
+- error of hybridation on leaderboard, because of playerInfo + YOU
+
 - Create view historic for all
 - finsih auto creation
 - million-show/helpers/userCreation.ts -> fix userCreation

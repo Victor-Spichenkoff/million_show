@@ -28,6 +28,9 @@ export default function LeaderboardPage() {
     }, [])
 
 
+    if(!user)
+        return <div></div>
+
     return (<>
         <Header label={"Leaderboard"} showBackButton showConfig/>
 

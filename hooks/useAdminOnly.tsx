@@ -7,13 +7,17 @@ import {toast} from "sonner";
 
 export const useAdminOnly = () => {
     const router = useRouter()
-    const checkPermission = useProtectedApiCall({ endpoint: "/auth/test/adm" })
+    const checkPermission = useProtectedApiCall({endpoint: "/auth/test/adm"})
     const [isUnlocked, setIsUnlocked] = useState(false)
 
     useEffect(() => {
+        if (process.env.NODE_ENV == "development")
+            return setIsUnlocked(true);
+
         (async () => {
+
             const res = await checkPermission()
-            if(res.isError) {
+            if (res.isError) {
                 toast.error("ADMIN only content")
                 return router.push("/home")
             }
@@ -22,5 +26,5 @@ export const useAdminOnly = () => {
         })()
     }, [])
 
-    return { isUnlocked }
+    return {isUnlocked}
 }

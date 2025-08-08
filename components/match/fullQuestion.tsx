@@ -57,7 +57,6 @@ export const FullQuestion = ({
 
 
     useEffect(() => {
-        console.log("STATE")
         if(question == "loading")
             setShowSkeleton(true)
         else {
