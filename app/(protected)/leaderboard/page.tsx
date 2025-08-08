@@ -31,18 +31,18 @@ export default function LeaderboardPage() {
     if(!user)
         return <div></div>
 
-    return (<>
+    return (<div className={"pb-8"}>
         <Header label={"Leaderboard"} showBackButton showConfig/>
 
         <PlayerPointsInfo playerId={Number(user)}/>
-        {homeInfo?.leaderBoardPosition && homeInfo?.leaderBoardPosition > 10 && (
+        {/*{homeInfo?.leaderBoardPosition && homeInfo?.leaderBoardPosition > 10 && (*/}
             <div>
                 Your position #{homeInfo?.leaderBoardPosition}
             </div>
-        )}
+        {/*)}*/}
         <div>
             <PlayersTable/>
         </div>
-    </>)
+    </div>)
 
 }

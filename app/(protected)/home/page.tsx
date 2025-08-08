@@ -18,6 +18,7 @@ import {AnimatePresence, motion} from "framer-motion";
 import {QuestionSkeleton} from "@/components/match/questionSkeleton";
 import {Answers} from "@/components/match/answers";
 import {CacheIds} from "@/util/cache";
+import {GetUserStorage} from "@/storage/localStorage/user";
 
 export default function Home() {
     const router = useRouter()
@@ -39,8 +40,9 @@ export default function Home() {
 
 
     const handleViewHistoricClick = () => {
-        if(homeInfo?.recentHistoric)
-            router.push("/history")
+        const user = GetUserStorage()
+        if(homeInfo?.recentHistoric && user)
+            router.push("/history/"+user.id)
     }
 
 

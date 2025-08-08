@@ -6,15 +6,19 @@ import {Historic} from "@/types/Historic";
 import {useEffect, useState, useTransition} from "react";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {Loading} from "@/components/template/loading";
-import {useRouter} from "next/navigation";
+import {useParams, useRouter, useSearchParams} from "next/navigation";
 import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
 import {Header} from "@/components/template/header";
 
 export default function HistoryScreen() {
+    const { id } = useParams()
+
     const getHistory = useProtectedApiCall<Historic[]>({
-        endpoint: "/historic/full"
+        endpoint: `/historic/full/${id}`
     })
+
+
     const [isLoading, startTransition] = useTransition()
     const router = useRouter()
     const [historic, setHistoric] = useState<Historic[] | null>(null)

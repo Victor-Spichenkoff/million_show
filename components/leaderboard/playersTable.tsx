@@ -1,5 +1,4 @@
 import {LeaderboardPlayers} from "@/types/responses/points";
-import {useEffect, useState} from "react";
 import {LeaderboardTableItem} from "@/components/leaderboard/leaderboardTableItem";
 import {usePagination} from "@/hooks/global/usePagination";
 import {Button} from "@/components/ui/button";

@@ -1,6 +1,6 @@
 export type LeaderboardPlayers = {
     userId: number
-    username: string
+    userName: string
     bestMatchCorrects: number
     totalPoints: number
     totalCorrects: number
