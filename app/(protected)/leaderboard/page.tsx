@@ -28,17 +28,14 @@ export default function LeaderboardPage() {
     }, [])
 
 
-
-    return (<div className={"pb-8"}>
+    return (<div className={"pb-8"} suppressHydrationWarning>
         <Header label={"Leaderboard"} showBackButton showConfig/>
 
-        <PlayerPointsInfo playerId={Number(user?.id ?? 0)}/>
+        <div className={"px-4 my-8"}>
 
-        {/*{homeInfo?.leaderBoardPosition && homeInfo?.leaderBoardPosition > 10 && (*/}
-            <div>
-                Your position #{homeInfo?.leaderBoardPosition}
-            </div>
-        {/*)}*/}
+            <PlayerPointsInfo playerId={Number(user?.id ?? 0)}/>
+
+        </div>
         <div>
             <PlayersTable/>
         </div>

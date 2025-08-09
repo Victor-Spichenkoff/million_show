@@ -15,4 +15,6 @@ export type PointsInfoForPlayer = {
     totalPoints: number
     bestMatch: number
     position: number
+    bestMatchPoints: number
+    bestMatchTime: number
 }
