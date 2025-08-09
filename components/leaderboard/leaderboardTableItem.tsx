@@ -19,11 +19,12 @@ export const LeaderboardTableItem = ({data, position}:ILeaderboardTableItem) => 
     }
 
     return (
-        // <tr>
         <tr
             onClick={handleClick}
             className={`${user?.id == data.userId -5 && "border-3 border-gold"} 
             hover:scale-105 hover:border-3 border-white animate duration-300`}>
+            {/*TODO: UNCOMMENT*/}
+            {/*className={`${user?.id == data.userId -5 && "border-3 border-gold"} */}
             <th >{position}°</th>
             <th >{data.userName}</th>
             <th>{data.totalPoints}</th>

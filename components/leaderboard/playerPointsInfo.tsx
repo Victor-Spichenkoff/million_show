@@ -29,7 +29,7 @@ export const PlayerPointsInfo = ({playerId}:PlayerPointsInfo) => {
 
     return (
         <div>
-            { user.userName == playerPointInfo?.userName ? "YOU" : playerPointInfo?.userName}
+            { user?.userName == playerPointInfo?.userName ? "YOU" : playerPointInfo?.userName}
         </div>
     )
 }

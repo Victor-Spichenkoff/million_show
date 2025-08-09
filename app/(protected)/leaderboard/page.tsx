@@ -28,13 +28,12 @@ export default function LeaderboardPage() {
     }, [])
 
 
-    if(!user)
-        return <div></div>
 
     return (<div className={"pb-8"}>
         <Header label={"Leaderboard"} showBackButton showConfig/>
 
-        <PlayerPointsInfo playerId={Number(user)}/>
+        <PlayerPointsInfo playerId={Number(user?.id ?? 0)}/>
+
         {/*{homeInfo?.leaderBoardPosition && homeInfo?.leaderBoardPosition > 10 && (*/}
             <div>
                 Your position #{homeInfo?.leaderBoardPosition}
