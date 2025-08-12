@@ -89,10 +89,26 @@ export default function AdmPage() {
                 />}
 
                 {mode === "none" && (
-                    <div>
-                        <h2>Welcome to the admin dashboard</h2>
-                        <h3>Select one of categories above to start managing the game data</h3>
+                    // <div className="m-16 flex flex-col items-center justify-center h-full text-center space-y-4">
+                    //     <h2 className="text-3xl font-bold text-gray-300">Welcome to the Admin Dashboard</h2>
+                    //     <h3 className="text-lg text-gray-400/80 max-w-xl">
+                    //         Select one of the categories above to start managing the game data.
+                    //     </h3>
+                    // </div>
+
+
+                    <div className="flex items-center justify-center h-full p-6">
+                        <div className="border-3 border-highlight bg-highlight/50 rounded-xl shadow-lg p-8 text-center max-w-lg">
+                            <h2 className="text-3xl font-bold text-primary-foreground/90 mb-3">Admin Dashboard</h2>
+                            <p className="text-gray-700 dark:text-gray-400">
+                            {/*    <h2 className="text-3xl font-bold text-gray-300 mb-3">Welcome to the Admin Dashboard</h2>*/}
+                            {/*<p className="text-gray-400/95">*/}
+                                Select one of the categories above to start managing the game data.
+                            </p>
+                        </div>
                     </div>
+
+
                 )}
             </div>
         </div>

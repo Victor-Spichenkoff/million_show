@@ -47,7 +47,6 @@ export const HomeActionArea = ({homeInfo}:IHomeActionArea) => {
         if (!homeInfo?.matchId)
             return toast.error("You don't have any started match")
 
-        clearCache(CacheIds.homeDashboard)
         router.push(`/match/${homeInfo.matchId}`)
     }
 

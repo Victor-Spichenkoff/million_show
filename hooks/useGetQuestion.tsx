@@ -25,6 +25,7 @@ export const useGetQuestion = () => {
 
 
     const getQuestionOnApi = async (getNew?: boolean) => {
+        // IN TEST SCENARIOS:
         // await new Promise((resolve) => setTimeout(resolve, 2000))
         // return setQuestion({
         //     "id": 133,
@@ -37,8 +38,6 @@ export const useGetQuestion = () => {
         //     "level": 1
         // })
 
-        //TODO: UNCOMMENT
-        // To avoid unnecessary call, but can be passed
         if (searchParams.has("isNew") || getNew) {
             const newResult = await createAndGetNewQuestion()
             if (!newResult.isError)

@@ -1,4 +1,5 @@
 # NOW
+- MOre cache on question
 - auth -> gold.jpg is not exhibited
 - error at pagination hook
 - error of hybridation on leaderboard, because of playerInfo + YOU

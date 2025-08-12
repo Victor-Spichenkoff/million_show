@@ -15,6 +15,7 @@ import {toast} from "sonner";
 import {Prizes} from "@/components/match/prizes";
 import {ProgressBar} from "@/components/match/progressBar";
 import {useGetQuestion} from "@/hooks/useGetQuestion";
+import {CacheIds} from "@/util/cache";
 
 
 export default function MatchPage() {
@@ -25,7 +26,10 @@ export default function MatchPage() {
     const [finalScreenData, setFinalScreenData] = useState<FinalScreenData | null>(null)
     const {question, setQuestion, getQuestionOnApi} = useGetQuestion()
 
-    const getMatchInfo = useProtectedApiCall({endpoint: "/match/status"})
+    const getMatchInfo = useProtectedApiCall({
+        endpoint: "/match/status",
+        cacheId: CacheIds.currentQuestionStatus
+    })
 
 
     useEffect(() => {
