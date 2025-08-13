@@ -8,11 +8,15 @@ table {
     box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.34);
     font-family: sans-serif;
     text-align: center;
+}
 
+table:hover {
+    border-collapse: collapse;
 }
 
 thead {
-    background-color: #1f2937; /* dark gray */
+    background-color: var(--color-blue-950); /* dark gray */
+    /*background-color: #1f2937; !* dark gray *!*/
     color: white;
 }
 
@@ -21,46 +25,54 @@ th, td {
     border-bottom: 1px solid #e5e7eb;
 }
 
-tbody tr:nth-child(1) {
+tbody tr {
+    transition: all .3s;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--question);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: var(--hint);
+}
+
+
+/*TOP 3 colors*/
+tbody#leaderboard_t_body tr:nth-child(1) {
     background: linear-gradient(90deg, #ffd700, #ffea8a);
     color: #111;
     font-weight: bold;
 }
 
-tbody tr:nth-child(2) {
+tbody#leaderboard_t_body tr:nth-child(2) {
     background: linear-gradient(90deg, #c0c0c0, #dcdcdc);
     color: #111;
     font-weight: bold;
 }
 
-tbody tr:nth-child(3) {
+tbody#leaderboard_t_body tr:nth-child(3) {
     background: linear-gradient(90deg, #cd7f32, #e6b98c);
     color: #111;
     font-weight: bold;
 }
 
-/* Listrado leve para os demais */
-tbody tr:nth-child(n+4):nth-child(even) {
-    background-color: var(--question); /* branco quase puro */
-    /*background-color: #f9fafb; !* branco quase puro *!*/
-}
 
-tbody tr:nth-child(n+4):nth-child(odd) {
-    background-color: var(--hint); /* branco quase puro */
-    /*background-color: #f3f4f6; !* cinza muito claro *!*/
+tbody tr:last-child {
+    border-bottom: 4px solid transparent;
 }
-
-/*tbody tr:last-child {*/
-/*    border-bottom: 4px solid transparent;*/
-/*}*/
 
 tbody tr:hover {
-    background-color: #e0e7ff;
+    transform: scale(105%);
+    cursor: pointer;
+}
+
+tbody tr:hover td {
+    border-bottom: 10px solid #e5e7eb;
 }
 
 .rounded-table {
-    border-radius: 15px; /* Adjust the radius as desired */
-    overflow: hidden; /* Crucial for hiding content outside the rounded corners */
-
-    /*border-spacing: 0; !* Ensures no spacing between cells *!*/
+    border-radius: 15px;
+    overflow: hidden;
+    border-spacing: 0;
 }

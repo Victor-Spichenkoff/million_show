@@ -9,7 +9,8 @@ export type Historic = {
     finalState?: States
     match: Match
     user: User
-    questions: Question[]
+    questions: Question[],
+    points: number
     historicQuestions?: any[]
 }
 

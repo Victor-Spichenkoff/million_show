@@ -1,0 +1,14 @@
+#history_table {
+    border-collapse: collapse;
+}
+
+.showFromTop {
+    animation: showFromTopAnimation ease-out 1s forwards;
+    background-color: red;
+}
+
+@keyframes showFromTopAnimation {
+    from {
+        height: 0;
+    } to { height: 100% }
+}

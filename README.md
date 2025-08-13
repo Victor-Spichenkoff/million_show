@@ -1,5 +1,8 @@
 # NOW
-- MOre cache on question
+- Hardly modified match on update history (12/08/2025)
+- Cache error on question? "User already responded to last question. Order a new one, please"
+- On onClick hitory item -> view all of that case
+- MOre cache on question (isWorking?)
 - auth -> gold.jpg is not exhibited
 - error at pagination hook
 - error of hybridation on leaderboard, because of playerInfo + YOU

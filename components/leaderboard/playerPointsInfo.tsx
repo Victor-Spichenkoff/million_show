@@ -35,12 +35,12 @@ export const PlayerPointsInfo = ({playerId}: PlayerPointsInfo) => {
 
     return (
         <div className={`grid grid-cols-3 gap-4 w-full bg-question text-text/80 px-6 py-4 rounded-lg shadow-md
-        hover:scale-[103%] duration-300`}>
+        hover:scale-[103%] duration-300 max-w-max_w mx-auto`}>
             <div className="flex flex-col">
                 <span className="text-sm text-gray-500">Position #{playerPointInfo.position}</span>
-            <span className="font-semibold text-text/80">
-              {user.userName === playerPointInfo.userName ? `${user.userName} (YOU)` : playerPointInfo.userName}
-            </span>
+                <span className="font-semibold text-text/80">
+                  {user.userName === playerPointInfo.userName ? `${user.userName} (YOU)` : playerPointInfo.userName}
+                </span>
             </div>
 
             <div className="flex flex-col items-center">

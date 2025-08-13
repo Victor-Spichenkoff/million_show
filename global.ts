@@ -11,7 +11,7 @@ export const baseUrl =
 
 
 export const pageSize = 6
-
+export const totalHelps = 5
 
 export const HEADER_HEIGHT = 84
 
