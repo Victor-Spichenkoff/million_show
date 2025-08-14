@@ -9,6 +9,7 @@ import LogoImage from "@/assets/images/logo.png"
 import {ConfigDropDown} from "./config";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 interface IHeader {
     label: string
@@ -44,6 +45,11 @@ export const Header = ({
         router.push("/home")
     }
 
+    const handleHomeClick = () => {
+        if(isLogged)
+            router.push("/home")
+    }
+
     return (
         // <header className={"relative border-text border-b-2 w-screen text-center py-3 text-3xl " +
         <header className={"relative border-text  w-screen text-center py-6 text-3xl " +
@@ -65,7 +71,15 @@ export const Header = ({
                     </Button>
                 </div>
             )}
-            <h1 className={"tracking-widest"}>{label.toUpperCase()}</h1>
+            <h1 className={`tracking-widest ${isLogged && "hover:scale-105 duration-200 cursor-pointer"}`}>
+                <button onClick={handleHomeClick}>
+                    {label.toUpperCase()}
+
+                </button>
+                {/*<Link href={"/home"}>*/}
+                {/*</Link>*/}
+
+            </h1>
             <div className={"absolute top-1/2 -translate-y-1/2 right-3"}>
                 {showLoginButton && (
                     <Bounce>

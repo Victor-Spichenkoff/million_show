@@ -50,10 +50,10 @@ export default function HistoryScreen() {
     return (
         <div>
             <Header label={"History"} showBackButton showConfig/>
-            <div className="space-y-4 w-full px-2 py-5 max-w-[700px] mx-auto">
+            <div className="space-y-4 w-full px-2 py-5 max-w-[1000px] mx-auto">
                 {isLoading && <Loading/>}
                 <div className={"px-4 rounded-lg overflow-hidden"}>
-                    <table className={"rounded-table"} id={"history_table"}>
+                    <table className={"rounded-table "} id={"history_table"}>
                         <thead>
                         <tr>
                             <th>START</th>

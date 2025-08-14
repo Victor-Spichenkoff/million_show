@@ -12,6 +12,11 @@ export const baseUrl =
 
 export const pageSize = 6
 export const totalHelps = 5
+export const defaultHelps = {
+    skips: 2,
+    universitary: 2,
+    halfHalf: 1
+}
 
 export const HEADER_HEIGHT = 84
 

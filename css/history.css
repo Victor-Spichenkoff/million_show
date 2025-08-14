@@ -4,7 +4,7 @@
 
 .hiddenFromBottom {
     animation: hideFromBottomAnimation ease-out .3s forwards;
-    /*animation: hideFromBottomAnimation ease-out .3s reverse backwards;*/
+    /*animation: showFromTopAnimation ease-out .3s reverse backwards;*/
 }
 
 .showFromTop {
