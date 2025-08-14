@@ -2,13 +2,38 @@
     border-collapse: collapse;
 }
 
+.hiddenFromBottom {
+    animation: hideFromBottomAnimation ease-out .3s forwards;
+    /*animation: hideFromBottomAnimation ease-out .3s reverse backwards;*/
+}
+
 .showFromTop {
-    animation: showFromTopAnimation ease-out 1s forwards;
-    background-color: red;
+    display: table-row;
+    width: 100%;
+    animation: showFromTopAnimation ease-out .3s forwards;
 }
 
 @keyframes showFromTopAnimation {
     from {
-        height: 0;
-    } to { height: 100% }
+        display: none;
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform:  translateY(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes hideFromBottomAnimation {
+    from {
+        transform:  translateY(0);
+        opacity: 1;
+    }
+    to {
+        display: none;
+        transform: translateY(-10px);
+        opacity: 0;
+    }
 }

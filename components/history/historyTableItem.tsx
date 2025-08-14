@@ -9,29 +9,44 @@ interface IHistoryTableItem {
 }
 
 export const HistoryTableItem = ({history}: IHistoryTableItem) => {
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const extraRef = useRef<HTMLTableRowElement>(null)
+    const mainRowRef = useRef<HTMLTableRowElement>(null)
 
     const handleClick = () => {
-        setIsOpen(!isOpen)
+        if (isOpen)
+            setTimeout(() => setIsOpen(false), 2000)
+        else
+            null
+        // setIsOpen(true)
+        if (!extraRef?.current?.classList.contains("showFromTop") && !extraRef?.current?.classList.contains("hiddenFromBottom")) {
+            extraRef?.current?.classList.toggle("showFromTop")
+            mainRowRef?.current?.classList.toggle("tr_focus")
+            return
+        }
         extraRef?.current?.classList.toggle("showFromTop")
-
+        extraRef?.current?.classList.toggle("hiddenFromBottom")
+        mainRowRef?.current?.classList.toggle("tr_focus")
     }
 
     return (
         <Fragment key={history.id}>
-
             <tr
+                ref={mainRowRef}
                 onClick={handleClick}
-                className={`px- border-0`}>
-                <th>{new Date(history.match.startDate).toLocaleDateString("en-GB", {
+                className={`px-2 border-0`}>
+                <th
+                    className={"text-primary-foreground/80"}
+                >{new Date(history.match.startDate).toLocaleDateString("en-GB", {
                     hour: "2-digit",
                     minute: "2-digit",
                     day: "2-digit",
                     month: "2-digit",
                     // year: "numeric",
                 })}</th>
-                <th>{new Date(history.finishDate).toLocaleDateString("en-GB", {
+                <th
+                    className={"text-primary-foreground/80"}
+                >{new Date(history.finishDate).toLocaleDateString("en-GB", {
                     hour: "2-digit",
                     minute: "2-digit",
                     day: "2-digit",
@@ -43,17 +58,17 @@ export const HistoryTableItem = ({history}: IHistoryTableItem) => {
                 <th><StateBadge state={history.match.state}/></th>
             </tr>
 
-        {/*    EXTRA*/}
-            {isOpen && (<>
-                <tr></tr>
-                <tr
-                    ref={extraRef}
-                    className={`px-4 ${isOpen && "showFromTop"} showFromTop`}>
-                    <th colSpan={6}>
-                        novas infos
-                    </th>
-                </tr>
-            </>)}
+            {/*    EXTRA*/}
+            {/*    {isOpen && (<>*/}
+            <tr></tr>
+            <tr
+                ref={extraRef}
+                className={`px-4`}>
+                <th colSpan={6}>
+                    novas infos
+                </th>
+            </tr>
+            {/*</>)}*/}
         </Fragment>
     )
 }
