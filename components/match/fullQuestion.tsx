@@ -80,6 +80,7 @@ export const FullQuestion = ({
 
         setIsLoading2(false)
         setBlockActions(true)
+        clearAllCache()
 
         if (res.response.isCorrect && res.response.points) {// it's million
             flashGold()
@@ -101,7 +102,6 @@ export const FullQuestion = ({
             resetStatesAfterAnswer()
         } else { // wrong
             flashRed()
-            clearAllCache()
             setCorrectAnswerIndex(res.response.correctAnswer)
             setPlayerWrongAnswerIndex(selected)
             await Sleep(FLASH_ANIMATION_DURATION * 2)

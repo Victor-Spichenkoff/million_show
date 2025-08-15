@@ -19,21 +19,6 @@ tbody#leaderboard_t_body tr:nth-child(3) {
 
 
 
-tbody tr:hover, .tr_focus{
-    transform: scale(105%);
-    cursor: pointer;
-}
 
-tbody tr:hover td,
-.tr_focus td {
-    transform: scale(1.05);
-    transition: transform 0.2s ease;
-    cursor: pointer;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-tbody tr:hover td, tr.tr_focus td {
-    border-bottom: none;
-}
 
 

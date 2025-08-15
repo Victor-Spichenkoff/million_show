@@ -141,6 +141,22 @@ tbody tr:last-child {
   border-bottom: 4px solid transparent;
 }
 
+
+tbody tr:hover, .tr_focus{
+  transform: scale(105%);
+  cursor: pointer;
+}
+
+tbody tr:hover td,
+.tr_focus td {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  border-bottom: 1px solid #e5e7eb;
+  border-bottom: none;
+}
+
+
 .rounded-table {
   border-radius: 15px;
   overflow: hidden;

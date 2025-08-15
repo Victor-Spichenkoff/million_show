@@ -3,13 +3,14 @@
 import {Button} from "@/components/ui/button";
 import {Bounce} from "react-awesome-reveal";
 import {useIsLogged} from "@/hooks/useIsLogged";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import Image from "next/image";
 import LogoImage from "@/assets/images/logo.png"
 import {ConfigDropDown} from "./config";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import {authRoutes} from "@/routes";
 
 interface IHeader {
     label: string
@@ -30,6 +31,8 @@ export const Header = ({
                        }: IHeader) => {
     const router = useRouter()
     const isLogged = useIsLogged()
+    const pathname = usePathname()
+    const isAuthRoute = authRoutes.includes(pathname)
 
     const handleLoginClick = () => {
         if (!isLogged)
@@ -46,7 +49,7 @@ export const Header = ({
     }
 
     const handleHomeClick = () => {
-        if(isLogged)
+        if(isLogged && !isAuthRoute)
             router.push("/home")
     }
 
@@ -71,10 +74,9 @@ export const Header = ({
                     </Button>
                 </div>
             )}
-            <h1 className={`tracking-widest ${isLogged && "hover:scale-105 duration-200 cursor-pointer"}`}>
-                <button onClick={handleHomeClick}>
+            <h1 className={`tracking-widest ${isLogged && !isAuthRoute && "hover:scale-105 duration-200 cursor-pointer"}`}>
+                <button onClick={handleHomeClick} disabled={!isLogged || isAuthRoute} style={{cursor: !isLogged && isAuthRoute ? "text" : ""}}>
                     {label.toUpperCase()}
-
                 </button>
                 {/*<Link href={"/home"}>*/}
                 {/*</Link>*/}

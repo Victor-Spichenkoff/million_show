@@ -24,7 +24,7 @@ export const PlayersTable = () => {
                     <th>POINTS</th>
                     <th className={"hidden md:table-cell"}>TOTAL CORRECT</th>
                     <th className={"hidden md:table-cell"}>BEST MATCH</th>
-                    <th className={"hidden md:table-cell"}>AVG (min)</th>
+                    <th className={"hidden md:table-cell"}>AVG TIME</th>
                     <th>HELPS</th>
                 </tr>
                 </thead>

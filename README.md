@@ -1,4 +1,5 @@
 # NOW
+- u don't have any active match -> when click stop for real
 - Hardly modified match on update history (12/08/2025)
 - Cache error on question? "User already responded to last question. Order a new one, please"
 - On onClick hitory item -> view all of that case

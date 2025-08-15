@@ -13,11 +13,9 @@ import {HistoryTableItem} from "@/components/history/historyTableItem";
 
 export default function HistoryScreen() {
     const {id} = useParams()
-
     const getHistory = useProtectedApiCall<Historic[]>({
         endpoint: `/historic/full/${id}`
     })
-
 
     const [isLoading, startTransition] = useTransition()
     const router = useRouter()
@@ -34,6 +32,7 @@ export default function HistoryScreen() {
             setHistoric(res.response)
         })
     }, [])
+
 
     if (historic?.length == 0) {
         return (
@@ -71,56 +70,7 @@ export default function HistoryScreen() {
                         </tbody>
                     </table>
                 </div>
-
-                     {/*{historic?.map((item) => (*/}
-                     {/*    <div*/}
-                     {/*        key={item.id}*/}
-                     {/*        className="flex justify-between items-center p-4 rounded-xl bg-back-secondary border border-highlight/40 shadow-sm"*/}
-                     {/*    >*/}
-                     {/*        <div className="text-sm text-text flex items-center lg:hidden">*/}
-                     {/*            {new Date(item.match.startDate).toLocaleDateString("en-GB", {*/}
-                     {/*                day: "2-digit",*/}
-                     {/*                month: "2-digit",*/}
-                     {/*                year: "numeric",*/}
-                     {/*            })}*/}
-                     {/*            <div className={"inline-block h-[.5px] w-2 bg-text mx-1.5   "}></div>*/}
-                     {/*            {new Date(item.finishDate).toLocaleDateString("en-GB", {*/}
-                     {/*                day: "2-digit",*/}
-                     {/*                month: "2-digit",*/}
-                     {/*                year: "numeric",*/}
-                     {/*            })}*/}
-                     {/*        </div>*/}
-                     {/*        <div className="hidden text-sm text-text flex items-center lg:flex ">*/}
-                     {/*            {new Date(item.match.startDate).toLocaleDateString("en-GB", {*/}
-                     {/*                day: "2-digit",*/}
-                     {/*                month: "2-digit",*/}
-                     {/*                year: "numeric",*/}
-                     {/*                hour: "2-digit",*/}
-                     {/*                minute: "2-digit",*/}
-                     {/*            })}*/}
-                     {/*            <div className={"inline-block h-[.5px] w-2 bg-text mx-1.5   "}></div>*/}
-                     {/*            {new Date(item.finishDate).toLocaleDateString("en-GB", {*/}
-                     {/*                day: "2-digit",*/}
-                     {/*                month: "2-digit",*/}
-                     {/*                year: "numeric",*/}
-                     {/*                hour: "2-digit",*/}
-                     {/*                minute: "2-digit",*/}
-                     {/*            })}*/}
-                     {/*        </div>*/}
-
-                     {/*        <div className="text-xl font-bold text-gold text-center ">*/}
-                     {/*            {formatPrize(item.finalPrize)}*/}
-                     {/*        </div>*/}
-
-                     {/*        <div className={"min-w-[90px] flex justify-center"}>*/}
-                     {/*            <StateBadge state={item.finalState}/>*/}
-                     {/*        </div>*/}
-                     {/*    </div>*/}
-                     {/*))}*/}
-                    </div>
-                    </div>
-
-                    )
-
-
-                }
+            </div>
+        </div>
+    )
+}
