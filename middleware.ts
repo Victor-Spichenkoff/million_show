@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import {authRoutes, getLoginPathnameWithPreviousUrl, protectedRoutes, publicRoutes} from "@/routes"
-
-
-const PUBLIC_PATHS = ['/', '/auth/login', '/auth/register', "/public", "/auto-login"]
+import {authRoutes, getLoginPathnameWithPreviousUrl, isImagePath, protectedRoutes, publicRoutes} from "@/routes"
 
 
 export function middleware(request: NextRequest) {
@@ -12,7 +9,7 @@ export function middleware(request: NextRequest) {
     const isPublic = publicRoutes.includes(pathname)
     const isAuth = authRoutes.includes(pathname)
 
-    if(isPublic)
+    if(isPublic || isImagePath(pathname))
          return NextResponse.next()
     // if(!isProtected && !isAuth)
     //      return NextResponse.next()

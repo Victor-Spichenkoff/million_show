@@ -4,7 +4,7 @@ export const globalCache = new Map<string, any>()
 
 export const clearAllCache = () => globalCache.clear()
 
-export const clearCache = (id: string) => globalCache.delete(id)
+export const clearCache = (id: string | number) => globalCache.delete(id.toString())
 
 
 /*

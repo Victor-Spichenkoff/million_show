@@ -31,12 +31,15 @@ export function AuthPage() {
                     ) : <CreateForm setIsLogin={setIsLogin}/>}
                 </Suspense>
                 <div
-                    className={"flex-1 bg-gold min-h-[205] amd:amin-w-[550px] lg:min-w-[550px] shadow-black/40 shadow-md"}>
-                    <div style={{
-                        backgroundImage: 'url("/gold.jpg")',
-                        backgroundSize: "cover",
-                        backgroundPosition: "center"
-                    }} className={"w-full h-full"}>
+                    className={"flex-1 bg-gold min-h-[205] amd:amin-w-[550px] lg:min-w-[550px] shadow-black/40 shadow-md"}
+                >
+                    <div
+                        style={{
+                            backgroundImage: 'url("/gold.jpg")',
+                            backgroundSize: "cover",
+                            backgroundPosition: "center"
+                        }}
+                         className={"w-full h-full"}>
                     </div>
                 </div>
             </div>

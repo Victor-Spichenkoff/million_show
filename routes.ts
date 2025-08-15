@@ -1,6 +1,6 @@
 export const publicRoutes = [
     "/",
-    "/auto-login"
+    "/auto-login",
 ]
 
 export const protectedRoutes = [
@@ -24,4 +24,14 @@ export const getLoginPathnameWithPreviousUrl = (previous?: string) => {
      return  "/auth?loginError=true"
 
     return `/auth?loginError=true&previous=${previous}`
+}
+
+
+export const imageSuffix = [".jpg", ".png"]
+
+export const isImagePath = (path: string) => {
+    for(let suffix of imageSuffix)
+        if(path.endsWith(suffix))
+            return true
+    return false
 }
