@@ -49,7 +49,7 @@ export const Header = ({
     }
 
     const handleHomeClick = () => {
-        if(isLogged && !isAuthRoute)
+        if (isLogged && !isAuthRoute)
             router.push("/home")
     }
 
@@ -74,8 +74,14 @@ export const Header = ({
                     </Button>
                 </div>
             )}
-            <h1 className={`tracking-widest ${isLogged && !isAuthRoute && "hover:scale-105 duration-200 cursor-pointer"}`}>
-                <button onClick={handleHomeClick} disabled={!isLogged || isAuthRoute} style={{cursor: !isLogged && isAuthRoute ? "text" : ""}}>
+            <h1 className={`tracking-widest `}>
+                <button
+                    onClick={handleHomeClick}
+                    disabled={!isLogged || isAuthRoute}
+                    className={`${isLogged && !isAuthRoute && "hover:scale-105 duration-200"}`}
+                    style={{
+                        cursor: !isLogged && isAuthRoute ? "text" : "",
+                    }}>
                     {label.toUpperCase()}
                 </button>
                 {/*<Link href={"/home"}>*/}

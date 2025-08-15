@@ -57,6 +57,7 @@ export const FullQuestion = ({
 
 
     useEffect(() => {
+        // setSelected(2)//TODO: PICTURE
         if(question == "loading")
             setShowSkeleton(true)
         else {

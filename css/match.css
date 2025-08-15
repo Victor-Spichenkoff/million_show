@@ -41,14 +41,18 @@
 
 /* ANIMATIONS */
 
+/*TODO: PICTURE*/
 .bg-flash-green {
     animation: flash-green 2.5s ease-in-out forwards;
+    /*animation: flash-green 2.5s ease-in-out forwards infinite;*/
 }
 .bg-flash-red {
     animation: flash-red 2.5s ease-in-out forwards;
+    /*animation: flash-red 2.5s ease-in-out forwards infinite;*/
 }
 .bg-flash-gold {
     animation: flash-gold 2.5s ease-in-out forwards;
+    /*animation: flash-gold 2.5s ease-in-out forwards infinite;*/
 }
 
 

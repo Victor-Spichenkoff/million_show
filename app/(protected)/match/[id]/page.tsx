@@ -26,7 +26,7 @@ export default function MatchPage() {
     const [finalScreenData, setFinalScreenData] = useState<FinalScreenData | null>(null)
     const {question, setQuestion, getQuestionOnApi} = useGetQuestion()
 
-    const getMatchInfo = useProtectedApiCall({
+    const getMatchInfo = useProtectedApiCall<Match>({
         endpoint: "/match/status",
         cacheId: CacheIds.currentQuestionStatus
     })
@@ -41,9 +41,17 @@ export default function MatchPage() {
 
 
     const getAndSetMatchInfo = async () => {
+        if(finalScreenData) return
+
         const response = await getMatchInfo()
-        if (!response.isError)
+        if (!response.isError) {
+            //TODO: PICTURE
+            // response.response.questionIndex = 10
+            // response.response.stopPrize = 100_000
+            // response.response.wrongPrize = 50_000
+            // response.response.nextPrize = 200_000
             setMatchState(response.response)
+        }
         else {
             toast.error("You don't have any active match")
             router.push("/home")
