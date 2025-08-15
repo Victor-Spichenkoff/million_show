@@ -22,7 +22,6 @@ export const useAdmIsPortuguese = ({currentPage}: IUseAdmIsPortuguese) => {
         UpdateConfigStorage({...config, isPortuguese: isPortuguese ?? false})
 
         setLastPageForIdiom(prev => {
-            //TODO: ACHO QUE DEVE INVERTER
             prev[isPortuguese ? "pageForEn" : "pageForPt"] = currentPage
             return {...prev}
         })

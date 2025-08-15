@@ -69,8 +69,17 @@ export const getPagedCache = <T>(id: string) => {
 }
 
 export enum CacheIds {
-    homeDashboard = "1",
-    playerInfos = "2",
-    currentQuestion = "3",
-    currentQuestionStatus = "4",
+    homeDashboard = 1,
+    playerInfos,
+    currentQuestion,
+    currentQuestionStatus,
+    history,
 }
+//
+// export enum CacheIds {
+//     homeDashboard = "1",
+//     playerInfos = "2",
+//     currentQuestion = "3",
+//     currentQuestionStatus = "4",
+//     history,
+// }

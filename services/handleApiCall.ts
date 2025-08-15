@@ -16,8 +16,8 @@ export const handleApiCallWithCallBack = async <TReturn>
     } catch (e: any) {
         console.log(e.status)
         if (isAxiosError(e) && (e.status == 401)) {
-            //TODO: IS STILL WORKING without this?
-            // if (isAxiosError(e) && (e.status == 401 || e.code == "UNAUTHORIZED")) {
+            //TODO: IS STILL WORKING without this?; if error, comment line 20:
+            if (isAxiosError(e) && (e.status == 401 || e.code == "UNAUTHORIZED"))
             return {
                 isError: true,
                 errorMessage: `Please, log in to access it`
@@ -135,6 +135,6 @@ export type IHandleApiCall<TBody = any> = {
     body?: TBody,// para poder ter auto complete nele se quiser
     config?: AxiosRequestConfig
     token?: string
-    cacheId?: string,
+    cacheId?: string | number,
     noAxiosCache?: boolean
 }

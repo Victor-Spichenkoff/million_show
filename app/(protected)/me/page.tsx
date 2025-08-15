@@ -17,7 +17,7 @@ export default function Home() {
     })
 
 
-    const handlebtnClick = async () => {
+    const handleBtnClick = async () => {
         const res = await getMe()
 
         if(res.isError)
@@ -32,7 +32,7 @@ export default function Home() {
       <Header label="ME" />
       <ThemeToggle />
         <LogoutButton />
-        <Button onClick={handlebtnClick}>Get me</Button>
+        <Button onClick={handleBtnClick}>Get me</Button>
         <div>{name}</div>
     </div>
   )

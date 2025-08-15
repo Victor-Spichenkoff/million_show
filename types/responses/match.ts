@@ -1,4 +1,5 @@
 import {User} from "@/types/user";
+import {Historic} from "@/types/Historic";
 
 export type Match = {
     id: number
@@ -14,12 +15,8 @@ export type Match = {
     nextPrize: number
 
 
-    historic?: object
-    questionState: string
-    //TODO: add the real type
-    // questionState: QuestionState
-    // historic?: Historic
-
+    questionState: QuestionState
+    historic?: Historic
     user?: User
 }
 
@@ -34,6 +31,8 @@ export type AnswerActionResponse = {
     points: number
 }
 
+
+export type QuestionState = "answered" | "waiting"
 
 
 type States = "playing" | "lost" | "stopped" | "won" | "cancelled"

@@ -37,9 +37,8 @@ config.autoAddCss = false
 export const metadata: Metadata = {
     title: "Million Show",
     description: "Can you beat the challenge?",
-};
+}
 
-//TODO: FIX HYBRADATION
 
 export default function RootLayout({
                                        children,

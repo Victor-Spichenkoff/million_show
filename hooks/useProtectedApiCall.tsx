@@ -15,8 +15,8 @@ export const useProtectedApiCall = <TReturn = any, TBody = any>(config: IHandleA
 
     return async () => {
         const cacheKey = config.cacheId
-        if (cacheKey && globalCache.has(cacheKey)) {
-            return { isError: false, response: globalCache.get(cacheKey), errorMessage: null }
+        if (cacheKey && globalCache.has(cacheKey.toString())) {
+            return { isError: false, response: globalCache.get(cacheKey.toString()), errorMessage: null }
         }
 
         const token = await getAccessToken()
@@ -35,7 +35,7 @@ export const useProtectedApiCall = <TReturn = any, TBody = any>(config: IHandleA
 
         //save on cache
         if(cacheKey && !res.isError)
-            globalCache.set(cacheKey, res.response)
+            globalCache.set(cacheKey.toString(), res.response)
 
         return res
     }

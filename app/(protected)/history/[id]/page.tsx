@@ -10,11 +10,13 @@ import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
 import {Header} from "@/components/template/header";
 import {HistoryTableItem} from "@/components/history/historyTableItem";
+import {CacheIds} from "@/util/cache";
 
 export default function HistoryScreen() {
     const {id} = useParams()
     const getHistory = useProtectedApiCall<Historic[]>({
-        endpoint: `/historic/full/${id}`
+        endpoint: `/historic/full/${id}`,
+        cacheId: CacheIds.history
     })
 
     const [isLoading, startTransition] = useTransition()
@@ -48,7 +50,7 @@ export default function HistoryScreen() {
 
     return (
         <div>
-            <Header label={"History"} showBackButton showConfig/>
+            <Header label={"History"} showBackButton showConfig isBackButtonUseReturn/>
             <div className="space-y-4 w-full px-2 py-5 max-w-[1000px] mx-auto">
                 {isLoading && <Loading/>}
                 <div className={"px-4 rounded-lg overflow-hidden"}>
