@@ -1,4 +1,5 @@
 # NOW
+- view question repeat id when search (e.g.: 12). It happens when changing the language
 - Hardly modified match on update history (12/08/2025)
 - Cache error on question? "User already responded to last question. Order a new one, please"
 - error at pagination hook

@@ -30,13 +30,15 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [isAll, setIsAll] = useState(false)
+    const [isSearch, setIsSearch] = useState(false)
+    const [query, setQuery] = useState(getQuestionSearchQuery())
+
     const {
         IsAdmComponent,
         isPortuguese,
         lastPageForIdiom,
         setLastPageForIdiom
     } = useAdmIsPortuguese({currentPage: page})
-    const [query, setQuery] = useState(getQuestionSearchQuery())
 
 
     const getQuestionsCall = useProtectedApiCall<Question[]>({
@@ -66,7 +68,8 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     }
 
     useEffect(() => {
-        setPage(lastPageForIdiom[isPortuguese ? "pageForPt" : "pageForEn"])
+        if (!query)
+            setPage(lastPageForIdiom[isPortuguese ? "pageForPt" : "pageForEn"])
     }, [lastPageForIdiom])
 
 
@@ -124,10 +127,11 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
 
     //enter press on search
     const handleSearch = async (q: string) => {
-       setIsAll(false)
-        if(!q) {
-            //the first time it was cleaned
-            if(q != query) {
+
+        setIsAll(false)
+        if (!q) {
+            //the first time it must be cleaned
+            if (q != query) {
                 clearCacheForSpecialSuffix("question_page_", ["_pt", "_en"])
                 setQuestions([])
                 setPage(0)
@@ -193,7 +197,6 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
 }
 
 
-
 //EXTRA: TRY TO IMPLEMENT THIS (only pagination hook)
 // export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}: IAdmChooseButtons) => {
 //     const [deleteId, setDeleteId] = useState<number | null>(null)
@@ -245,7 +248,8 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
 //     // }
 //
 //     useEffect(() => {
-//         setPage(lastPageForIdiom[isPortuguese ? "pageForPt" : "pageForEn"])
+//         if(!query)
+//          setPage(lastPageForIdiom[isPortuguese ? "pageForPt" : "pageForEn"])
 //     }, [lastPageForIdiom])
 //
 //
