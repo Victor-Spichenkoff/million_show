@@ -34,8 +34,11 @@ export const PlayerPointsInfo = ({playerId}: PlayerPointsInfo) => {
     const bestTime = minuteWithSeconds(playerPointInfo.bestMatchTime)
 
     return (
-        <div className={`grid grid-cols-3 gap-4 w-full bg-question text-text/80 px-6 py-4 rounded-lg shadow-md
+        //TODO: TRY A HIGHLIGHT + BORDER
+        <div className={`grid grid-cols-3 gap-4 w-full border-4 border-question bg-question/70 text-text/80 px-6 py-4 rounded-lg shadow-md
         hover:scale-[103%] duration-300 max-w-max_w mx-auto`}>
+        {/*    <div className={`grid grid-cols-3 gap-4 w-full bg-question text-text/80 px-6 py-4 rounded-lg shadow-md*/}
+        {/*hover:scale-[103%] duration-300 max-w-max_w mx-auto`}>*/}
             <div className="flex flex-col">
                 <span className="text-sm text-gray-500">Position #{playerPointInfo.position}</span>
                 <span className="font-semibold text-text/80">
