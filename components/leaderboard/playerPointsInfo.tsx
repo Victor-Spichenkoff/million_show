@@ -16,7 +16,7 @@ export const PlayerPointsInfo = ({playerId}: PlayerPointsInfo) => {
     const user = GetUserStorage()
     const getPlayerInfo = useProtectedApiCall<PointsInfoForPlayer>({
         endpoint: `/points/player/${playerId}`,
-        cacheId: CacheIds.playerInfos
+        cacheId: `points_player_${playerId}`
     })
 
     useEffect(() => {
@@ -50,7 +50,7 @@ export const PlayerPointsInfo = ({playerId}: PlayerPointsInfo) => {
                 <span className="text-sm text-gray-500">Best Match</span>
                 <span className="font-medium"></span>
                 {/*<span className="font-medium">{playerPointInfo.bestMatchPoints} pts in {bestTime.min}m {bestTime.sec}s</span>*/}
-                <span className="font-medium">{playerPointInfo.bestMatchPoints} pts</span>
+                <span className="font-medium">{playerPointInfo.bestMatch} pts</span>
                 <span className="text-xs text-foreground/60">{bestTime.min}m {bestTime.sec}s</span>
             </div>
 
