@@ -15,7 +15,7 @@ export const PlayerPointsInfo = ({playerId}: PlayerPointsInfo) => {
     const [playerPointInfo, setPlayerPointInfo] = useState<PointsInfoForPlayer | null>(null)
     const user = GetUserStorage()
     const getPlayerInfo = useProtectedApiCall<PointsInfoForPlayer>({
-        endpoint: `/points/player/${playerId}`,
+        endpoint: `/points/player/${playerId}/info`,
         cacheId: `points_player_${playerId}`
     })
 

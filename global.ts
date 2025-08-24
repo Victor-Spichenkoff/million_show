@@ -27,5 +27,4 @@ export const autoLoginUserName = process.env.NODE_ENV === 'development' ? "strin
 export const autoLoginUserPassword = process.env.NODE_ENV === 'development' ? "1234" : "12345"
 
 
-
 export const FLASH_ANIMATION_DURATION = 2_500

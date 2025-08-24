@@ -2,6 +2,7 @@ import {LeaderboardPlayers} from "@/types/responses/points";
 import {getLargeAndSmallTime, minuteWithSeconds} from "@/helpers/time";
 import {GetUserStorage} from "@/storage/localStorage/user";
 import {useRouter} from "next/navigation";
+import {clearAllCache, clearCacheForPrefix} from "@/util/cache";
 
 interface ILeaderboardTableItem {
     data: LeaderboardPlayers
@@ -15,8 +16,10 @@ export const LeaderboardTableItem = ({data, position}:ILeaderboardTableItem) => 
     const user = GetUserStorage()
 
     const handleClick = () => {
-        if(data.userId)
+        if(data.userId) {
+            clearAllCache()
            router.push(`/history/${data.userId}`)
+        }
     }
 
     return (

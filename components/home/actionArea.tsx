@@ -33,7 +33,8 @@ export const HomeActionArea = ({homeInfo}:IHomeActionArea) => {
             result = await createMatch()
 
         if (result.isError)
-            return toast.error("Can't create match")
+            return toast.error(result.errorMessage)
+            // return toast.error("Can't create match")
 
         UpdateHintStateStorage("")
         clearCache(CacheIds.homeDashboard)

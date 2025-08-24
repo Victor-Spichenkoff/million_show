@@ -1,5 +1,5 @@
 import {AdmModes} from "@/app/(protected)/adm/page";
-import {Dispatch, SetStateAction, useCallback, useEffect, useState, useTransition} from "react";
+import {Dispatch, SetStateAction,  useEffect, useState} from "react";
 import {Question} from "@/types/responses/question";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {AdmViewItem} from "@/components/adm/admViewItem";
@@ -8,14 +8,11 @@ import {Loading} from "@/components/template/loading";
 import {Button} from "@/components/ui/button";
 import {User} from "@/types/user";
 import {pageSize} from "@/global";
-
 import {loadQuestionCachedQuestions} from "@/services/questions";
-
 import {useAdmIsPortuguese} from "@/hooks/useAdmIsEnglish";
 import {Search} from "@/components/utils/search";
 import {clearCacheForSpecialSuffix} from "@/util/cache";
 import {clearQuestionSearchQuery, getQuestionSearchQuery, saveQuestionSearchQuery} from "@/services/adm";
-import {usePagination} from "@/hooks/global/usePagination";
 
 interface IAdmChooseButtons {
     setMode: Dispatch<SetStateAction<AdmModes>>
@@ -30,7 +27,6 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [isAll, setIsAll] = useState(false)
-    const [isSearch, setIsSearch] = useState(false)
     const [query, setQuery] = useState(getQuestionSearchQuery())
 
     const {
@@ -196,8 +192,8 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
     )
 }
 
-
-//EXTRA: TRY TO IMPLEMENT THIS (only pagination hook)
+//
+// //EXTRA: TRY TO IMPLEMENT THIS (only pagination hook)
 // export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}: IAdmChooseButtons) => {
 //     const [deleteId, setDeleteId] = useState<number | null>(null)
 //     const [page, setPage] = useState(0)
@@ -306,32 +302,32 @@ export const AdmViewQuestions = ({setMode, setEditionEntity, setGlobalIsLoading}
 //
 //
 //     //enter press on search
-//     const handleSearch = async (q: string) => {
-//         setIsAll(false)
-//         if (!q) {
-//             //the first time it was cleaned
-//             if (q != query) {
-//                 clearCacheForSpecialSuffix("question_page_", ["_pt", "_en"])
-//                 setQuestions([])
-//                 setPage(0)
-//                 setLastPageForIdiom({pageForEn: 0, pageForPt: 0})
-//                 clearQuestionSearchQuery()
-//                 setQuery("")
-//             }
-//             await getQuestions()
-//             // await handleGetMore()
-//         } else if (q != query) {
-//             setQuery(q)
-//             setQuestions([])
-//             setPage(0)
-//             saveQuestionSearchQuery(q)
-//             setLastPageForIdiom({pageForEn: 0, pageForPt: 0})
-//             clearCacheForSpecialSuffix("question_page_", ["_pt", "_en"])
-//         } else {
-//             await getQuestions()
-//             // await handleGetMore()
-//         }
-//     }
+//     // const handleSearch = async (q: string) => {
+//     //     setIsAll(false)
+//     //     if (!q) {
+//     //         //the first time it was cleaned
+//     //         if (q != query) {
+//     //             clearCacheForSpecialSuffix("question_page_", ["_pt", "_en"])
+//     //             setQuestions([])
+//     //             setPage(0)
+//     //             setLastPageForIdiom({pageForEn: 0, pageForPt: 0})
+//     //             clearQuestionSearchQuery()
+//     //             setQuery("")
+//     //         }
+//     //         await getQuestions()
+//     //         // await handleGetMore()
+//     //     } else if (q != query) {
+//     //         setQuery(q)
+//     //         setQuestions([])
+//     //         setPage(0)
+//     //         saveQuestionSearchQuery(q)
+//     //         setLastPageForIdiom({pageForEn: 0, pageForPt: 0})
+//     //         clearCacheForSpecialSuffix("question_page_", ["_pt", "_en"])
+//     //     } else {
+//     //         await getQuestions()
+//     //         // await handleGetMore()
+//     //     }
+//     // }
 //
 //
 //     return (

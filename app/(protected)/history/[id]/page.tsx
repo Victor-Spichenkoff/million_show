@@ -10,7 +10,7 @@ import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
 import {Header} from "@/components/template/header";
 import {HistoryTableItem} from "@/components/history/historyTableItem";
-import {CacheIds} from "@/util/cache";
+import {CacheIds, clearAllCache} from "@/util/cache";
 import {PlayerPointsInfo} from "@/components/leaderboard/playerPointsInfo";
 
 export default function HistoryScreen() {
@@ -25,6 +25,8 @@ export default function HistoryScreen() {
     const [historic, setHistoric] = useState<Historic[] | null>(null)
 
     useEffect(() => {
+
+
         startTransition(async () => {
             const res = await getHistory()
             if (res.isError) {
@@ -51,7 +53,7 @@ export default function HistoryScreen() {
 
     return (
         <div>
-            <Header label={"History"} showBackButton showConfig isBackButtonUseReturn/>
+            <Header label={"Recent History"} showBackButton showConfig isBackButtonUseReturn/>
             <div className="space-y-4 w-full px-2 py-5 max-w-[1000px] mx-auto">
                 {isLoading && <Loading/>}
                 <PlayerPointsInfo playerId={Number(id)} />

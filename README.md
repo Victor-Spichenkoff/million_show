@@ -1,10 +1,9 @@
 # NOW
-- Tests at db
+- Don't create match at the frontend
 - Hardly modified match on update history (12/08/2025)
-- Cache error on question? "User already responded to last question. Order a new one, please"
 - error at pagination hook
 
-- Create view historic for all
+
 - finsih auto creation
 - million-show/helpers/userCreation.ts -> fix userCreation
 - Improve "none" on adm

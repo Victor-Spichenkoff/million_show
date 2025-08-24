@@ -93,6 +93,9 @@ export const HistoryTableItem = ({history}: IHistoryTableItem) => {
                         <div className={"col-span-[6]"}>{timeInfo.larger}{timeInfo.largerLabel} {timeInfo.smaller}{timeInfo.smallerLabel}</div>
                         {/*<div className={"col-span-[6]"}>{timeInfo.min}m {timeInfo.sec}s</div>*/}
                     </div>
+                    <div>
+                        id: {history.id}
+                    </div>
                 </th>
             </tr>
 
