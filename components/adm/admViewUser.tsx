@@ -36,7 +36,6 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
 
 
     useEffect(() => {
-        console.log("ONE");
         (async () => {
             setGlobalIsLoading(true)
             await getMore()
@@ -46,26 +45,26 @@ export const AdmViewUser = ({setMode, setEditionEntity, setGlobalIsLoading}: IAd
 
 
     // DELETE
-    // useEffect(() => {
-    //     if (!deleteId)
-    //         return
-    //
-    //     (async () => {
-    //         setGlobalIsLoading(true)
-    //         const res = await deleteUserCall()
-    //
-    //         if (res.isError) {
-    //             toast.error(res.errorMessage)
-    //         } else {
-    //             toast.success(res.response)
-    //             setUser(c => c.filter(c => c.id != deleteId))
-    //         }
-    //
-    //         setGlobalIsLoading(false)
-    //
-    //     })()
-    //
-    // }, [deleteId])
+    useEffect(() => {
+        if (!deleteId)
+            return
+
+        (async () => {
+            setGlobalIsLoading(true)
+            const res = await deleteUserCall()
+
+            if (res.isError) {
+                toast.error(res.errorMessage)
+            } else {
+                toast.success(res.response)
+                setUser(c => c.filter(c => c.id != deleteId))
+            }
+
+            setGlobalIsLoading(false)
+
+        })()
+
+    }, [deleteId])
 
 
     const handleDelete = async (userId: number) => {

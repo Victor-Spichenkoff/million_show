@@ -3,7 +3,7 @@ import {StateBadge} from "@/components/template/homeHistoric";
 import {formatPrize} from "@/util/match";
 import {defaultHelps, totalHelps} from "@/global";
 import {Fragment, useRef, useState} from "react";
-import {getLargeAndSmallTime, getTimeDiffInMinutes, minuteWithSeconds} from "@/helpers/time";
+import {getLargeAndSmallTime, getTimeDiffInMinutes} from "@/helpers/time";
 
 interface IHistoryTableItem {
     history: Historic
@@ -30,9 +30,8 @@ export const HistoryTableItem = ({history}: IHistoryTableItem) => {
         mainRowRef?.current?.classList.toggle("tr_focus")
     }
 
-    console.log("start> " + history.match.startDate)
     const dateInMin = getTimeDiffInMinutes(history.finishDate, history.match.startDate)//Math.floor(dateDiff / (1000 * 60))
-    console.log("MIM> " + dateInMin)
+
     const timeInfo = getLargeAndSmallTime(dateInMin)
 
     return (
@@ -94,6 +93,7 @@ export const HistoryTableItem = ({history}: IHistoryTableItem) => {
                         {/*<div className={"col-span-[6]"}>{timeInfo.min}m {timeInfo.sec}s</div>*/}
                     </div>
                     <div>
+                        {/*TODO: REMOVE THIS COLUM */}
                         id: {history.id}
                     </div>
                 </th>

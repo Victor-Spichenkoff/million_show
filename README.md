@@ -1,4 +1,5 @@
 # NOW
+- Don't delete user
 - Don't create match at the frontend
 - Hardly modified match on update history (12/08/2025)
 - error at pagination hook
