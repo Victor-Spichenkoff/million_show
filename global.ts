@@ -10,6 +10,11 @@ export const baseUrl =
         : 'https://million-show-api.onrender.com'
 
 
+export const Env = {
+    isDevelopment: () => process.env.NODE_ENV === 'development'
+}
+
+
 export const pageSize = 6
 export const totalHelps = 5
 export const defaultHelps = {

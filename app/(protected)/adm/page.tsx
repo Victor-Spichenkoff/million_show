@@ -25,7 +25,7 @@ export type AdmModes =
     | "addQuestion"
 
 export default function AdmPage() {
-    const [mode, setMode] = useState<AdmModes>("none")
+    const [mode, setMode] = useState<AdmModes>("viewQuestions")
     const [editionEntity, setEditionEntity] = useState<null | User | Question>(null)
     const [globalIsLoading, setGlobalIsLoading] = useState(false)
 

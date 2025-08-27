@@ -3,6 +3,7 @@ import {toast} from "sonner";
 import {useEffect, useState} from "react";
 import {getStoreLastUsedTime, storeLastUsedTime} from "@/storage/localStorage/apiConnection";
 import {Button} from "@/components/ui/button";
+import {Env} from "@/global";
 
 
 interface IConnectionTest {
@@ -80,7 +81,7 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
     }
 
     useEffect(() => {
-        if (process.env.NODE_ENV == "development") {
+        if (Env.isDevelopment()) {
             if (setLockActions)
                 setLockActions(false)
             return
