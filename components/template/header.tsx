@@ -94,7 +94,7 @@ export const Header = ({
                         <Button
                             onClick={handleLoginClick}
                             className={"shine-btn shine-btn-gold border-2 border-gold text-primary-foreground hover:bg-gold/90" +
-                                ""}>{isLogged ? "Home" : "Quick Login"}
+                                ""}>{isLogged ? "Home" : "Auto Login"}
                         </Button>
                     </Bounce>
                 )}
