@@ -11,6 +11,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import {authRoutes} from "@/routes";
+import ThemeToggle from "@/components/utils/themeToggle";
 
 interface IHeader {
     label: string
@@ -19,6 +20,7 @@ interface IHeader {
     showLogo?: boolean
     showBackButton?: boolean
     isBackButtonUseReturn?: boolean
+    showThemButton?: boolean
 }
 
 export const Header = ({
@@ -27,7 +29,8 @@ export const Header = ({
                            showLoginButton,
                            showLogo,
                            showBackButton,
-                           isBackButtonUseReturn
+                           isBackButtonUseReturn,
+                           showThemButton
                        }: IHeader) => {
     const router = useRouter()
     const isLogged = useIsLogged()
@@ -88,15 +91,21 @@ export const Header = ({
                 {/*</Link>*/}
 
             </h1>
-            <div className={"absolute top-1/2 -translate-y-1/2 right-3"}>
+            <div className={"absolute top-1/2 -translate-y-1/2 right-3 flex items-center gap-x-5"}>
                 {showLoginButton && (
                     <Bounce>
                         <Button
                             onClick={handleLoginClick}
-                            className={"shine-btn shine-btn-gold border-2 border-gold text-primary-foreground hover:bg-gold/90" +
-                                ""}>{isLogged ? "Home" : "Auto Login"}
+                            className={`shine-btn shine-btn-gold border-2 border-gold text-primary-foreground hover:bg-gold/90`}
+                        >
+                            {isLogged ? "Home" : "Auto Login"}
                         </Button>
                     </Bounce>
+                )}
+                {showThemButton && (
+                    <div className={"-mb-1"}>
+                        <ThemeToggle/>
+                    </div>
                 )}
                 {showConfig && <ConfigDropDown hideLogout={!isLogged}/>}
             </div>

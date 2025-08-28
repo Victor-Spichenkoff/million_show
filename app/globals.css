@@ -39,6 +39,7 @@ mark {
 */
 .shine-btn {
   background: transparent;
+  color: var(--primary-foreground);
   font-family: var(--font-roboto) sans-serif;
   text-decoration: none;
   border: 1px solid var(--gold);

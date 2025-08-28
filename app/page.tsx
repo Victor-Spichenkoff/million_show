@@ -30,7 +30,7 @@ export default function Home() {
         <div className={"flex flex-col items-center overflow-hidden"}>
             <ConnectionTest isSilent/>
 
-            <Header label={"Welcome"} showLoginButton showLogo/>
+            <Header label={"Welcome"} showLoginButton showLogo showThemButton/>
 
 
             {/*GOLD*/}
@@ -154,7 +154,6 @@ export default function Home() {
                     >
                         Lets Play?
                     </Button>
-
                 </Link>
 
             </Bounce>
