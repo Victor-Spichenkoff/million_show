@@ -10,8 +10,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import Image from "next/image";
 import PyramidImage from "@/assets/images/prize_piramid.png"
 import LeaderboardImage from "../assets/images/prints/leaderboard.png"
-// import LeaderboardImage from "../assets/images/prints/leaderboard_up.png"
-// import LeaderboardImage from "../assets/images/prints/leaderboard_dark.png"
 import {useIsLogged} from "@/hooks/useIsLogged";
 import {ConnectionTest} from "@/components/utils/connectionTest";
 import Slider from "@/components/home/Slider";
@@ -20,7 +18,7 @@ import Q2 from "../assets/images/prints/print_q2.png"
 import Q3 from "../assets/images/prints/print_q3.png"
 import Q4 from "../assets/images/prints/print_q4.png"
 import Q5 from "../assets/images/prints/print_q5.png"
-import {Fade, Reveal, Slide, Bounce} from "react-awesome-reveal"
+import {Reveal, Bounce, Fade} from "react-awesome-reveal"
 
 export default function Home() {
     const isLogged = useIsLogged()
@@ -30,7 +28,9 @@ export default function Home() {
         <div className={"flex flex-col items-center overflow-hidden"}>
             <ConnectionTest isSilent/>
 
-            <Header label={"Welcome"} showLoginButton showLogo showThemButton/>
+            <Fade triggerOnce>
+                <Header label={"Welcome"} showLoginButton showLogo showThemButton/>
+            </Fade>
 
 
             {/*GOLD*/}
@@ -79,15 +79,18 @@ export default function Home() {
                     <p>How is your cultural knowledge? History? Math?
                         and much more...</p>
 
-                    <div className={"w-full bg-back overflow-hidden bg-gold rounded-lg"}>
-                        {/*PRINT Question screen? CORRECT ICON*/}
+                    <div className={""}>
+
+                    <div className={"w-full max-w-[90dvw] md:max-w-[900px] bg-back overflow-hidden bg-gold rounded-lg"}>
                         <Slider
                             images={[
                                 Q1, Q2, Q3, Q4, Q5
                             ]}
                         />
                     </div>
+                    </div>
                 </LandSection>
+
             </Reveal>
 
 

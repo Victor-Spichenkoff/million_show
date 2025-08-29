@@ -98,12 +98,14 @@ export const Header = ({
                             onClick={handleLoginClick}
                             className={`shine-btn shine-btn-gold border-2 border-gold text-primary-foreground hover:bg-gold/90`}
                         >
-                            {isLogged ? "Home" : "Auto Login"}
+                            <span className={"hidden md:block"}>{isLogged ? "Home" : "Auto Login"}</span>
+                            <span className={"md:hidden"}>{isLogged ? "Home" : "Login"}</span>
+
                         </Button>
                     </Bounce>
                 )}
                 {showThemButton && (
-                    <div className={"-mb-1"}>
+                    <div className={"-mb-1 hidden md:block"}>
                         <ThemeToggle/>
                     </div>
                 )}
