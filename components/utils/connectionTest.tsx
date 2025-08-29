@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {getStoreLastUsedTime, storeLastUsedTime} from "@/storage/localStorage/apiConnection";
 import {Button} from "@/components/ui/button";
 import {Env} from "@/global";
+import {useIsLogged} from "@/hooks/useIsLogged";
 
 
 interface IConnectionTest {
@@ -17,6 +18,7 @@ let attempts = 0
 * */
 export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
     const [errorToastId, setErrorToastId] = useState<string | number | null>(null)
+    const isLogged = useIsLogged()
 
     const handleCancel = () => {
         toast.dismiss(errorToastId ?? 1)
@@ -81,7 +83,8 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
     }
 
     useEffect(() => {
-        if (Env.isDevelopment()) {
+        //TODO: TEST IT (add isLogged, so always check and make it)
+        if (Env.isDevelopment() && !isLogged) {
             if (setLockActions)
                 setLockActions(false)
             return

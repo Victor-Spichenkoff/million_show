@@ -11,3 +11,5 @@ export const getStoreLastUsedTime = () => {
 
     return Number(timeStorage)
 }
+
+export const clearStorageLastUsedTime = () => storeLastUsedTime(0)

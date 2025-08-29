@@ -6,6 +6,7 @@ import {clearAllCache, } from "@/util/cache";
 
 export default function AuthScreen() {
     clearAllCache()
+    clearAllCache()
 
     return (
         <Suspense>

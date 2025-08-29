@@ -3,6 +3,8 @@
 import {logoutCookies} from "@/storage/cookie/auth";
 import {useRouter} from "next/navigation";
 import {Button} from "@/components/ui/button";
+import {clearStorageLastUsedTime} from "@/storage/localStorage/apiConnection";
+import {clearAllCache} from "@/util/cache";
 
 interface ILogoutButton {
     useFullSize?: boolean
@@ -14,6 +16,8 @@ export const LogoutButton = ({useFullSize}: ILogoutButton) => {
 
     const handleLogout = async () => {
         await logoutCookies()
+        clearStorageLastUsedTime()
+        clearAllCache()
         router.push('/auth')
     }
 
