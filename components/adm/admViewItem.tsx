@@ -1,5 +1,3 @@
-import {Dispatch, SetStateAction} from "react";
-import {AdmModes} from "@/app/(protected)/adm/page";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPen, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {Button} from "@/components/ui/button";
