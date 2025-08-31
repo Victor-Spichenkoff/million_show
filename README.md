@@ -78,9 +78,11 @@
 - Debugging in Next and Nest was fundamental for the conclusion of the project
 
 # Doing now
+- [BUG] Auto-login:
+  - just check login afer cancel / pass
+  - 
 - Adding skeletons
 - Building E2E tests (frontend)
-
 
 ---
 

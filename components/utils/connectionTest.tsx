@@ -38,6 +38,51 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
         </div>
     )
 
+
+    // LOGIC:
+
+    useEffect(() => {
+        //TODO: TEST IT (add isLogged, so always check and make it)
+        if (Env.isDevelopment() && isLogged) {
+            if (setLockActions)
+                setLockActions(false)
+            return
+        }
+
+        (async () => {
+            if (!isSilent) {
+                const toastErrorID = toast.info("Server starting, please wait 1 minute...", {
+                    position: "top-left",
+                    action: actionArea,
+                    duration: 60_000,
+                })
+
+                setErrorToastId(toastErrorID)
+            }
+
+            const success = await handleTestAgainClick()
+
+            if (success)
+                return
+
+            // if (!isSilent) {
+            //     const toastErrorID = toast.info("Server starting, please wait 1 minute...", {
+            //         position: "top-left",
+            //         action: actionArea,
+            //         duration: 60_000,
+            //     })
+            //
+            //     setErrorToastId(toastErrorID)
+            // }
+
+
+            // recursive
+            await TryAgain()
+            // setTimeout(() => TryAgain(), 5000)
+        })()
+    }, [])
+
+
     const handleTestAgainClick = async () => {
         if (attempts > 12) {
             toast.error("Server didn't started, sorry!", {position: "top-left"})
@@ -48,7 +93,7 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
         const oldTime = getStoreLastUsedTime() ?? 1
         const now = Date.now()
 
-        if (oldTime + 1000 * 60 * 10 > now) {
+        if (oldTime + 1000 * 60 * 10 > now && !Env.isDevOrTest()) {
             return true
         }
 
@@ -61,7 +106,6 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
         if (!isSilent)
             toast.info("Server is ready!", {position: "top-left"})
 
-        console.log("GOOD TO GO")
         if (setLockActions)
             setLockActions(false)
         return true
@@ -82,34 +126,6 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
         }, 5000)
     }
 
-    useEffect(() => {
-        //TODO: TEST IT (add isLogged, so always check and make it)
-        if (Env.isDevelopment() && !isLogged) {
-            if (setLockActions)
-                setLockActions(false)
-            return
-        }
-
-        (async () => {
-            const success = await handleTestAgainClick()
-
-            if (success)
-                return
-
-            if (!isSilent) {
-                const toastErrorID = toast.info("Server starting, please wait 1 minute...", {
-                    position: "top-left",
-                    action: actionArea,
-                    duration: 60_000,
-                })
-
-                setErrorToastId(toastErrorID)
-            }
-
-            // recursive
-            setTimeout(() => TryAgain(), 5000)
-        })()
-    }, [])
 
     return null
 }

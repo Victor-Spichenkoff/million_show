@@ -10,7 +10,9 @@ export const baseUrl =
 
 
 export const Env = {
-    isDevelopment: () => process.env.NODE_ENV === 'development'
+    isDevelopment: () => process.env.NODE_ENV == 'development',
+
+    isDevOrTest: () => process.env.NODE_ENV == 'test' || process.env.NODE_ENV == 'development',
 }
 
 
