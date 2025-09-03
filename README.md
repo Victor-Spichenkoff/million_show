@@ -1,50 +1,48 @@
 # The Million Show Game
 [VISIT](https://million-show.vercel.app/)
 
-## What's that?
-- It's a "Who wants to be a millionaire" like game
-- Challenge your friends and your brain in the road to the **Million Dollar Prize**
-- Can you do pull off that?
+# 📌 Overview
 
-- The project has a Frontend, Backend, Database and follow the best practices in modern fullstack development!
+The Million Show Game is a fullstack project inspired by "Who Wants to Be a Millionaire".
+It combines a modern frontend, a robust backend, and a structured database to deliver a complete experience — from user authentication to gameplay mechanics and admin management.
 
+This project was designed with a strong focus on:
+
+✅ Clean architecture & best practices (SOLID, modular design, organized codebase)
+
+✅ High-quality UI/UX with animations, skeletons and smooth feedback
+
+✅ Scalability and maintainability through automation, testing and database migrations
 
 
 # Features
-✅ User registration and authentication (with JWT/Auth Guard)
+🔐 User authentication & roles (player, admin) with JWT/Auth Guard
 
-✅ User profiles and roles (admin, player)
+👤 Profiles & dashboards for players and administrators
 
-✅ Full CRUD for questions and answers with admin dashboard
+📝 Admin CRUD for questions and answers
 
-✅ Scoring system built with unique algorithm to create a realistic and fair ranking system
+🏆 Scoring & ranking system powered by a unique algorithm for realistic results
 
-✅ Animations and skeletons for better UX
+🎭 Helps system (three types, with probability & error logic for a real-game feeling)
 
-✅ Informative messages and real-time feedback
+⚡ Real-time feedback & informative messages
 
-✅ Administration panel (user and question management)
+🛠 Admin panel for user/question management with search system
 
-✅ Good architecture practices applied (SOLID, organized modules, hooks)
+📊 Relational DB with migrations, seeding & auto-cleanup history
 
-✅ Backend process automation
+🧪 High test coverage & automation
 
-✅ Relational database with migrations
+🎨 Animations, skeletons and responsive design
 
-✅ Complete and complex Seeding
-
-✅ High coverage and automated tests
-
-✅ 3 kind of helps with separe logic, probability and mistake chances (for real feeling)
-
-
-# Tech
+# 🛠 Tech
 ## Frontend
 - React/Next.js
 - TailwindCSS
 - Axios
-- Fontawesome
-- Figma Prototyping
+- FontAwesome
+- Figma (Prototyping & Design)
 
 ## Backend
 - Nest.js
@@ -54,17 +52,17 @@
 - Documentation (UML + Swagger)
 
 
-# Biggest Challenges
+# 🚀 Biggest Challenges & Solutions
 - Such a large project come with hundreds of challenges. These are the most interesting:
-## Handle multi-lingual pagination
-- User has the possibility of change the language, so it was necessary to build a sophisticated system to cache and update properly and individually each page number
-- There's also a search system, witch improves the complexity
+## 🌍 Handle multi-lingual pagination
+- Built a caching and updating system for page numbers per language
+- Integrated a search system that works with multiple languages
 
-## Helps System
-- Build a unique system to create random and human-like answer, with a real chance of fail
+## 🎯 Helps System
+- Designed a probabilistic engine to generate human-like answers
+- Added realistic chances of mistakes to simulate the real TV game
 
-
-## Points, Ranking, History and Search
+## Points, Ranking, History & Search
 - Build a powerful points system with different kinds of reward:
   - Less helps used = more points
   - Less time used = more points
@@ -73,14 +71,14 @@
 - History with auto cleaner, to improve DB efficiency, and information persistence, such as duration, helps used, right question...  
 - Search system at the ADMIN dashboard to easily manage data
 
-## Debugging
-- Many bugs were found, some of with deep origin
-- Debugging in Next and Nest was fundamental for the conclusion of the project
+## 🐞 Debugging
+- Solved complex bugs in both Next.js and Nest.js environments
+- Added unit tests and automated flows to ensure reliability
 
 # Doing now
 - [BUG] Auto-login:
-  - just check login afer cancel / pass
-  - 
+  - just check login after cancel / pass
+
 - Adding skeletons
 - Building E2E tests (frontend)
 
