@@ -5,7 +5,10 @@ export const loginService = async (userName: string, password: string) => (
     await handleApiCall<LoginResponse>({
     endpoint: "/auth/signin",
         body: { userName, password },
-        method: "post"
+        method: "post",
+        config: {
+            timeout: 7000,
+        }
 })
 )
 

@@ -24,7 +24,7 @@ export const StopDialog = ({onClick}:IStopDialog) => {
                 <AlertDialogHeader>
                     <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action will finish your previous match
+                        This action will finish your current match
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
