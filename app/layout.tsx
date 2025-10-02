@@ -4,6 +4,7 @@ import "./globals.css"
 import Providers from "@/components/utils/providers"
 import {config} from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import {alertAccessToRedirectApi} from "@/services/alertApi";
 
 
 const merriweather = Merriweather({
@@ -45,6 +46,8 @@ export default function RootLayout({
                                    }: Readonly<{
     children: React.ReactNode;
 }>) {
+    alertAccessToRedirectApi()
+
     return (
         <html lang="en" suppressHydrationWarning={true}>
         <body

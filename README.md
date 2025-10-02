@@ -76,11 +76,8 @@ This project was designed with a strong focus on:
 - Added unit tests and automated flows to ensure reliability
 
 # Doing now
-- [BUG] Auto-login:
-  - just check login after cancel / pass
-
-- Adding skeletons
-- Building E2E tests (frontend)
+- Adding extra skeletons
+- Building E2E tests on frontend
 
 ---
 

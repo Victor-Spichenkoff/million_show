@@ -19,6 +19,7 @@ export function AutoLoginPage() {
     const searchParams = useSearchParams()
 
     useEffect(() => {
+        //TODO: Should skip validation and server starter (change, only redirect after server start/cancel)
         if (isLogged) {
             toast.success("You're already logged in")
             return router.push("/")
