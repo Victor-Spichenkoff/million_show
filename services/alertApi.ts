@@ -27,15 +27,14 @@ export const getUrlAlertUrl = (endpoint: RedirectEndpoints, extra?: string) =>
     `${baseUrl}/alert/${endpoint} ${extra ? "?extra=" + extra : ""}`
 
 
-
 export const getRedirectUrl = (endpoint: RedirectEndpoints, extra?: string) => {
     return `${baseUrl}/${endpoint}?isPort=true${extra ? "&extra="+extra : ""}`
 }
 
-
 export const alertAccessToRedirectApi = async () => {
     console.log(getUrlAlertUrl("million"))
-    await axios.get(getUrlAlertUrl("million"))
+    try {
+        await axios.get(getUrlAlertUrl("million"))
+    } catch {}
 }
-
 

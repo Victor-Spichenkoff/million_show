@@ -41,6 +41,8 @@ export function AutoLoginPage() {
             toast.success("You're logged in successfully!", {position: "top-left"})
             const previous = searchParams.get('previous')
             const pathname = previous ?? "/"
+
+
             return router.push(pathname)
         })()
     }, [lockAction])
@@ -66,7 +68,9 @@ export function AutoLoginPage() {
     return (
         <div className={"relative flex flex-col justify-center items-center min-h-screen max-w-max_w mx-auto"}>
             <Header showConfig showLogo label={"Auto Login"}/>
-            <ConnectionTest setLockActions={setLockActions}/>
+            { lockAction && <ConnectionTest setLockActions={setLockActions}/> }
+
+
             <main className="-mt-header-height flex-1 flex flex-col items-center justify-center gap-4">
                 {isLoading && (
                     <Loading isDisplayBlock/>
