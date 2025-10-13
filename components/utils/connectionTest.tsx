@@ -89,9 +89,10 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
         const oldTime = getStoreLastUsedTime() ?? 1
         const now = Date.now()
 
-        if (oldTime + 1000 * 60 * 10 > now && !Env.isDevOrTest()) {
-            return true
-        }
+        //Removed, better to remove issues
+        // if (oldTime + 1000 * 60 * 10 > now && !Env.isDevOrTest()) {
+        //     return true
+        // }
 
         const res = await TestApiWorkService()
         if (res.isError)
