@@ -5,7 +5,7 @@ import {authRoutes, getLoginPathnameWithPreviousUrl, isImagePath, protectedRoute
 
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
-    const isProtected = protectedRoutes.includes(pathname)
+    // const isProtected = protectedRoutes.includes(pathname)
     const isPublic = publicRoutes.includes(pathname)
     const isAuth = authRoutes.includes(pathname)
 

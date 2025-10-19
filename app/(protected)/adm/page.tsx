@@ -41,7 +41,7 @@ export default function AdmPage() {
 
 
     return (
-        <div className={"px-2 md:px-0 pb-12"}>
+        <div className={"px-2 pl-2 pb-12"}>
             {globalIsLoading && <Loading/>}
             <Header label={"ADMIN"} showBackButton showConfig/>
             <div className={"mb-8"}>

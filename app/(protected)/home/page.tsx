@@ -75,7 +75,9 @@ export default function Home() {
                                     <div
                                         className={"home-card flex mb-4 transition-all duration-200 hover:scale-105 w-full lg:flex-1"}>
                                         <div className={"mr-4"}>
-                                            <FontAwesomeIcon icon={faTrophy} size={"2xl"} color={"highlight"}/>
+                                            <FontAwesomeIcon icon={faTrophy} size={"2xl"} className={"text-highlight"} />
+                                            {/*//TODO: TEST IF Its better for trophy on mobile*/}
+                                            {/*<FontAwesomeIcon icon={faTrophy} size={"2xl"} color={"highlight"}/>*/}
                                         </div>
                                         <div className={"flex-1"}>
                                             <p className={"home-box-title"}>Leaderboard</p>
