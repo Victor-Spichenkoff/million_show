@@ -63,6 +63,7 @@ export const FullQuestion = ({
         else {
             setShowSkeleton(false)
         }
+        setSelected(0)
     }, [question])
 
 

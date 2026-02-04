@@ -33,10 +33,12 @@ export default function MatchPage() {
 
 
     useEffect(() => {
+        (async () => {
         if (hintState.type != "none" || !matchState) {
             startTransition(getAndSetMatchInfo)
         } else
-            getAndSetMatchInfo()
+            await getAndSetMatchInfo()
+        })()
     }, [hintState])
 
 
@@ -51,6 +53,7 @@ export default function MatchPage() {
             // response.response.wrongPrize = 50_000
             // response.response.nextPrize = 200_000
             setMatchState(response.response)
+            return response.response
         }
         else {
             toast.error("You don't have any active match")

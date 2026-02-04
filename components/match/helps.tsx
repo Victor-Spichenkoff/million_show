@@ -9,6 +9,7 @@ import {HalfHint, UniverHint} from "@/types/responses/hint";
 import {Loading} from "@/components/template/loading";
 import {useProtectedApiCall} from "@/hooks/useProtectedApiCall";
 import {ISetFrontendQuestion} from "@/hooks/useGetQuestion";
+import {clearAllCache} from "@/util/cache";
 
 
 interface IHelps {
@@ -52,7 +53,7 @@ export const Helps = ({setMatchHint, match, hintState, getQuestionOnApi, setQues
                 toast.error(res.errorMessage)
                 return
             }
-
+            match.universitary -= 1
             UpdateHintStateStorage({...res.response, type: "univer"})
             setMatchHint({...res.response, type: "univer"})
 
@@ -74,6 +75,7 @@ export const Helps = ({setMatchHint, match, hintState, getQuestionOnApi, setQues
 
 
             UpdateHintStateStorage({...res.response, type: "half"})
+            match.halfHalf -= 1
             setMatchHint({...res.response, type: "half"})
         })
     }
@@ -88,14 +90,18 @@ export const Helps = ({setMatchHint, match, hintState, getQuestionOnApi, setQues
                 return
             }
             toast.success("You've skipped")
+            match.skips -= 1
 
+            clearAllCache()
+
+            setQuestion("loading")
+            await getQuestionOnApi(true)
+            await getAndSetMatchInfo()
+
+            //RESETS
+            setMatchHint({type: "none"})
+            UpdateHintStateStorage("")
         })
-        await getAndSetMatchInfo()
-        setQuestion("loading")
-        await getQuestionOnApi(true)
-        // RESETS
-        setMatchHint({type: "none"})
-        UpdateHintStateStorage("")
     }
 
     return (
