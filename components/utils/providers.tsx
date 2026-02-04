@@ -15,7 +15,6 @@ export default function Providers({children}: { children: React.ReactNode }) {
             <ToasterProvider />
             {children}
         </ThemeProvider>
-
     )
 }
 

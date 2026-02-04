@@ -6,7 +6,7 @@ import {useRouter} from "next/navigation";
 import {NewDialog} from "@/components/home/newDialog";
 import {Button} from "@/components/ui/button";
 import {HomeInfos} from "@/types/responses/home";
-import {CacheIds, clearCache} from "@/util/cache";
+import {CacheIds, clearAllCache, clearCache} from "@/util/cache";
 
 interface IHomeActionArea {
     homeInfo: HomeInfos
@@ -37,7 +37,7 @@ export const HomeActionArea = ({homeInfo}:IHomeActionArea) => {
             // return toast.error("Can't create match")
 
         UpdateHintStateStorage("")
-        clearCache(CacheIds.homeDashboard)
+        clearAllCache()
         router.push(`/match/${result.response.id}?isNew`)
     }
 

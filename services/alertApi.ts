@@ -14,7 +14,7 @@ export const redirectEndpoints = [
     "portfoliosShare",
     "github",
     "linkedin",
-    "tests"
+    "tests",
 ] as const
 
 export type RedirectEndpoints = typeof redirectEndpoints[number]
@@ -24,7 +24,7 @@ const baseUrl = process.env.NODE_ENV == "development" ? "http://localhost:2006" 
 
 
 export const getUrlAlertUrl = (endpoint: RedirectEndpoints, extra?: string) =>
-    `${baseUrl}/alert/${endpoint} ${extra ? "?extra=" + extra : ""}`
+    `${baseUrl}/alert/${endpoint}?${extra ? "&extra=" + extra : ""}`
 
 
 export const getRedirectUrl = (endpoint: RedirectEndpoints, extra?: string) => {
