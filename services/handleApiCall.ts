@@ -14,7 +14,6 @@ export const handleApiCallWithCallBack = async <TReturn>
             response: res.data
         }
     } catch (e: any) {
-        console.log(e.status)
         if (isAxiosError(e) && (e.status == 401)) {
             //TODO: IS STILL WORKING without this?; if error, comment line 20:
             if (isAxiosError(e) && (e.status == 401 || e.code == "UNAUTHORIZED"))

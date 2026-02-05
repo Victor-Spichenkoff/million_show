@@ -4,8 +4,6 @@ export const storeLastUsedTime = (newTime: number) => {
 
 export const getStoreLastUsedTime = () => {
     const timeStorage = localStorage.getItem("last_start")
-
-    console.log(timeStorage)
     if(!timeStorage)
         return null
 

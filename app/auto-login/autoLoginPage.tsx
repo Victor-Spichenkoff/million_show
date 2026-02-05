@@ -4,10 +4,10 @@ import {useAutoLogin} from "@/hooks/useAutoLogin";
 import {useIsLogged} from "@/hooks/useIsLogged";
 import {toast} from "sonner";
 import {Header} from "@/components/template/header";
-import {ConnectionTest} from "@/components/utils/connectionTest";
 import {Loading} from "@/components/template/loading";
 import {LoginDialog} from "@/components/autoLogin/loginDialog";
 import Link from "next/link";
+import {ConnectionTest} from "@/components/utils/connectionTest";
 
 export function AutoLoginPage() {
     const [isLoading, setIsLoading] = useState(true)
@@ -19,9 +19,8 @@ export function AutoLoginPage() {
     const searchParams = useSearchParams()
 
     useEffect(() => {
-        //TODO: Should skip validation and server starter (change, only redirect after server start/cancel)
         if (isLogged) {
-            toast.success("You're already logged in")
+            toast.success("You're already logged in", { id: "default" })
             return router.push("/")
         }
         if (lockAction)
@@ -31,21 +30,21 @@ export function AutoLoginPage() {
             setIsLoading(true)
             const errorMessage = await login()
             setIsLoading(false)
-            console.log(errorMessage)
             if (errorMessage) {
-                toast.error(errorMessage, {position: "top-left"})
+                if(!errorMessage.includes("server"))// avoid show unnecessary message
+                    toast.error(errorMessage, {position: "top-left", id: "default"})
                 setLoginError(true)
                 return
             }
 
-            toast.success("You're logged in successfully!", {position: "top-left"})
+            toast.success("You're logged in successfully!", {position: "top-left", id: "default"})
             const previous = searchParams.get('previous')
             const pathname = previous ?? "/"
 
 
             return router.push(pathname)
         })()
-    }, [lockAction])
+    }, [lockAction, isLogged])
 
 
     const handleCreateClick = async () => {
@@ -54,11 +53,11 @@ export function AutoLoginPage() {
 
         if (errorMessage) {
             setIsLoading(false)
-            toast.error(errorMessage, {position: "top-left"})
+            toast.error(errorMessage, {position: "top-left", id: "default"})
             return
         }
 
-        toast.success("Account created successfully!", {position: "top-left"})
+        toast.success("Account created successfully!", {position: "top-left", id: "default"})
         const previous = searchParams.get('previous')
         const pathname = previous ?? "/"
         return router.push(pathname)
