@@ -77,8 +77,10 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
 
             const status = await handleTestAgain()
 
-            if (status == "success" || status == "already_started_recently")
+            if (status == "success" || status == "already_started_recently") {
+                setLockActions && setLockActions(false)
                 return
+            }
 
             // recursive
             await tryAgain()
@@ -86,7 +88,6 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
 
         return () => {
             toast.dismiss(toastIds.starting)
-            toast.dismiss(toastIds.cancelled)
         }
     }, [])
 
@@ -103,8 +104,6 @@ export const ConnectionTest = ({setLockActions, isSilent}: IConnectionTest) => {
             setLockActions && setLockActions(false)
             return "not_started"
         }
-
-
 
         const res = await TestApiWorkService()
         if (res.isError)

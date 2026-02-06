@@ -1,4 +1,10 @@
-
+# ERROR auth
+- Login -> Error at page
+- It don't change
+# Error auto login
+- Server is ready, but don't make any action (should login)
+- No server action until refresh (zero api calls)
+- 
 
 ---
 - TIME at api connetion tester
